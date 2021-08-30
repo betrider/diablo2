@@ -33,7 +33,10 @@ class Socal extends StatelessWidget {
               vertical: kDefaultPadding,
             ),
           ),
-          child: Text("Let's Talk"),
+          child: Text(
+            "로그인 하기",
+            style: TextStyle(fontFamily: 'kodia'),
+          ),
         ),
       ],
     );

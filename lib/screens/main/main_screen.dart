@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_diablo2_exchange/screens/exchange/exchange_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/freeBoard/free_board_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/freeSharing/free_sharing_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/itemDictionary/item_dictinary_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
 import 'package:flutter_diablo2_exchange/screens/home/home_screen.dart';
@@ -21,7 +25,26 @@ class MainScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(kDefaultPadding),
               constraints: BoxConstraints(maxWidth: kMaxWidth),
-              child: SafeArea(child: HomeScreen()),
+              child: SafeArea(
+                child: GetBuilder<MenuController>(
+                  builder: (controller) {
+                    switch (controller.selectedIndex) {
+                      case 0:
+                        return HomeScreen();
+                      case 1:
+                        return FreeBoardScreen();
+                      case 2:
+                        return ExchangeScreen();
+                      case 3:
+                        return FreeSharingScreen();
+                      case 4:
+                        return ItemDictionaryScreen();
+                      default:
+                        return HomeScreen();
+                    }
+                  },
+                ),
+              ),
             ),
           ],
         ),

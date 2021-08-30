@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
 
@@ -37,12 +37,7 @@ class Header extends StatelessWidget {
                           },
                         ),
                       // SvgPicture.asset("assets/icons/Diablo_2_resurrected_logo.svg"),
-                      SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Image.asset(
-                            'assets/icons/Diablo_2_resurrected_logo.jpg'),
-                      ),
+                      Image.asset('assets/icons/Diablo_II_Resurrected_Logo.png'),
                       Spacer(),
                       if (Responsive.isDesktop(context)) WebMenu(),
                       Spacer(),
@@ -50,49 +45,45 @@ class Header extends StatelessWidget {
                       Socal(),
                     ],
                   ),
-                  SizedBox(height: kDefaultPadding * 2),
+                  SizedBox(height: kDefaultPadding),
                   Text(
-                    "Welcome to Our Blog",
+                    "디아블로2 레저렉션 거래소에 오신 걸 환영합니다.",
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                      fontFamily: 'kodia',
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: kDefaultPadding),
-                    child: Text(
-                      "Stay updated with the newest design and development stories, case studies, \nand insights shared by DesignDK Team.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Raleway',
-                        height: 1.5,
-                      ),
+                  Text(
+                    "",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Raleway',
+                      height: 1.5,
                     ),
                   ),
-                  FittedBox(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        children: [
-                          Text(
-                            "Learn More",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(width: kDefaultPadding / 2),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // FittedBox(
+                  //   child: TextButton(
+                  //     onPressed: () {},
+                  //     child: Row(
+                  //       children: [
+                  //         Text(
+                  //           "Learn More",
+                  //           style: TextStyle(
+                  //             fontWeight: FontWeight.bold,
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //         SizedBox(width: kDefaultPadding / 2),
+                  //         Icon(
+                  //           Icons.arrow_forward,
+                  //           color: Colors.white,
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                   if (Responsive.isDesktop(context))
                     SizedBox(height: kDefaultPadding),
                 ],
