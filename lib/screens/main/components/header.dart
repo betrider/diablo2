@@ -36,7 +36,13 @@ class Header extends StatelessWidget {
                             _controller.openOrCloseDrawer();
                           },
                         ),
-                      SvgPicture.asset("assets/icons/logo.svg"),
+                      // SvgPicture.asset("assets/icons/Diablo_2_resurrected_logo.svg"),
+                      SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(
+                            'assets/icons/Diablo_2_resurrected_logo.jpg'),
+                      ),
                       Spacer(),
                       if (Responsive.isDesktop(context)) WebMenu(),
                       Spacer(),
