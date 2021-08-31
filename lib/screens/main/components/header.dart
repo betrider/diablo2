@@ -15,7 +15,13 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: kDarkBlackColor,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [kDarkBlackColor, Colors.black87],
+        ),
+      ),
       child: SafeArea(
         child: Column(
           children: [
@@ -37,7 +43,8 @@ class Header extends StatelessWidget {
                           },
                         ),
                       // SvgPicture.asset("assets/icons/Diablo_2_resurrected_logo.svg"),
-                      Image.asset('assets/icons/Diablo_II_Resurrected_Logo.png'),
+                      Image.asset(
+                          'assets/icons/Diablo_II_Resurrected_Logo.png'),
                       Spacer(),
                       if (Responsive.isDesktop(context)) WebMenu(),
                       Spacer(),
