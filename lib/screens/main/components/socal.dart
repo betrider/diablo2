@@ -28,10 +28,11 @@ class Socal extends StatelessWidget {
               vertical: kDefaultPadding,
             ),
           ),
-          child: Text(
-            "로그인 하기",
-            style: TextStyle(fontFamily: 'kodia'),
-          ),
+          // child: Text(
+          //   "로그인 하기",
+          //   style: TextStyle(fontFamily: 'kodia'),
+          // ),
+          child: Text('hello'.tr)
         ),
       ],
     );

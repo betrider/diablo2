@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_diablo2_exchange/localization_service.dart';
 import 'package:flutter_diablo2_exchange/screens/main/main_screen.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
-import 'package:get/get.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_diablo2_exchange/index.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //비동기 메소드 사용하기 위해 선언
 
   await Hive.initFlutter(); //Hive 초기화
   await Hive.openBox('cache'); //Hive cache박스 등록
 
   await GlobalConfiguration().loadFromAsset("config"); //환경설정 세팅
-  
+
   runApp(MyApp());
 }
 
@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: LocalizationService.locale,
+      fallbackLocale: LocalizationService.fallbackLocale,
+      translations: LocalizationService(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

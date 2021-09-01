@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
+import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:flutter_diablo2_exchange/localization_service.dart';
 import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
@@ -23,6 +25,15 @@ class Header extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: CustomMenuButton(
+                itemList: LocalizationService.langs,
+                onChanged: (value) {
+                  LocalizationService().changeLocale(value);
+                },
+              ),
+            ),
             Container(
               constraints: BoxConstraints(maxWidth: kMaxWidth),
               padding: EdgeInsets.all(kDefaultPadding),

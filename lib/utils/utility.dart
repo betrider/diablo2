@@ -3,7 +3,12 @@ import 'package:global_configuration/global_configuration.dart';
 
 bool get isDebug => kDebugMode;
 bool get isRelease => kDebugMode;
+
+///ex)getCache.box.put('name', 'David');
+///ex)getCache.box.get('name');
 dynamic get getCache => Hive.box('cache');
+
+///ex)getGlobalConfig.get('domain');
 GlobalConfiguration get getGlobalConfig => GlobalConfiguration();
 
 // 앱이 구동중인 플랫폼을 확인

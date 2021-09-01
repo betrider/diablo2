@@ -13,7 +13,7 @@ export 'package:flutter/services.dart';
 // Widgets
 export 'package:flutter_diablo2_exchange/widgets/widgets.dart';
 
-// Widgets
+// Utils
 export 'package:flutter_diablo2_exchange/utils/utils.dart';
 
 // Others Packages
