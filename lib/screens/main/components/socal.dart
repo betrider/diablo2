@@ -11,28 +11,20 @@ class Socal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // if (!Responsive.isMobile(context))
-        //   SvgPicture.asset("assets/icons/behance-alt.svg"),
-        // if (!Responsive.isMobile(context))
-        //   Padding(
-        //     padding:
-        //         const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
-        //     child: SvgPicture.asset("assets/icons/feather_dribbble.svg"),
-        //   ),
-        // if (!Responsive.isMobile(context))
-        //   SvgPicture.asset("assets/icons/feather_twitter.svg"),
         SizedBox(width: kDefaultPadding),
         ElevatedButton(
           onPressed: () async{
-            var box = await Hive.openBox('cache');
-            print(box.get('dave'));
-            await box.put('dave', '1234');
-            print(box.get('dave'));
+
+            String domain = getGlobalConfig.get('domain');
+            String clientId = getGlobalConfig.get('clientId');
+            String redirectUri = getGlobalConfig.get('redirectUri');
+            String responseType = getGlobalConfig.get('responseType');
+
+            urlLauncher(url:'$domain?client_id=$clientId&redirect_uri=$redirectUri&response_type=$responseType', urlType: UrlType.INTERNET);
           },
           style: TextButton.styleFrom(
             padding: EdgeInsets.symmetric(
               horizontal: kDefaultPadding * 1.5,
-              // vertical: kDefaultPadding / (Responsive.isDesktop(context) ? 1 : 2),
               vertical: kDefaultPadding,
             ),
           ),

@@ -34,7 +34,8 @@ dependencies:
   url_launcher: ^6.0.9
   hive: ^2.0.4
   hive_flutter: ^1.1.0
-  path_provider: ^2.0.2
+  #전역 세팅
+  global_configuration: ^2.0.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +56,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
+    - assets/cfg/
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

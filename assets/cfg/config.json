@@ -1,0 +1,6 @@
+{
+    "domain": "kr.battle.net/oauth/authorize",
+    "clientId": "84f64a0764fc407f88429868526a5d0a",
+    "redirectUri": "http://localhost",
+    "responseType": "code"
+  }

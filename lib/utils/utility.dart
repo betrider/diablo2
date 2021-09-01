@@ -1,9 +1,10 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:global_configuration/global_configuration.dart';
 
-bool isDebug() => kDebugMode;
-bool isRelease() => kDebugMode;
-
-dynamic getCache() async => await Hive.openBox('cache');
+bool get isDebug => kDebugMode;
+bool get isRelease => kDebugMode;
+dynamic get getCache => Hive.box('cache');
+GlobalConfiguration get getGlobalConfig => GlobalConfiguration();
 
 // 앱이 구동중인 플랫폼을 확인
 // GetPlatform.isAndroid
