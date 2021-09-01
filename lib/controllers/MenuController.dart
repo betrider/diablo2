@@ -7,8 +7,7 @@ class MenuController extends GetxController {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   int get selectedIndex => _selectedIndex.value;
-  // List<String> get menuItems => ["홈", "거래소(스탠)", "거래소(래더)", "무료기부(스탠)", "무료기부(래더)"];
-  List<String> get menuItems => ["홈", "거래소(스탠다드)", "거래소(래더)"];
+  List<String> get menuItems => ["home", "exchange(standard)", "exchange(ladder)"];
   GlobalKey<ScaffoldState> get scaffoldkey => _scaffoldKey;
 
   void openOrCloseDrawer() {

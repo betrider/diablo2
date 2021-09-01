@@ -70,7 +70,7 @@ class _WebMenuItemState extends State<WebMenuItem> {
           ),
         ),
         child: Text(
-          widget.text,
+          widget.text.tr,
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'kodia',

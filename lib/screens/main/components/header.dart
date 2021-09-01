@@ -63,7 +63,7 @@ class Header extends StatelessWidget {
                   ),
                   SizedBox(height: kDefaultPadding),
                   Text(
-                    "디아블로2 레저렉션 거래소에 오신 걸 환영합니다.",
+                    "welcome to the diablo2 exchange".tr,
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.white,
