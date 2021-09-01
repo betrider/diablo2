@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_diablo2_exchange/constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'package:flutter_diablo2_exchange/models/Blog.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
 

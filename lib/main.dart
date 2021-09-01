@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/screens/main/main_screen.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-import 'constants.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized(); //비동기 메소드 사용하기 위해 선언
 
-void main() {
+  await Hive.initFlutter(); //Hive 초기화
+  await Hive.openBox('cache'); //Hive cache박스 등록
   runApp(MyApp());
 }
 

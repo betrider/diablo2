@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_diablo2_exchange/models/Blog.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
 
-import '../../../constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 
 class BlogPostCard extends StatelessWidget {
   final Blog blog;

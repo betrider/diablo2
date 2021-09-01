@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../constants.dart';
-// import '../../../responsive.dart';
+import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 
 class Socal extends StatelessWidget {
   const Socal({
@@ -25,7 +23,12 @@ class Socal extends StatelessWidget {
         //   SvgPicture.asset("assets/icons/feather_twitter.svg"),
         SizedBox(width: kDefaultPadding),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () async{
+            var box = await Hive.openBox('cache');
+            print(box.get('dave'));
+            await box.put('dave', '1234');
+            print(box.get('dave'));
+          },
           style: TextButton.styleFrom(
             padding: EdgeInsets.symmetric(
               horizontal: kDefaultPadding * 1.5,

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
+import 'package:flutter_diablo2_exchange/index.dart';
 
 class SidebarContainer extends StatelessWidget {
   final String title;

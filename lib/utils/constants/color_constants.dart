@@ -10,22 +10,6 @@ const kMaxWidth = 1232.0;
 const kDefaultDuration = Duration(milliseconds: 250);
 
 //diable item color(https://forums.d2jsp.org/topic.php?t=68614511&f=21)
-// const itemCrystalBlue = Color(0xFFE7E7E7);
-// const itemCrystalGreen = Color(0xFFE7E7E7);
-// const itemCrystalRed = Color(0xFFE7E7E7);
-// const itemDarkBlue = Color(0xFFE7E7E7);
-// const itemDarkGold = Color(0xFFE7E7E7);
-// const itemDarkGreen = Color(0xFFE7E7E7);
-// const itemDarkRed = Color(0xFFE7E7E7);
-// const itemDarkYellow = Color(0xFFE7E7E7);
-// const itemLightBlue = Color(0xFFE7E7E7);
-// const itemLightGold = Color(0xFFE7E7E7);
-// const itemLightPurple = Color(0xFFE7E7E7);
-// const itemLightRed = Color(0xFFE7E7E7);
-// const itemLightYellow = Color(0xFFE7E7E7);
-// const itemOrange = Color(0xFFE7E7E7);
-// const itemWhite = Color(0xFFE7E7E7);
-
 //참고:https://d2mods.info/forum/viewtopic.php?t=57429
 
 class ItemColor {

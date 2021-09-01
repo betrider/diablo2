@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'sidebar_container.dart';
 
 class RecentPosts extends StatelessWidget {

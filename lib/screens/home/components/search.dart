@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'sidebar_container.dart';
 
 class Search extends StatelessWidget {

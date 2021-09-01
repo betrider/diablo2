@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
-
-import '../../../constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'socal.dart';
 import 'web_menu.dart';
 

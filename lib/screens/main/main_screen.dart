@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_diablo2_exchange/constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'package:flutter_diablo2_exchange/screens/exchange_radar/exchange_radar_screen.dart';
 import 'package:flutter_diablo2_exchange/screens/exchange_standard/exchange_standard_screen.dart';
 import 'package:get/get.dart';

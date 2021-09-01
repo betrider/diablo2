@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_diablo2_exchange/constants.dart';
+import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 
 class ExchangeStandardScreen extends StatelessWidget {
   const ExchangeStandardScreen({Key? key}) : super(key: key);
