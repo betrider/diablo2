@@ -29,7 +29,7 @@ class _CustomMenuButtonState extends State<CustomMenuButton> {
       child: normalChildButton(),
       items: keys,
       itemBuilder: (String value) => Container(
-        height: 40,
+        height: 25,
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16),
         child: Text(value),
@@ -51,7 +51,7 @@ class _CustomMenuButtonState extends State<CustomMenuButton> {
   Widget normalChildButton() {
     return SizedBox(
       width: 90,
-      height: 20,
+      height: 25,
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 11),
         child: Row(
