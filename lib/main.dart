@@ -1,4 +1,5 @@
 import 'package:flutter_diablo2_exchange/localization_service.dart';
+import 'package:flutter_diablo2_exchange/route.dart';
 import 'package:flutter_diablo2_exchange/screens/main/main_screen.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
       locale: LocalizationService.locale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),
+      getPages: RouteGenerator.getPages(),
+      routingCallback: RouteGenerator.routingCallback,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

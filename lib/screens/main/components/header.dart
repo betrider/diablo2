@@ -52,8 +52,15 @@ class Header extends StatelessWidget {
                           },
                         ),
                       // SvgPicture.asset("assets/icons/Diablo_2_resurrected_logo.svg"),
-                      Image.asset(
-                          'assets/icons/Diablo_II_Resurrected_Logo.png'),
+                      InkWell(
+                        onTap: () {
+                          if(isDebug){
+                            Get.toNamed('/sample');
+                          }
+                        },
+                        child: Image.asset(
+                            'assets/icons/Diablo_II_Resurrected_Logo.png'),
+                      ),
                       Spacer(),
                       if (Responsive.isDesktop(context)) WebMenu(),
                       Spacer(),

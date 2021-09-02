@@ -7,225 +7,31 @@ class ItemDictionaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight: 900,
-        minWidth: double.infinity
-      ),
+      constraints: BoxConstraints(minHeight: 900, minWidth: double.infinity),
       child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/body_background.jpg'),
-            repeat: ImageRepeat.repeat,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/body_background.jpg'),
+              repeat: ImageRepeat.repeat,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
-            ],
-          ),
-        )
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [],
+            ),
+          )),
+    );
+  }
+}
+
+class Test extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(child: Text('123')),
       ),
     );
   }
