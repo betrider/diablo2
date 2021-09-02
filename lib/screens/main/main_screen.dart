@@ -11,43 +11,50 @@ import 'components/side_menu.dart';
 
 class MainScreen extends StatelessWidget {
   final MenuController _controller = Get.put(MenuController());
+  final _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _controller.scaffoldkey,
       drawer: SideMenu(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Header(),
-            Container(
-              // constraints: BoxConstraints(maxWidth: kMaxWidth),
-              child: SafeArea(
-                child: GetBuilder<MenuController>(
-                  builder: (controller) {
-                    switch (controller.selectedIndex) {
-                      case 0:
-                        return ConstrainedBox(
-                          constraints: BoxConstraints(maxWidth: kMaxWidth),
-                          child: HomeScreen(),
-                        );
-                      case 1:
-                        return ExchangeStandardScreen();
-                      case 2:
-                        return ExchangeLadderScreen();
-                      case 3:
-                        return ItemDictionaryScreen();
-                      default:
-                        return ConstrainedBox(
-                          constraints: BoxConstraints(maxWidth: kMaxWidth),
-                          child: HomeScreen(),
-                        );
-                    }
-                  },
+      body: Scrollbar(
+        // isAlwaysShown: true, //스크롤 항상 보이게할지 여부
+        controller: _scrollController,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            children: [
+              Header(),
+              Container(
+                // constraints: BoxConstraints(maxWidth: kMaxWidth),
+                child: SafeArea(
+                  child: GetBuilder<MenuController>(
+                    builder: (controller) {
+                      switch (controller.selectedIndex) {
+                        case 0:
+                          return ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: kMaxWidth),
+                            child: HomeScreen(),
+                          );
+                        case 1:
+                          return ExchangeStandardScreen();
+                        case 2:
+                          return ExchangeLadderScreen();
+                        case 3:
+                          return ItemDictionaryScreen();
+                        default:
+                          return ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: kMaxWidth),
+                            child: HomeScreen(),
+                          );
+                      }
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

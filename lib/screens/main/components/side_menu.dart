@@ -29,6 +29,7 @@ class SideMenu extends StatelessWidget {
                   title: _controller.menuItems[index],
                   press: () {
                     _controller.setMenuIndex(index);
+                    Get.back();
                   },
                 ),
               ),
@@ -61,7 +62,7 @@ class DrawerItem extends StatelessWidget {
         selectedTileColor: kPrimaryColor,
         onTap: press,
         title: Text(
-          title,
+          title.tr,
           style: TextStyle(color: Colors.white),
         ),
       ),
