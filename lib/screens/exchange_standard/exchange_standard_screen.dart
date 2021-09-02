@@ -133,6 +133,7 @@ class _ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
     );
   }
 
+  // ignore: unused_element
   Opacity _getItem() {
     return Opacity(
       opacity: 0.9,
