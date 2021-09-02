@@ -10,6 +10,9 @@ export 'package:flutter/cupertino.dart' hide RefreshCallback;
 export 'package:flutter/foundation.dart' show kDebugMode;
 export 'package:flutter/services.dart';
 
+// Models
+export 'package:flutter_diablo2_exchange/models/models.dart';
+
 // Widgets
 export 'package:flutter_diablo2_exchange/widgets/widgets.dart';
 

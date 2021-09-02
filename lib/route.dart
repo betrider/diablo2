@@ -41,7 +41,8 @@ class SamplePage extends StatelessWidget {
 }
 
 class SampleArgumentPage extends StatelessWidget {
-  const SampleArgumentPage({Key? key}) : super(key: key);
+
+  dynamic aa = UniqueItemModel(reqLevel: 66);
 
   @override
   Widget build(BuildContext context) {
