@@ -303,6 +303,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.3"
+  searchable_dropdown:
+    dependency: "direct main"
+    description:
+      path: "ext_package/searchable_dropdown"
+      relative: true
+    source: path
+    version: "1.1.4"
   sky_engine:
     dependency: transitive
     description: flutter
