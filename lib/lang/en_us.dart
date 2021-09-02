@@ -6,7 +6,8 @@ const Map<String, String> enUS = {
   'home': 'home',
   'exchange(standard)': 'exchange(standard)',
   'exchange(ladder)': 'exchange(ladder)',
-  'welcome to the diablo2 exchange': 'welcome to the diablo2 exchange'
+  'welcome to the diablo2 exchange': 'welcome to the diablo2 exchange',
+  'item dictionary': 'item dictionary'
 
   //아이템
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_diablo2_exchange/screens/exchange_ladder/exchange_ladder_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/item_dictionary/item_dictionary_screen.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
-import 'package:flutter_diablo2_exchange/screens/exchange_radar/exchange_radar_screen.dart';
 import 'package:flutter_diablo2_exchange/screens/exchange_standard/exchange_standard_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
@@ -33,7 +34,9 @@ class MainScreen extends StatelessWidget {
                       case 1:
                         return ExchangeStandardScreen();
                       case 2:
-                        return ExchangeRadarScreen();
+                        return ExchangeLadderScreen();
+                      case 3:
+                        return ItemDictionaryScreen();
                       default:
                         return ConstrainedBox(
                           constraints: BoxConstraints(maxWidth: kMaxWidth),
