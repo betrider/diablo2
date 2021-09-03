@@ -57,6 +57,19 @@ class MainScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: null,
+        onPressed: () {
+          // _scrollController.jumpTo(0);
+          _scrollController.animateTo(0,duration: Duration(milliseconds: 500), curve: Curves.ease);
+        },
+        child: Icon(
+          Icons.arrow_circle_up,
+          color: Colors.black,
+        ),
+        mini: true,
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }

@@ -50,6 +50,8 @@ const itemQualityColor = [
   ItemColor.gold,
   /// 세트
   ItemColor.green,
+  /// 유니크
+  ItemColor.gold,
   /// 크래프트
   ItemColor.orange,
   /// 레어

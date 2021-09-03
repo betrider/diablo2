@@ -51,11 +51,12 @@ class Header extends StatelessWidget {
                             _controller.openOrCloseDrawer();
                           },
                         ),
-                      // SvgPicture.asset("assets/icons/Diablo_2_resurrected_logo.svg"),
                       InkWell(
                         onTap: () {
                           if(isDebug){
                             Get.toNamed('/sample');
+                          }else{
+                            _controller.setMenuIndex(0);
                           }
                         },
                         child: Image.asset(

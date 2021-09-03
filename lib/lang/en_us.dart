@@ -1,12 +1,12 @@
 // 영문 번역
 const Map<String, String> enUS = {
   //메뉴
-  'login': 'login',
-  'home': 'home',
-  'exchange(standard)': 'exchange(standard)',
-  'exchange(ladder)': 'exchange(ladder)',
-  'welcome to the diablo2 exchange': 'welcome to the diablo2 exchange',
-  'item dictionary': 'item dictionary',
+  'login': 'Login',
+  'home': 'Home',
+  'exchange(standard)': 'Exchange(Standard)',
+  'exchange(ladder)': 'Exchange(Ladder)',
+  'welcome to the diablo2 exchange': 'Welcome to the diablo2 Exchange',
+  'item dictionary': 'Item Dictionary',
 
   //아이템 등급
   'Unique': 'Unique',
