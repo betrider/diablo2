@@ -51,8 +51,7 @@ class RareItemModel {
   })  : assert(prefixes.length > 0),
         assert(prefixes.length <= 3),
         assert(prefixes.length > 0),
-        assert(prefixes.length <= 3),
-        assert(prefixes.length + suffixes.length <= 6);
+        assert(prefixes.length <= 3);
 
   int reqLevel;
   int reqStr;
@@ -75,7 +74,7 @@ class RareJewelModel {
   List<String> suffixes;
 }
 
-///매직 아이템 모델 1/1(2)
+///매직 아이템 모델(장비,참,주얼) 1/1(2)
 class MagicalItemModel {
   MagicalItemModel({
     required this.reqLevel,
@@ -83,38 +82,11 @@ class MagicalItemModel {
     required this.prefixes,
     required this.suffixes,
   })  : assert(prefixes.length + suffixes.length > 0),
-        assert(prefixes.length + suffixes.length <= 2);
+        assert(prefixes.length <= 1),
+        assert(suffixes.length <= 1);
 
   int reqLevel;
   int reqStr;
-  List<String> prefixes;
-  List<String> suffixes;
-}
-
-///매직 주얼 모델 1/1(2)
-class MagicalJewelModel {
-  MagicalJewelModel({
-    required this.reqLevel,
-    required this.prefixes,
-    required this.suffixes,
-  })  : assert(prefixes.length + suffixes.length > 0),
-        assert(prefixes.length + suffixes.length <= 2);
-
-  int reqLevel;
-  List<String> prefixes;
-  List<String> suffixes;
-}
-
-///매직 참 모델 1/1(2)
-class MagicalCharmModel {
-  MagicalCharmModel({
-    required this.reqLevel,
-    required this.prefixes,
-    required this.suffixes,
-  })  : assert(prefixes.length + suffixes.length > 0),
-        assert(prefixes.length + suffixes.length <= 2);
-
-  int reqLevel;
   List<String> prefixes;
   List<String> suffixes;
 }
