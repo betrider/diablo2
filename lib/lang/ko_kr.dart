@@ -21,19 +21,19 @@ const Map<String, String> koKR = {
   //-------------------
 
   //무기
-  'Daggers': '대거',
-  'Swords': '소드',
-  'Axes': '엑스',
-  'Maces': '메이스',
-  'Scepters': '셉터',
-  'Staves': '스태프',
-  'Wands': '원드',
-  'Spears': '스피어',
-  'Polearms': '폴암',
-  'Throwing': '스로잉',
-  'Javelins': '자벨린',
-  'Bows': '보우',
-  'Crossbows': '크로스보우',
+  'Daggers': '단검',
+  'Swords': '도검',
+  'Axes': '도끼',
+  'Maces': '둔기',
+  'Scepters': '홀',
+  'Staves': '지팡이',
+  'Wands': '마술봉',
+  'Spears': '창',
+  'Polearms': '미늘창',
+  'Throwing': '투척 무기',
+  'Javelins': '투창',
+  'Bows': '활',
+  'Crossbows': '쇠뇌',
 
   //클래스 무기
   'Amazon Weapons': '아마존 무기',
@@ -47,13 +47,13 @@ const Map<String, String> koKR = {
   'Shrunken Heads': '쉬렁큰 헤드',
 
   //방어구
-  'Circlets': '서클릿',
-  'Helms': '헬름',
-  'Body Armor': '아머',
-  'Shields': '쉴드',
-  'Gloves': '글러브',
-  'Boots': '부츠',
-  'Belts': '벨트',
+  'Circlets': '띠관',
+  'Helms': '투구',
+  'Body Armor': '갑옷',
+  'Shields': '방패',
+  'Gloves': '장갑',
+  'Boots': '신발',
+  'Belts': '허리띠',
 
   //-------------------
 
