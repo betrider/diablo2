@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
-import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
+import 'package:flutter_diablo2_exchange/index.dart';
 
 class WebMenu extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
+  final MenuController _controller = Get.put(MenuController(getCache.get('pageIndex')));
 
   @override
   Widget build(BuildContext context) {

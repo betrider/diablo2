@@ -19,6 +19,9 @@ export 'package:flutter_diablo2_exchange/widgets/widgets.dart';
 // Utils
 export 'package:flutter_diablo2_exchange/utils/utils.dart';
 
+// Controllers
+export 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
+
 // Others Packages
 export 'package:get/get.dart';
 export 'package:flutter_svg/flutter_svg.dart';

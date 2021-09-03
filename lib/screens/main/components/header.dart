@@ -9,7 +9,7 @@ import 'socal.dart';
 import 'web_menu.dart';
 
 class Header extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController());
+  final MenuController _controller = Get.put(MenuController(getCache.get('pageIndex')));
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +40,7 @@ class Header extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       if (!Responsive.isDesktop(context))
                         IconButton(
@@ -62,9 +63,7 @@ class Header extends StatelessWidget {
                         child: Image.asset(
                             'assets/icons/Diablo_II_Resurrected_Logo.png'),
                       ),
-                      Spacer(),
                       if (Responsive.isDesktop(context)) WebMenu(),
-                      Spacer(),
                       // Socal
                       Socal(),
                     ],

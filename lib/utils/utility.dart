@@ -4,9 +4,10 @@ import 'package:global_configuration/global_configuration.dart';
 bool get isDebug => kDebugMode;
 bool get isRelease => kDebugMode;
 
-///ex)getCache.box.put('name', 'David');
-///ex)getCache.box.get('name');
+///ex)getCache.put('name', 'David');
+///ex)getCache.get('name');
 dynamic get getCache => Hive.box('cache');
+
 
 ///ex)getGlobalConfig.get('domain');
 GlobalConfiguration get getGlobalConfig => GlobalConfiguration();
