@@ -1,143 +1,176 @@
-import 'dart:io';
-
+import 'package:flutter_diablo2_exchange/controllers/searchController.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
-import 'package:flutter_diablo2_exchange/utils/constants/item_constants.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:http/http.dart' as http;
+import 'package:loadmore/loadmore.dart';
 
 class ExchangeStandardScreen extends StatefulWidget {
-  const ExchangeStandardScreen({Key? key}) : super(key: key);
-
   @override
   _ExchangeStandardScreenState createState() => _ExchangeStandardScreenState();
 }
 
 class _ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
+  int get count => list.length;
+  List<int> list = [];
+  final SearchController _searchController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.clear();
+  }
+
+  void load() {
+    setState(() {
+      list.addAll(List.generate(20, (v) => v));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 900, minWidth: double.infinity),
-      child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/body_background.jpg'),
-              repeat: ImageRepeat.repeat,
-            ),
+    return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/body_background.jpg'),
+            repeat: ImageRepeat.repeat,
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 4),
-            child: Column(
-              children: [
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 4),
+          child: Column(
+            children: [
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: CustomTitle.size20('필터 1 : 아이템 등급'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                  Flexible(child: TabChipsItemQulity()),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: CustomTitle.size20('필터 2 : 아이템 유형'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                  Flexible(child: TabChipsItemType()),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: CustomTitle.size20('필터 3 : 아이템 옵션\n유니크, 세트, 룬워드 한정'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: CustomTitle.size20('필터 4 : 아이템 옵션'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: CustomTitle.size20('필터 5 : 아이템 가격'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              if (count == 0) ...[
+                ElevatedButton(
+                  onPressed: () {
+                    _searchController.updateSearchOnoff();
+                    setState(() {
+                      list.addAll(List.generate(20, (v) => v));
+                    });
+                  },
+                  child: Text('아이템 검색'),
+                ),
                 SizedBox(
                   height: kDefaultPadding * 2,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      child: CustomTitle.size20('필터 1 : 아이템 등급'),
-                    ),
-                    SizedBox(
-                      width: kDefaultPadding,
-                    ),
-                    Flexible(child: TabChipsItemQulity()),
-                  ],
+              ] else ...[
+                GetBuilder<SearchController>(
+                  builder: (controller) {
+                    return LoadMore(
+                      isFinish: count >= controller.searchCount,
+                      onLoadMore: _loadMore,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        primary: false,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            child: Text(list[index].toString()),
+                            height: 40.0,
+                            alignment: Alignment.center,
+                          );
+                        },
+                        itemCount: count,
+                      ),
+                      whenEmptyLoad: false,
+                      delegate: DefaultLoadMoreDelegate(),
+                      textBuilder: DefaultLoadMoreTextBuilder.chinese,
+                    );
+                  },
                 ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      child: CustomTitle.size20('필터 2 : 아이템 유형'),
-                    ),
-                    SizedBox(
-                      width: kDefaultPadding,
-                    ),
-                    Flexible(child: TabChipsItemType()),
-                  ],
-                ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      child:
-                          CustomTitle.size20('필터 3 : 아이템 옵션\n유니크, 세트, 룬워드 한정'),
-                    ),
-                    SizedBox(
-                      width: kDefaultPadding,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      child: CustomTitle.size20('필터 4 : 아이템 옵션'),
-                    ),
-                    SizedBox(
-                      width: kDefaultPadding,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      child: CustomTitle.size20('필터 5 : 아이템 가격'),
-                    ),
-                    SizedBox(
-                      width: kDefaultPadding,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                ListView(
-                  shrinkWrap: true,
-                  primary: false,
-                  padding: const EdgeInsets.all(8.0),
-                  children: <Widget>[
-                    Container(
-                      height: 200,
-                      color: Colors.amber[600],
-                      child: const Center(child: Text('Entry A')),
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.amber[500],
-                      child: const Center(child: Text('Entry B')),
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.amber[100],
-                      child: const Center(child: Text('Entry C')),
-                    ),
-                  ],
-                ),
-                _getItem(),
-                SizedBox(height: 20,)
               ],
-            ),
-          )),
-    );
+            ],
+          ),
+        ));
+  }
+
+  Future<bool> _loadMore() async {
+    print("onLoadMore");
+    await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
+    load();
+    return true;
   }
 
   // ignore: unused_element
@@ -260,161 +293,3 @@ class _TabChipsItemTypeState extends State<TabChipsItemType> {
     );
   }
 }
-
-class CharacterListView extends StatefulWidget {
-  @override
-  _CharacterListViewState createState() => _CharacterListViewState();
-}
-
-class _CharacterListViewState extends State<CharacterListView> {
-  static const _pageSize = 20;
-
-  final PagingController<int, CharacterSummary> _pagingController =
-      PagingController(firstPageKey: 0);
-
-  @override
-  void initState() {
-    _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
-    });
-    super.initState();
-  }
-
-  Future<void> _fetchPage(int pageKey) async {
-    try {
-      final newItems = await RemoteApi.getCharacterList(pageKey, _pageSize);
-      final isLastPage = newItems.length < _pageSize;
-      if (isLastPage) {
-        _pagingController.appendLastPage(newItems);
-      } else {
-        final nextPageKey = (pageKey + newItems.length).toInt();
-        _pagingController.appendPage(newItems, nextPageKey);
-      }
-    } catch (error) {
-      _pagingController.error = error;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) => 
-      // Don't worry about displaying progress or error indicators on screen; the 
-      // package takes care of that. If you want to customize them, use the 
-      // [PagedChildBuilderDelegate] properties.
-      PagedListView<int, CharacterSummary>(
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<CharacterSummary>(
-          itemBuilder: (context, item, index) => CharacterListItem(
-            character: item,
-          ),
-        ),
-      );
-
-  @override
-  void dispose() {
-    _pagingController.dispose();
-    super.dispose();
-  }
-}
-
-/// Summarized information of a character.
-class CharacterSummary {
-  CharacterSummary({
-    required this.id,
-    required this.name,
-    required this.pictureUrl,
-  });
-
-  factory CharacterSummary.fromJson(Map<String, dynamic> json) =>
-      CharacterSummary(
-        id: json['char_id'],
-        name: json['name'],
-        pictureUrl: json['img'],
-      );
-
-  final int id;
-  final String name;
-  final String pictureUrl;
-}
-
-class CharacterListItem extends StatelessWidget {
-  const CharacterListItem({
-    required this.character,
-    Key? key,
-  }) : super(key: key);
-
-  final CharacterSummary character;
-
-  @override
-  Widget build(BuildContext context) => ListTile(
-        leading: CircleAvatar(
-          radius: 20,
-          backgroundImage: CachedNetworkImageProvider(character.pictureUrl),
-        ),
-        title: Text(character.name),
-      );
-}
-
-class RemoteApi {
-  static Future<List<CharacterSummary>> getCharacterList(
-    int offset,
-    int limit, {
-    String? searchTerm,
-  }) async =>
-      http
-          .get(
-            _ApiUrlBuilder.characterList(offset, limit, searchTerm: searchTerm),
-          )
-          .mapFromResponse<List<CharacterSummary>, List<dynamic>>(
-            (jsonArray) => _parseItemListFromJsonArray(
-              jsonArray,
-              (jsonObject) => CharacterSummary.fromJson(jsonObject),
-            ),
-          );
-
-  static List<T> _parseItemListFromJsonArray<T>(
-    List<dynamic> jsonArray,
-    T Function(dynamic object) mapper,
-  ) =>
-      jsonArray.map(mapper).toList();
-}
-
-class _ApiUrlBuilder {
-  static const _baseUrl = 'https://www.breakingbadapi.com/api/';
-  static const _charactersResource = 'characters/';
-
-  static Uri characterList(
-    int offset,
-    int limit, {
-    String? searchTerm,
-  }) =>
-      Uri.parse(
-        '$_baseUrl$_charactersResource?'
-        'offset=$offset'
-        '&limit=$limit'
-        '${_buildSearchTermQuery(searchTerm)}',
-      );
-
-  static String _buildSearchTermQuery(String? searchTerm) =>
-      searchTerm != null && searchTerm.isNotEmpty
-          ? '&name=${searchTerm.replaceAll(' ', '+').toLowerCase()}'
-          : '';
-}
-
-extension on Future<http.Response> {
-  Future<R> mapFromResponse<R, T>(R Function(T) jsonParser) async {
-    try {
-      final response = await this;
-      if (response.statusCode == 200) {
-        return jsonParser(jsonDecode(response.body));
-      } else {
-        throw GenericHttpException();
-      }
-    } on SocketException {
-      throw NoConnectionException();
-    }
-  }
-}
-
-class GenericHttpException implements Exception {}
-
-class NoConnectionException implements Exception {}
