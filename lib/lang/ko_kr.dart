@@ -1,5 +1,9 @@
 // 완역 번역
 const Map<String, String> koKR = {
+  //기타
+  'All': '모두',
+
+  //메뉴
   'login': '로그인 하기',
   'home': '홈',
   'exchange(standard)': '거래소(스탠다드)',
@@ -13,7 +17,7 @@ const Map<String, String> koKR = {
   'Runewords': '룬워드',
   'Crafted': '크래프트',
   'Rare': '레어',
-  'Magical': '매직',
+  'Magical': '매직',
   'Socketed Standard': '소켓',
   'Standard': '노말',
 
@@ -30,7 +34,7 @@ const Map<String, String> koKR = {
   'Wands': '마술봉',
   'Spears': '창',
   'Polearms': '미늘창',
-  'Throwing': '투척 무기',
+  'Throwing Weapons': '투척 무기',
   'Javelins': '투창',
   'Bows': '활',
   'Crossbows': '쇠뇌',
@@ -40,25 +44,32 @@ const Map<String, String> koKR = {
   'Assassin Katars': '어쌔신 카타르',
   'Sorceress Orbs': '소서리스 오브',
 
-  //클래스 방어구
-  'Barbarian Helms': '바바리안 헬름',
-  'Paladin Shields': '팔라딘 쉴드',
-  'Druid Pelts': '드루이드 펠트',
-  'Shrunken Heads': '쉬렁큰 헤드',
-
   //방어구
   'Circlets': '띠관',
   'Helms': '투구',
-  'Body Armor': '갑옷',
+  'Armor': '갑옷',
   'Shields': '방패',
   'Gloves': '장갑',
   'Boots': '신발',
   'Belts': '허리띠',
 
+  //클래스 방어구
+  'Barbarian Helms': '바바리안 헬름',
+  'Paladin Shields': '팔라딘 쉴드',
+  'Druid Pelts': '드루이드 펠트',
+  'Necromancer Shrunken Heads': '네크로맨서 쉬렁큰 헤드',
+
+  //기타
+  'Amulets': '아뮬렛',
+  'Rings': '링',
+  'Charms': '차암',
+  'Jewels': '주얼',
+
   //-------------------
 
   //잼
   'Gem': '잼',
+
   'Perfect Ruby': '최상급 루비',
   'Perfect Sapphire': '최상급 사파이어',
   'Perfect Topaz': '최상급 토파즈',
@@ -72,7 +83,7 @@ const Map<String, String> koKR = {
 
   //참
   'Charm': '차암',
-  'Charms': '차암',
+  
   'Grand Charms': '그랜드 차암',
   'Large Charms': '라지 차암',
   'Small Charms': '스몰 차암',

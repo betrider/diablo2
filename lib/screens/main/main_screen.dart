@@ -14,7 +14,7 @@ class _MainScreenState extends State<MainScreen> {
   final MenuController _controller =
       Get.put(MenuController(getCache.get('pageIndex')));
   final _scrollController = ScrollController();
-  final GlobalKey<ExchangeStandardScreenState> _formKey =
+  final GlobalKey<ExchangeStandardScreenState> _standardKey =
       new GlobalKey<ExchangeStandardScreenState>();
 
   @override
@@ -24,8 +24,12 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _scrollListener() {
-    if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
-      _formKey.currentState!.load();
+    if(_controller.selectedIndex == 0){ //스탠다드
+      if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
+      _standardKey.currentState!.load();
+    }
+    }else if(_controller.selectedIndex == 1){ //래더
+
     }
   }
 
@@ -46,13 +50,13 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (controller) {
                   switch (controller.selectedIndex) {
                     case 0:
-                      return ExchangeStandardScreen(key: _formKey);
+                      return ExchangeStandardScreen(key: _standardKey);
                     case 1:
                       return ExchangeLadderScreen();
                     case 2:
                       return ItemDictionaryScreen();
                     default:
-                      return ExchangeStandardScreen();
+                      return ExchangeStandardScreen(key: _standardKey);
                   }
                 },
               ),

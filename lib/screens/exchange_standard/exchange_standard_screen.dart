@@ -45,6 +45,31 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 height: kDefaultPadding * 2,
               ),
               Row(
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: CustomTitle.size30('1.거래유형'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                  RadioGroup(
+                    radioMap: {'buy': '삽니다', 'sell': '팝니다'},
+                    onChanged: (value) {},
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: CustomTitle.size30('2.검색 필터'),
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
@@ -54,7 +79,11 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                   SizedBox(
                     width: kDefaultPadding,
                   ),
-                  Flexible(child: TabChipsItemQulity()),
+                  Flexible(
+                      child: ChipGroup(
+                    items: itemQuality,
+                    itemsColor: itemQualityColor,
+                  )),
                 ],
               ),
               SizedBox(
@@ -70,7 +99,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                   SizedBox(
                     width: kDefaultPadding,
                   ),
-                  Flexible(child: TabChipsItemType()),
+                  Flexible(child: ChipGroup(items: itemType)),
                 ],
               ),
               SizedBox(
@@ -106,16 +135,48 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
               SizedBox(
                 height: kDefaultPadding * 2,
               ),
+              // Divider(
+              //   color: Colors.white,
+              // ),
+              // SizedBox(
+              //   height: kDefaultPadding,
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
                     width: 250,
-                    child: CustomTitle.size20('필터 5 : 아이템 가격'),
+                    child: CustomTitle.size30('3.거래재화'),
                   ),
                   SizedBox(
                     width: kDefaultPadding,
                   ),
+                  Flexible(
+                      child: ChipGroup(
+                    items: tradeItem,
+                    itemsColor: [
+                      ItemColor.white,
+                      ItemColor.orange,
+                      ItemColor.red,
+                      ItemColor.blue,
+                      ItemColor.yellow,
+                      ItemColor.green,
+                      ItemColor.white,
+                      ItemColor.purple,
+                      ItemColor.grey,
+                    ],
+                    itemsImagePath: [
+                      '',
+                      'icons/runes/Gul_Rune_25.png',
+                      'icons/gems/perfect_ruby.png',
+                      'icons/gems/perfect_saphire.png',
+                      'icons/gems/perfect_topaz.png',
+                      'icons/gems/perfect_emerald.png',
+                      'icons/gems/perfect_diamond.png',
+                      'icons/gems/perfect_amethyst.png',
+                      'icons/gems/perfect_skull.png'
+                    ],
+                  )),
                 ],
               ),
               SizedBox(
@@ -127,7 +188,10 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                     isSearch = true;
                     load();
                   },
-                  child: Text('아이템 검색'),
+                  child: Text(
+                    '아이템 검색',
+                    style: TextStyle(fontFamily: 'kodia'),
+                  ),
                 ),
               ] else ...[
                 ListView.builder(
@@ -210,78 +274,6 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
               ),
             ],
           )),
-    );
-  }
-}
-
-class TabChipsItemQulity extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _TabChipsItemQulityState();
-}
-
-class _TabChipsItemQulityState extends State<TabChipsItemQulity> {
-  int _selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 8,
-      spacing: 8,
-      children: itemQuality.mapWithIndex(
-        (value, index) {
-          return ChoiceChip(
-            selected: _selectedIndex == index,
-            selectedColor: itemQualityColor[index],
-            label: Text(
-              "$value",
-              style: AppTextStyle.black_12_bold,
-            ),
-            onSelected: (selected) {
-              if (selected) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              }
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-class TabChipsItemType extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _TabChipsItemTypeState();
-}
-
-class _TabChipsItemTypeState extends State<TabChipsItemType> {
-  int _selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 8,
-      spacing: 8,
-      children: itemType.mapWithIndex(
-        (value, index) {
-          return ChoiceChip(
-            selected: _selectedIndex == index,
-            // selectedColor: itemQualityColor[index],
-            label: Text(
-              "$value",
-              style: AppTextStyle.black_12_bold,
-            ),
-            onSelected: (selected) {
-              if (selected) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              }
-            },
-          );
-        },
-      ),
     );
   }
 }

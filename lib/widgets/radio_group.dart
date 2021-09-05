@@ -49,20 +49,36 @@ class _RadioGroupState extends State<RadioGroup> {
       copyList.add(
         Row(
           children: [
-            Radio<String>(
-              value: key,
-              groupValue: groupValue,
-              onChanged: (value) {
-                setState(() {
-                  groupValue = value!;
-                });
-                return widget.onChanged(value!);
-              },
+            Theme(
+              data: ThemeData(
+                unselectedWidgetColor: Colors.white,
+              ),
+              child: Radio<String>(
+                activeColor: kPrimaryColor,
+                value: key,
+                groupValue: groupValue,
+                onChanged: (value) {
+                  setState(() {
+                    groupValue = value!;
+                  });
+                  return widget.onChanged(value!);
+                },
+              ),
             ),
             SizedBox(
               width: widget.titleSpacing,
             ),
-            Text(mapValue)
+            InkWell(
+              onTap: () {
+                setState(() {
+                    groupValue = key;
+                  });
+              },
+              child: Text(
+                mapValue,
+                style: AppTextStyle.white_14_w400,
+              ),
+            )
           ],
         ),
       );

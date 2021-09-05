@@ -1,5 +1,8 @@
 // 영문 번역
 const Map<String, String> enUS = {
+  //기타
+  'All': 'All',
+
   //메뉴
   'login': 'Login',
   'home': 'Home',
@@ -31,7 +34,7 @@ const Map<String, String> enUS = {
   'Wands': 'Wands',
   'Spears': 'Spears',
   'Polearms': 'Polearms',
-  'Throwing': 'Throwing',
+  'Throwing Weapons': 'Throwing Weapons',
   'Javelins': 'Javelins',
   'Bows': 'Bows',
   'Crossbows': 'Crossbows',
@@ -41,25 +44,32 @@ const Map<String, String> enUS = {
   'Assassin Katars': 'Assassin Katars',
   'Sorceress Orbs': 'Sorceress Orbs',
 
-  //클래스 방어구
-  'Barbarian Helms': 'Barbarian Helms',
-  'Paladin Shields': 'Paladin Shields',
-  'Druid Pelts': 'Druid Pelts',
-  'Shrunken Heads': 'Shrunken Heads',
-
   //방어구
   'Circlets': 'Circlets',
   'Helms': 'Helms',
-  'Body Armor': 'Body Armor',
+  'Armor': 'Armor',
   'Shields': 'Shields',
   'Gloves': 'Gloves',
   'Boots': 'Boots',
   'Belts': 'Belts',
 
+  //클래스 방어구
+  'Barbarian Helms': 'Barbarian Helms',
+  'Paladin Shields': 'Paladin Shields',
+  'Druid Pelts': 'Druid Pelts',
+  'Necromancer Shrunken Heads': 'Necromancer Shrunken Heads',
+
+  //기타
+  'Amulets': 'Amulets',
+  'Rings': 'Rings',
+  'Charms': 'Charms',
+  'Jewels': 'Jewels',
+
   //-------------------
 
   //잼
   'Gem': 'Gem',
+
   'Perfect Ruby': 'Perfect Ruby',
   'Perfect Sapphire': 'Perfect Sapphire',
   'Perfect Topaz': 'Perfect Topaz',
@@ -73,7 +83,7 @@ const Map<String, String> enUS = {
 
   //참
   'Charm': 'Charm',
-  'Charms': 'Charms',
+
   'Grand Charms': 'Grand Charms',
   'Large Charms': 'Large Charms',
   'Small Charms': 'Small Charms',

@@ -25,6 +25,7 @@ class ItemColor {
   static const black = Color.fromRGBO(0, 0, 0, 1); //검정
   static const orange = Color.fromRGBO(255, 168, 0, 1); //소켓아이템(설명), 크래프트 아이템, 룬(17-22)
   static const yellow = Color.fromRGBO(255, 255, 100, 1); //레어아이템
+  static const purple = Color.fromRGBO(174, 0, 255, 1); //보라
 }
 
 

@@ -77,6 +77,18 @@ class AppTextStyle {
     fontFamily: _fontFamily
   );
 
+  /// Color : black
+  ///
+  /// Size : 20
+  ///
+  /// Weight : Regular(400)
+  static const black_20_w400 = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    fontFamily: _fontFamily
+  );
+
   /// Color : grey
   ///
   /// Size : 12

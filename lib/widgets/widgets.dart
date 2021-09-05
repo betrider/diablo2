@@ -1,3 +1,4 @@
+export 'chip_group.dart';
 export 'custom_menu_button.dart';
 export 'custom_title.dart';
 export 'item_info.dart';
