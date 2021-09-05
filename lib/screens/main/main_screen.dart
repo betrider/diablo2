@@ -1,4 +1,3 @@
-import 'package:flutter_diablo2_exchange/controllers/searchController.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/screens/exchange_ladder/exchange_ladder_screen.dart';
 import 'package:flutter_diablo2_exchange/screens/item_dictionary/item_dictionary_screen.dart';
@@ -14,9 +13,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final MenuController _controller =
       Get.put(MenuController(getCache.get('pageIndex')));
-  final SearchController _searchController =
-      Get.put(SearchController());
   final _scrollController = ScrollController();
+  final GlobalKey<ExchangeStandardScreenState> _formKey =
+      new GlobalKey<ExchangeStandardScreenState>();
 
   @override
   void initState() {
@@ -25,9 +24,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _scrollListener() {
-    if (_scrollController.offset ==
-        _scrollController.position.maxScrollExtent) {
-      _searchController.increaseIndex(20);
+    if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
+      _formKey.currentState!.load();
     }
   }
 
@@ -48,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (controller) {
                   switch (controller.selectedIndex) {
                     case 0:
-                      return ExchangeStandardScreen();
+                      return ExchangeStandardScreen(key: _formKey);
                     case 1:
                       return ExchangeLadderScreen();
                     case 2:

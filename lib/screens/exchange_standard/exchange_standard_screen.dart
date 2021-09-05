@@ -1,27 +1,31 @@
-import 'package:flutter_diablo2_exchange/controllers/searchController.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
-import 'package:loadmore/loadmore.dart';
 
 class ExchangeStandardScreen extends StatefulWidget {
+  const ExchangeStandardScreen({Key? key}) : super(key: key);
+
   @override
-  _ExchangeStandardScreenState createState() => _ExchangeStandardScreenState();
+  ExchangeStandardScreenState createState() => ExchangeStandardScreenState();
 }
 
-class _ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
+class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
   int get count => list.length;
   List<int> list = [];
-  final SearchController _searchController = Get.find();
+  bool isSearch = false;
+  bool isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _searchController.clear();
-  }
+  void load() async {
+    if (isSearch) {
+      setState(() {
+        isLoading = true;
+      });
 
-  void load() {
-    setState(() {
-      list.addAll(List.generate(20, (v) => v));
-    });
+      await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
+
+      setState(() {
+        isLoading = false;
+        list.addAll(List.generate(20, (v) => v));
+      });
+    }
   }
 
   @override
@@ -115,62 +119,50 @@ class _ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 ],
               ),
               SizedBox(
-                height: kDefaultPadding * 2,
+                height: kDefaultPadding * 6,
               ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              if (count == 0) ...[
+              if (!isSearch) ...[
                 ElevatedButton(
                   onPressed: () {
-                    _searchController.updateSearchOnoff();
-                    setState(() {
-                      list.addAll(List.generate(20, (v) => v));
-                    });
+                    isSearch = true;
+                    load();
                   },
                   child: Text('아이템 검색'),
                 ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
               ] else ...[
-                GetBuilder<SearchController>(
-                  builder: (controller) {
-                    return LoadMore(
-                      isFinish: count >= controller.searchCount,
-                      onLoadMore: _loadMore,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        primary: false,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            child: Text(list[index].toString()),
-                            height: 40.0,
-                            alignment: Alignment.center,
-                          );
-                        },
-                        itemCount: count,
-                      ),
-                      whenEmptyLoad: false,
-                      delegate: DefaultLoadMoreDelegate(),
-                      textBuilder: DefaultLoadMoreTextBuilder.chinese,
+                ListView.builder(
+                  shrinkWrap: true,
+                  primary: false,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      child: Text(list[index].toString()),
+                      height: 40.0,
+                      alignment: Alignment.center,
                     );
                   },
+                  itemCount: count,
                 ),
+                if (isLoading)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        strokeWidth: 2,
+                      ),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text('로딩중입니다...', style: AppTextStyle.white_14_w400)
+                    ],
+                  ),
               ],
+              SizedBox(
+                height: kDefaultPadding,
+              )
             ],
           ),
         ));
-  }
-
-  Future<bool> _loadMore() async {
-    print("onLoadMore");
-    await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
-    load();
-    return true;
   }
 
   // ignore: unused_element
