@@ -3435,4 +3435,7 @@ const Map<String, String> koKR = {
   "D2bnetHelp6a": "또한\dgrey;회색 텍스트\gold;는 채트 채널에 있는 사람이 취한 행동을 나타냅니다.",
   "D2bnetHelp10aPatch":
       "\blue;파란색 텍스트\gold;는 블리자드가 보낸 메시지나 배틀넷(battle.net)에서 직접 보내진 특정 메시지를 나타냅니다.",
+
+  //korean.txt 번역
+  
 };

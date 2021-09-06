@@ -2,7 +2,6 @@ import 'iterable/iterable_object.dart';
 import 'dart:convert';
 
 extension CustomMapSC<K, V> on Map<K, V> {
-  
   /// Returns a new [Iterable<MapEntry<K,V>>] with all elements that satisfy the
   /// predicate [test].
   ///
@@ -62,5 +61,22 @@ extension CustomMapSC<K, V> on Map<K, V> {
       if (element.value.toString() == value) _key = element.key.toString();
     });
     return _key;
+  }
+
+  /// {"aaa,bbb":"test"} => {"aaa":"test","bbb":"test"}
+  Map<String, String> splitDoubleKey() {
+
+    Map<String,String> returnMap = {};
+
+    this.forEach((key, value) {
+      String keyString = key.toString();
+      List<String> keys = keyString.split(',');
+      
+      keys.forEach((element) {
+        returnMap.addAll({'$element':'$value'});
+      });
+    });
+
+    return returnMap;
   }
 }

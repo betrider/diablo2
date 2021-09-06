@@ -6,6 +6,8 @@ import 'lang/en_us.dart';
 import 'lang/ko_kr2.dart';
 import 'lang/ko_kr.dart';
 
+import 'package:flutter_diablo2_exchange/index.dart';
+
 class LocalizationService extends Translations {
   // Default locale
   static final locale = Locale('ko', 'KR');
@@ -33,8 +35,8 @@ class LocalizationService extends Translations {
   // Translations are separated maps in `lang` file
   @override
   Map<String, Map<String, String>> get keys => {
-        'ko_KR': koKR,
-        'ko_KR2': koKR2,
+        'ko_KR': koKR.splitDoubleKey(),
+        'ko_KR2': koKR2.splitDoubleKey(),
         'en_US': enUS,
       };
 
