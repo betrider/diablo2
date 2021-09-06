@@ -8,7 +8,6 @@ bool get isRelease => kDebugMode;
 ///ex)getCache.get('name');
 dynamic get getCache => Hive.box('cache');
 
-
 ///ex)getGlobalConfig.get('domain');
 GlobalConfiguration get getGlobalConfig => GlobalConfiguration();
 
@@ -130,4 +129,25 @@ Future<String> getImagePath({
   filePath = pickedFile.path;
 
   return filePath;
+}
+
+/// 위젯 정보보기
+Future<void> showInfoDialog(Widget widget) {
+  return showDialog(
+    context: Get.context!,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        insetPadding: EdgeInsets.zero,
+        titlePadding: EdgeInsets.zero,
+        buttonPadding: EdgeInsets.zero,
+        actionsPadding: EdgeInsets.zero,
+        contentPadding: EdgeInsets.zero,
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[widget],
+          ),
+        ),
+      );
+    },
+  );
 }

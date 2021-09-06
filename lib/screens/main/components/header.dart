@@ -40,7 +40,7 @@ class Header extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       if (!Responsive.isDesktop(context))
                         IconButton(
