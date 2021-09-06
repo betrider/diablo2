@@ -1,4 +1,5 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class ExchangeStandardScreen extends StatefulWidget {
   const ExchangeStandardScreen({Key? key}) : super(key: key);
@@ -12,6 +13,10 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
   List<int> list = [];
   bool isSearch = false;
   bool isLoading = false;
+
+  List<int> selectedItems = [];
+
+  String selectItem = '';
 
   void load() async {
     if (isSearch) {
@@ -47,7 +52,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
               Row(
                 children: [
                   SizedBox(
-                    width: 250,
+                    width: 300,
                     child: CustomTitle.size30('1.거래유형'),
                   ),
                   SizedBox(
@@ -73,7 +78,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 250,
+                    width: 300,
                     child: CustomTitle.size20('필터 1 : 아이템 등급'),
                   ),
                   SizedBox(
@@ -93,7 +98,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 250,
+                    width: 300,
                     child: CustomTitle.size20('필터 2 : 아이템 유형'),
                   ),
                   SizedBox(
@@ -109,11 +114,79 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 250,
-                    child: CustomTitle.size20('필터 3 : 아이템 옵션\n유니크, 세트, 룬워드 한정'),
+                    width: 300,
+                    child: CustomTitle.size20('필터 3 : 아이템 종류\n유니크, 세트, 룬워드 한정'),
                   ),
                   SizedBox(
                     width: kDefaultPadding,
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: 500,
+                    ),
+                    child: SearchableDropdown.single(
+                      iconEnabledColor: Colors.white,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text('The Grandfather'),
+                          value: 'The Grandfather',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('bbb'),
+                          value: 'bbb',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                      ],
+                      value: selectItem,
+                      style: AppTextStyle.white_14_w400,
+                      hint: Text("Select one", style: AppTextStyle.white_14_w400),
+                      searchHint: Text("유니크 > 무기", style: AppTextStyle.black_14_w400),
+                      onChanged: (value) {
+                        selectItem = value;
+                      },
+                      doneButton: (selectedItemsDone, doneContext) {
+                        return ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(doneContext);
+                            setState(() {});
+                          },
+                          child: Text("닫기", style: AppTextStyle.white_14_w400),
+                        );
+                      },
+                      closeButton: null,
+                      isExpanded: true,
+                    ),
                   ),
                 ],
               ),
@@ -124,11 +197,170 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 250,
-                    child: CustomTitle.size20('필터 4 : 아이템 옵션'),
+                    width: 300,
+                    child: CustomTitle.size20('필터 4-1 : 아이템 옵션(접두사)'),
                   ),
                   SizedBox(
                     width: kDefaultPadding,
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: 500,
+                    ),
+                    child: SearchableDropdown.multiple(
+                      iconEnabledColor: Colors.white,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text('접두사1'),
+                          value: '접두사1',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('접두사2'),
+                          value: '접두사2',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('접두사3'),
+                          value: '접두사3',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                      ],
+                      selectedItems: selectedItems,
+                      hint: Text("Select 3 Items",
+                          style: AppTextStyle.white_14_w400),
+                      searchHint: Text("Select 3 Items",
+                          style: AppTextStyle.black_14_w400),
+                      style: AppTextStyle.white_14_w400,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedItems = value;
+                        });
+                      },
+                      doneButton: (selectedItemsDone, doneContext) {
+                        return ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(doneContext);
+                            setState(() {});
+                          },
+                          child: Text("저장",style:AppTextStyle.white_14_w400),
+                        );
+                      },
+                      closeButton: null,
+                      isExpanded: true,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: kDefaultPadding * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: CustomTitle.size20('필터 4-2 : 아이템 옵션(접미사)'),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding,
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: 500,
+                    ),
+                    child: SearchableDropdown.multiple(
+                      iconEnabledColor: Colors.white,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text('접미사1'),
+                          value: '접미사1',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('접미사2'),
+                          value: '접미사2',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('접미사3'),
+                          value: '접미사3',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ccc'),
+                          value: 'ccc',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('ddd'),
+                          value: 'ddd',
+                        ),
+                      ],
+                      selectedItems: selectedItems,
+                      hint: Text("Select 3 Items",
+                          style: AppTextStyle.white_14_w400),
+                      searchHint: Text("유니크 > 무기",
+                          style: AppTextStyle.black_14_w400),
+                      style: AppTextStyle.white_14_w400,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedItems = value;
+                        });
+                      },
+                      doneButton: (selectedItemsDone, doneContext) {
+                        return ElevatedButton(
+                          onPressed: () {
+                                  Navigator.pop(doneContext);
+                                  setState(() {});
+                                },
+                          child: Text("저장",style:AppTextStyle.white_14_w400),
+                        );
+                      },
+                      closeButton: null,
+                      isExpanded: true,
+                    ),
                   ),
                 ],
               ),
@@ -145,7 +377,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 250,
+                    width: 300,
                     child: CustomTitle.size30('3.거래재화'),
                   ),
                   SizedBox(
@@ -180,7 +412,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                 ],
               ),
               SizedBox(
-                height: kDefaultPadding * 6,
+                height: kDefaultPadding * 4,
               ),
               if (!isSearch) ...[
                 ElevatedButton(
@@ -222,7 +454,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                   ),
               ],
               SizedBox(
-                height: kDefaultPadding,
+                height: kDefaultPadding * 2,
               )
             ],
           ),

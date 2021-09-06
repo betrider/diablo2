@@ -541,7 +541,13 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                       context: context,
                       barrierDismissible: true,
                       builder: (context) {
-                        return (menuWidget);
+                        return Center(
+                          child: Container(
+                            width: 500,
+                            height: 500,
+                            child: menuWidget,
+                          ),
+                        );
                       });
                   if (widget.onChanged != null && selectedItems != null) {
                     widget.onChanged(selectedResult);
@@ -933,6 +939,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   Widget list() {
     return new Expanded(
       child: Scrollbar(
+        isAlwaysShown: true,
         child: new ListView.builder(
           itemBuilder: (context, index) {
             DropdownMenuItem item = widget.items[shownIndexes[index]];

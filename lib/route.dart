@@ -165,8 +165,9 @@ class _MyAppState extends State<MyApp> {
       "Single dialog": SearchableDropdown.single(
         items: items,
         value: selectedValue,
-        hint: "Select one",
-        searchHint: "Select one",
+        hint: "힌트1",
+        searchHint: "유니크 > 무기",
+        closeButton: '닫기',
         onChanged: (value) {
           setState(() {
             selectedValue = value;
@@ -181,7 +182,7 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(12.0),
           child: Text("Select any"),
         ),
-        searchHint: "Select any",
+        searchHint: "유니크 > 무기",
         onChanged: (value) {
           setState(() {
             selectedItems = value;
@@ -349,7 +350,8 @@ class _MyAppState extends State<MyApp> {
       "Single menu": SearchableDropdown.single(
         items: items,
         value: selectedValue,
-        hint: "Select one",
+        hint: "유니크 > 헬름",
+        closeButton: '닫기',
         searchHint: null,
         onChanged: (value) {
           setState(() {

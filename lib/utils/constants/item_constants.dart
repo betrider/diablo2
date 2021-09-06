@@ -5,6 +5,8 @@ const itemType = [
   ...weapons,
   ...armors,
   ...otherItems,
+  ...classWeapons,
+  ...classArmors,
 ];
 
 const weapons = [
