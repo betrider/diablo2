@@ -128,50 +128,46 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                       iconEnabledColor: Colors.white,
                       items: [
                         DropdownMenuItem(
-                          child: Text('The Grandfather'),
+                          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
                           value: 'The Grandfather',
                         ),
                         DropdownMenuItem(
-                          child: Text('bbb'),
+                          child: Text('bbb', style: AppTextStyle.white_14_w400,),
                           value: 'bbb',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('cc', style: AppTextStyle.white_14_w400,),
+                          value: 'cc',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
+                          value: 'The Grandfather',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('bbb', style: AppTextStyle.white_14_w400,),
+                          value: 'bbb',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('cc', style: AppTextStyle.white_14_w400,),
+                          value: 'cc',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
+                          value: 'The Grandfather',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('bbb', style: AppTextStyle.white_14_w400,),
+                          value: 'bbb',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('cc', style: AppTextStyle.white_14_w400,),
+                          value: 'cc',
                         ),
                       ],
                       value: selectItem,
                       style: AppTextStyle.white_14_w400,
                       hint: Text("Select one", style: AppTextStyle.white_14_w400),
-                      searchHint: Text("유니크 > 무기", style: AppTextStyle.black_14_w400),
+                      searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
                       onChanged: (value) {
                         selectItem = value;
                       },
@@ -211,51 +207,47 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                       iconEnabledColor: Colors.white,
                       items: [
                         DropdownMenuItem(
-                          child: Text('접두사1'),
+                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
                           value: '접두사1',
                         ),
                         DropdownMenuItem(
-                          child: Text('접두사2'),
+                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
                           value: '접두사2',
                         ),
                         DropdownMenuItem(
-                          child: Text('접두사3'),
+                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
                           value: '접두사3',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                          value: '접두사1',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                          value: '접두사2',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                          value: '접두사3',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                          value: '접두사1',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                          value: '접두사2',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                          value: '접두사3',
                         ),
                       ],
                       selectedItems: selectedItems,
                       hint: Text("Select 3 Items",
                           style: AppTextStyle.white_14_w400),
                       searchHint: Text("Select 3 Items",
-                          style: AppTextStyle.black_14_w400),
+                          style: AppTextStyle.white_14_w400),
                       style: AppTextStyle.white_14_w400,
                       onChanged: (value) {
                         setState(() {
@@ -298,51 +290,47 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                       iconEnabledColor: Colors.white,
                       items: [
                         DropdownMenuItem(
-                          child: Text('접미사1'),
-                          value: '접미사1',
+                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                          value: '접두사1',
                         ),
                         DropdownMenuItem(
-                          child: Text('접미사2'),
-                          value: '접미사2',
+                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                          value: '접두사2',
                         ),
                         DropdownMenuItem(
-                          child: Text('접미사3'),
-                          value: '접미사3',
+                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                          value: '접두사3',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                          value: '접두사1',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                          value: '접두사2',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                          value: '접두사3',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
+                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                          value: '접두사1',
                         ),
                         DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                          value: '접두사2',
                         ),
                         DropdownMenuItem(
-                          child: Text('ccc'),
-                          value: 'ccc',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('ddd'),
-                          value: 'ddd',
+                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                          value: '접두사3',
                         ),
                       ],
                       selectedItems: selectedItems,
                       hint: Text("Select 3 Items",
                           style: AppTextStyle.white_14_w400),
                       searchHint: Text("유니크 > 무기",
-                          style: AppTextStyle.black_14_w400),
+                          style: AppTextStyle.white_14_w400),
                       style: AppTextStyle.white_14_w400,
                       onChanged: (value) {
                         setState(() {

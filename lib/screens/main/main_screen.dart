@@ -53,8 +53,8 @@ class _MainScreenState extends State<MainScreen> {
                       return ExchangeStandardScreen(key: _standardKey);
                     case 1:
                       return ExchangeLadderScreen();
-                    case 2:
-                      return ItemDictionaryScreen();
+                    // case 2:
+                    //   return ItemDictionaryScreen();
                     default:
                       return ExchangeStandardScreen(key: _standardKey);
                   }

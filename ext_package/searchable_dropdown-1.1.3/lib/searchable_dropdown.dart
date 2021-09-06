@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+const _kDefaultColor = Colors.white;
+
 const EdgeInsetsGeometry _kAlignedButtonPadding =
     EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
 const EdgeInsets _kUnalignedButtonPadding = EdgeInsets.zero;
@@ -21,7 +23,10 @@ Widget prepareWidget(dynamic object,
   }
   if (object is String) {
     if (stringToWidgetFunction == null) {
-      return (Text(object));
+      return (Text(
+        object,
+        style: TextStyle(color: _kDefaultColor),
+      ));
     } else {
       return (stringToWidgetFunction(object));
     }
@@ -726,7 +731,7 @@ class DropdownDialog<T> extends StatefulWidget {
 class _DropdownDialogState<T> extends State<DropdownDialog> {
   TextEditingController txtSearch = new TextEditingController();
   TextStyle defaultButtonStyle =
-      new TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+      new TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: _kDefaultColor);
   List<int> shownIndexes = [];
   Function searchFn;
 
@@ -790,6 +795,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
             vertical: widget.dialogBox ? 10 : 5,
             horizontal: widget.dialogBox ? 10 : 4),
         child: new Container(
+          color: Colors.grey[850],
           constraints: widget.menuConstraints,
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           child: new Column(
@@ -870,10 +876,21 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       child: new Stack(
         children: <Widget>[
           new TextField(
+            cursorColor: _kDefaultColor,
             controller: txtSearch,
             decoration: InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 32, vertical: 12)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: _kDefaultColor),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: _kDefaultColor),
+              ),
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: _kDefaultColor),
+              ),
+            ),
             autofocus: true,
             onChanged: (value) {
               _updateShownIndexes(value);
@@ -889,6 +906,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
               child: new Icon(
                 Icons.search,
                 size: 24,
+                color: _kDefaultColor,
               ),
             ),
           ),
@@ -938,8 +956,9 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
 
   Widget list() {
     return new Expanded(
-      child: Scrollbar(
-        isAlwaysShown: true,
+      child: RawScrollbar(
+        thumbColor: _kDefaultColor,
+        // isAlwaysShown: true,
         child: new ListView.builder(
           itemBuilder: (context, index) {
             DropdownMenuItem item = widget.items[shownIndexes[index]];
@@ -970,6 +989,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                             widget.selectedItems.contains(shownIndexes[index])
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
+                            color: _kDefaultColor,
                           ),
                           SizedBox(
                             width: 7,

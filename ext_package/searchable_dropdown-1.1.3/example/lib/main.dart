@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
             }) ==
             -1) {
           items.add(DropdownMenuItem(
-            child: Text(wordPair),
+            child: Text(wordPair, style: TextStyle(color: Colors.white),),
             value: wordPair,
           ));
         }
