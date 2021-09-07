@@ -1,4 +1,5 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class ExchangeStandardScreen extends StatefulWidget {
@@ -46,359 +47,25 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 4),
           child: Column(
             children: [
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size30('1.거래유형'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  RadioGroup(
-                    radioMap: {'buy': '삽니다', 'sell': '팝니다'},
-                    onChanged: (value) {},
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
+              SizedBox(height: kDefaultPadding * 2),
+              _buySellType(), // 1.buy,sell 유형
+              SizedBox(height: kDefaultPadding * 2),
               Align(
                 alignment: Alignment.centerLeft,
                 child: CustomTitle.size30('2.검색 필터'),
               ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size20('필터 1 : 아이템 등급'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Flexible(
-                      child: ChipGroup(
-                    items: itemQuality,
-                    itemsColor: itemQualityColor,
-                  )),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size20('필터 2 : 아이템 유형'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Flexible(child: ChipGroup(items: itemType)),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size20('필터 3 : 아이템 종류\n유니크, 세트, 룬워드 한정'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: 500,
-                    ),
-                    child: SearchableDropdown.single(
-                      iconEnabledColor: Colors.white,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
-                          value: 'The Grandfather',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('bbb', style: AppTextStyle.white_14_w400,),
-                          value: 'bbb',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('cc', style: AppTextStyle.white_14_w400,),
-                          value: 'cc',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
-                          value: 'The Grandfather',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('bbb', style: AppTextStyle.white_14_w400,),
-                          value: 'bbb',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('cc', style: AppTextStyle.white_14_w400,),
-                          value: 'cc',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
-                          value: 'The Grandfather',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('bbb', style: AppTextStyle.white_14_w400,),
-                          value: 'bbb',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('cc', style: AppTextStyle.white_14_w400,),
-                          value: 'cc',
-                        ),
-                      ],
-                      value: selectItem,
-                      style: AppTextStyle.white_14_w400,
-                      hint: Text("Select one", style: AppTextStyle.white_14_w400),
-                      searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                      onChanged: (value) {
-                        selectItem = value;
-                      },
-                      doneButton: (selectedItemsDone, doneContext) {
-                        return ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(doneContext);
-                            setState(() {});
-                          },
-                          child: Text("닫기", style: AppTextStyle.white_14_w400),
-                        );
-                      },
-                      closeButton: null,
-                      isExpanded: true,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size20('필터 4-1 : 아이템 옵션(접두사)'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: 500,
-                    ),
-                    child: SearchableDropdown.multiple(
-                      iconEnabledColor: Colors.white,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                          value: '접두사1',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                          value: '접두사2',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                          value: '접두사3',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                          value: '접두사1',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                          value: '접두사2',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                          value: '접두사3',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                          value: '접두사1',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                          value: '접두사2',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                          value: '접두사3',
-                        ),
-                      ],
-                      selectedItems: selectedItems,
-                      hint: Text("Select 3 Items",
-                          style: AppTextStyle.white_14_w400),
-                      searchHint: Text("Select 3 Items",
-                          style: AppTextStyle.white_14_w400),
-                      style: AppTextStyle.white_14_w400,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedItems = value;
-                        });
-                      },
-                      doneButton: (selectedItemsDone, doneContext) {
-                        return ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(doneContext);
-                            setState(() {});
-                          },
-                          child: Text("저장",style:AppTextStyle.white_14_w400),
-                        );
-                      },
-                      closeButton: null,
-                      isExpanded: true,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size20('필터 4-2 : 아이템 옵션(접미사)'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: 500,
-                    ),
-                    child: SearchableDropdown.multiple(
-                      iconEnabledColor: Colors.white,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                          value: '접두사1',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                          value: '접두사2',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                          value: '접두사3',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                          value: '접두사1',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                          value: '접두사2',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                          value: '접두사3',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                          value: '접두사1',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                          value: '접두사2',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                          value: '접두사3',
-                        ),
-                      ],
-                      selectedItems: selectedItems,
-                      hint: Text("Select 3 Items",
-                          style: AppTextStyle.white_14_w400),
-                      searchHint: Text("유니크 > 무기",
-                          style: AppTextStyle.white_14_w400),
-                      style: AppTextStyle.white_14_w400,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedItems = value;
-                        });
-                      },
-                      doneButton: (selectedItemsDone, doneContext) {
-                        return ElevatedButton(
-                          onPressed: () {
-                                  Navigator.pop(doneContext);
-                                  setState(() {});
-                                },
-                          child: Text("저장",style:AppTextStyle.white_14_w400),
-                        );
-                      },
-                      closeButton: null,
-                      isExpanded: true,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              // Divider(
-              //   color: Colors.white,
-              // ),
-              // SizedBox(
-              //   height: kDefaultPadding,
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: CustomTitle.size30('3.거래재화'),
-                  ),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Flexible(
-                      child: ChipGroup(
-                    items: tradeItem,
-                    itemsColor: [
-                      ItemColor.white,
-                      ItemColor.orange,
-                      ItemColor.red,
-                      ItemColor.blue,
-                      ItemColor.yellow,
-                      ItemColor.green,
-                      ItemColor.white,
-                      ItemColor.purple,
-                      ItemColor.grey,
-                    ],
-                    itemsImagePath: [
-                      '',
-                      'icons/runes/Gul_Rune_25.png',
-                      'icons/gems/perfect_ruby.png',
-                      'icons/gems/perfect_saphire.png',
-                      'icons/gems/perfect_topaz.png',
-                      'icons/gems/perfect_emerald.png',
-                      'icons/gems/perfect_diamond.png',
-                      'icons/gems/perfect_amethyst.png',
-                      'icons/gems/perfect_skull.png'
-                    ],
-                  )),
-                ],
-              ),
+              SizedBox(height: kDefaultPadding * 2),
+              _getFirstItemGrade(), // 2.1아이템 등급
+              SizedBox(height: kDefaultPadding * 2),
+              _getSecondItemType(), // 2.2아이템 유형
+              SizedBox(height: kDefaultPadding * 2),
+              _getThirdItemName(), // 2.3아이템명
+              SizedBox(height: kDefaultPadding * 2),
+              _getFourthItemPrefix(), // 2.4-1아이템 접두사
+              SizedBox(height: kDefaultPadding * 2),
+              _getFourthItemSuffix(), // 2.4-2 아이템 접미사
+              SizedBox(height: kDefaultPadding * 2),
+              _getItemGoods(), // 3.아이템 재화
               SizedBox(
                 height: kDefaultPadding * 4,
               ),
@@ -447,6 +114,364 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
             ],
           ),
         ));
+  }
+
+  Row _getItemGoods() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size30('3.거래재화'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        Flexible(
+            child: ChipGroup(
+          items: tradeItem,
+          itemsColor: [
+            ItemColor.white,
+            ItemColor.orange,
+            ItemColor.red,
+            ItemColor.blue,
+            ItemColor.yellow,
+            ItemColor.green,
+            ItemColor.white,
+            ItemColor.purple,
+            ItemColor.grey,
+          ],
+          itemsImagePath: [
+            '',
+            'icons/runes/Gul_Rune_25.png',
+            'icons/gems/perfect_ruby.png',
+            'icons/gems/perfect_saphire.png',
+            'icons/gems/perfect_topaz.png',
+            'icons/gems/perfect_emerald.png',
+            'icons/gems/perfect_diamond.png',
+            'icons/gems/perfect_amethyst.png',
+            'icons/gems/perfect_skull.png'
+          ],
+        )),
+      ],
+    );
+  }
+
+  Row _getFourthItemSuffix() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size20('필터 4-2 : 아이템 옵션(접미사)'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
+          child: SearchableDropdown.multiple(
+            iconEnabledColor: Colors.white,
+            items: [
+              DropdownMenuItem(
+                child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                value: '접두사1',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                value: '접두사2',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                value: '접두사3',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                value: '접두사1',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                value: '접두사2',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                value: '접두사3',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                value: '접두사1',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                value: '접두사2',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                value: '접두사3',
+              ),
+            ],
+            selectedItems: selectedItems,
+            hint: Text("Select 3 Items", style: AppTextStyle.white_14_w400),
+            searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
+            style: AppTextStyle.white_14_w400,
+            onChanged: (value) {
+              setState(() {
+                selectedItems = value;
+              });
+            },
+            doneButton: (selectedItemsDone, doneContext) {
+              return ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(doneContext);
+                  setState(() {});
+                },
+                child: Text("저장", style: AppTextStyle.white_14_w400),
+              );
+            },
+            closeButton: null,
+            isExpanded: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _getFourthItemPrefix() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size20('필터 4-1 : 아이템 옵션(접두사)'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
+          child: SearchableDropdown.multiple(
+            iconEnabledColor: Colors.white,
+            items: [
+              DropdownMenuItem(
+                child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                value: '접두사1',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                value: '접두사2',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                value: '접두사3',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                value: '접두사1',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                value: '접두사2',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                value: '접두사3',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                value: '접두사1',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                value: '접두사2',
+              ),
+              DropdownMenuItem(
+                child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                value: '접두사3',
+              ),
+            ],
+            selectedItems: selectedItems,
+            hint: Text("Select 3 Items", style: AppTextStyle.white_14_w400),
+            searchHint:
+                Text("Select 3 Items", style: AppTextStyle.white_14_w400),
+            style: AppTextStyle.white_14_w400,
+            onChanged: (value) {
+              setState(() {
+                selectedItems = value;
+              });
+            },
+            doneButton: (selectedItemsDone, doneContext) {
+              return ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(doneContext);
+                  setState(() {});
+                },
+                child: Text("저장", style: AppTextStyle.white_14_w400),
+              );
+            },
+            closeButton: null,
+            isExpanded: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _getThirdItemName() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size20('필터 3 : 아이템 종류\n유니크, 세트, 룬워드 한정'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
+          child: SearchableDropdown.single(
+            iconEnabledColor: Colors.white,
+            items: [
+              DropdownMenuItem(
+                child:
+                    Text('The Grandfather', style: AppTextStyle.white_14_w400),
+                value: 'The Grandfather',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'bbb',
+                  style: AppTextStyle.white_14_w400,
+                ),
+                value: 'bbb',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'cc',
+                  style: AppTextStyle.white_14_w400,
+                ),
+                value: 'cc',
+              ),
+              DropdownMenuItem(
+                child:
+                    Text('The Grandfather', style: AppTextStyle.white_14_w400),
+                value: 'The Grandfather',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'bbb',
+                  style: AppTextStyle.white_14_w400,
+                ),
+                value: 'bbb',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'cc',
+                  style: AppTextStyle.white_14_w400,
+                ),
+                value: 'cc',
+              ),
+              DropdownMenuItem(
+                child:
+                    Text('The Grandfather', style: AppTextStyle.white_14_w400),
+                value: 'The Grandfather',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'bbb',
+                  style: AppTextStyle.white_14_w400,
+                ),
+                value: 'bbb',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'cc',
+                  style: AppTextStyle.white_14_w400,
+                ),
+                value: 'cc',
+              ),
+            ],
+            value: selectItem,
+            style: AppTextStyle.white_14_w400,
+            hint: Text("Select one", style: AppTextStyle.white_14_w400),
+            searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
+            onChanged: (value) {
+              selectItem = value;
+            },
+            doneButton: (selectedItemsDone, doneContext) {
+              return ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(doneContext);
+                  setState(() {});
+                },
+                child: Text("닫기", style: AppTextStyle.white_14_w400),
+              );
+            },
+            closeButton: null,
+            isExpanded: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _getSecondItemType() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size20('필터 2 : 아이템 유형'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        Flexible(child: ChipGroup(items: itemType)),
+      ],
+    );
+  }
+
+  Row _getFirstItemGrade() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size20('필터 1 : 아이템 등급'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        Flexible(
+            child: ChipGroup(
+          items: itemQuality,
+          itemsColor: itemQualityColor,
+        )),
+      ],
+    );
+  }
+
+  Row _buySellType() {
+    return Row(
+      children: [
+        SizedBox(
+          width: 300,
+          child: CustomTitle.size30('1.거래유형'),
+        ),
+        SizedBox(
+          width: kDefaultPadding,
+        ),
+        RadioGroup(
+          radioMap: {'buy': '삽니다', 'sell': '팝니다'},
+          onChanged: (value) {},
+        ),
+      ],
+    );
   }
 
   // ignore: unused_element
