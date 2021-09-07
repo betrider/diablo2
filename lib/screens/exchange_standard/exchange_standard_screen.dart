@@ -36,84 +36,101 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/body_background.jpg'),
-            repeat: ImageRepeat.repeat,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: 750,
+        minWidth: double.infinity
+      ),
+      child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/body_background.jpg'),
+              repeat: ImageRepeat.repeat,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 4),
-          child: Column(
-            children: [
-              SizedBox(height: kDefaultPadding * 2),
-              _buySellType(), // 1.buy,sell 유형
-              SizedBox(height: kDefaultPadding * 2),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: CustomTitle.size30('2.검색 필터'),
-              ),
-              SizedBox(height: kDefaultPadding * 2),
-              _getFirstItemGrade(), // 2.1아이템 등급
-              SizedBox(height: kDefaultPadding * 2),
-              _getSecondItemType(), // 2.2아이템 유형
-              SizedBox(height: kDefaultPadding * 2),
-              _getThirdItemName(), // 2.3아이템명
-              SizedBox(height: kDefaultPadding * 2),
-              _getFourthItemPrefix(), // 2.4-1아이템 접두사
-              SizedBox(height: kDefaultPadding * 2),
-              _getFourthItemSuffix(), // 2.4-2 아이템 접미사
-              SizedBox(height: kDefaultPadding * 2),
-              _getItemGoods(), // 3.아이템 재화
-              SizedBox(
-                height: kDefaultPadding * 4,
-              ),
-              if (!isSearch) ...[
-                ElevatedButton(
-                  onPressed: () {
-                    isSearch = true;
-                    load();
-                  },
-                  child: Text(
-                    '아이템 검색',
-                    style: TextStyle(fontFamily: 'kodia'),
-                  ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 4),
+            child: Column(
+              children: [
+                SizedBox(height: kDefaultPadding * 2),
+                // _buySellType(), // 1.buy,sell 유형
+                // SizedBox(height: kDefaultPadding * 2),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: CustomTitle.size30('1.검색 필터'),
                 ),
-              ] else ...[
-                ListView.builder(
-                  shrinkWrap: true,
-                  primary: false,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: Text(list[index].toString()),
-                      height: 40.0,
-                      alignment: Alignment.center,
-                    );
-                  },
-                  itemCount: count,
+                SizedBox(height: kDefaultPadding * 2),
+                _getFirstItemGrade(), // 2.1아이템 등급
+                SizedBox(height: kDefaultPadding * 2),
+                _getSecondItemType(), // 2.2아이템 유형
+                SizedBox(height: kDefaultPadding * 2),
+                _getThirdItemName(), // 2.3아이템명
+                SizedBox(height: kDefaultPadding * 2),
+                _getFourthItemPrefix(), // 2.4-1아이템 접두사
+                SizedBox(height: kDefaultPadding * 2),
+                _getFourthItemSuffix(), // 2.4-2 아이템 접미사
+                // SizedBox(height: kDefaultPadding * 2),
+                // _getItemGoods(), // 3.아이템 재화
+                SizedBox(
+                  height: kDefaultPadding * 4,
                 ),
-                if (isLoading)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        strokeWidth: 2,
-                      ),
-                      SizedBox(
-                        width: kDefaultPadding,
-                      ),
-                      Text('로딩중입니다...', style: AppTextStyle.white_14_w400)
-                    ],
+                if (!isSearch) ...[
+                  SizedBox(
+                      height: kDefaultPadding * 2,
+                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      isSearch = true;
+                      load();
+                    },
+                    child: Text(
+                      '아이템 검색',
+                      style: TextStyle(fontFamily: 'kodia'),
+                    ),
                   ),
+                ] else ...[
+                  Container(
+                    width: 600,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      primary: false,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListItemInfo();
+                      },
+                      itemCount: count,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          height: kDefaultPadding / 2,
+                        );
+                      },
+                    ),
+                  ),
+                  if (isLoading) ...[
+                    SizedBox(
+                      height: kDefaultPadding * 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          strokeWidth: 2,
+                        ),
+                        SizedBox(
+                          width: kDefaultPadding,
+                        ),
+                        Text('로딩중입니다...', style: AppTextStyle.white_14_w400)
+                      ],
+                    ),
+                  ],
+                ],
+                SizedBox(
+                  height: kDefaultPadding * 2,
+                )
               ],
-              SizedBox(
-                height: kDefaultPadding * 2,
-              )
-            ],
-          ),
-        ));
+            ),
+          )),
+    );
   }
 
   Row _getItemGoods() {
@@ -121,7 +138,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 300,
+          width: 200,
           child: CustomTitle.size30('3.거래재화'),
         ),
         SizedBox(
@@ -162,8 +179,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 300,
-          child: CustomTitle.size20('필터 4-2 : 아이템 옵션(접미사)'),
+          width: 200,
+          child: CustomTitle.size20('옵션(접미사)'),
         ),
         SizedBox(
           width: kDefaultPadding,
@@ -243,8 +260,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 300,
-          child: CustomTitle.size20('필터 4-1 : 아이템 옵션(접두사)'),
+          width: 200,
+          child: CustomTitle.size20('옵션(접두사)'),
         ),
         SizedBox(
           width: kDefaultPadding,
@@ -325,8 +342,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 300,
-          child: CustomTitle.size20('필터 3 : 아이템 종류\n유니크, 세트, 룬워드 한정'),
+          width: 200,
+          child: CustomTitle.size20('아이템 종류'),
         ),
         SizedBox(
           width: kDefaultPadding,
@@ -401,17 +418,20 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
             hint: Text("Select one", style: AppTextStyle.white_14_w400),
             searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
             onChanged: (value) {
+              print('1234');
               selectItem = value;
+              Get.back();
             },
-            doneButton: (selectedItemsDone, doneContext) {
-              return ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(doneContext);
-                  setState(() {});
-                },
-                child: Text("닫기", style: AppTextStyle.white_14_w400),
-              );
-            },
+            // doneButton: (selectedItemsDone, doneContext) {
+            //   return ElevatedButton(
+            //     onPressed: () {
+            //       print('2345');
+            //       Navigator.pop(doneContext);
+            //       setState(() {});
+            //     },
+            //     child: Text("닫기", style: AppTextStyle.white_14_w400),
+            //   );
+            // },
             closeButton: null,
             isExpanded: true,
           ),
@@ -425,13 +445,55 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 300,
-          child: CustomTitle.size20('필터 2 : 아이템 유형'),
+          width: 200,
+          child: CustomTitle.size20('아이템 유형'),
         ),
         SizedBox(
           width: kDefaultPadding,
         ),
-        Flexible(child: ChipGroup(items: itemType)),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
+          child: SearchableDropdown.single(
+            iconEnabledColor: Colors.white,
+            items: itemType
+                .mapWithIndex(
+                  (value, index) => DropdownMenuItem(
+                    child: Text(value.tr, style: AppTextStyle.white_14_w400),
+                    value: value.tr,
+                  ),
+                )
+                .toList(),
+            // items: [
+            // DropdownMenuItem(
+            //   child:
+            //       Text('The Grandfather', style: AppTextStyle.white_14_w400),
+            //   value: 'The Grandfather',
+            // ),
+            // ],
+            value: selectItem,
+            style: AppTextStyle.white_14_w400,
+            hint: Text("Select one", style: AppTextStyle.white_14_w400),
+            searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
+            onChanged: (value) {
+              selectItem = value;
+              Get.back();
+            },
+            // doneButton: (selectedItemsDone, doneContext) {
+            //   return ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.pop(doneContext);
+            //       setState(() {});
+            //     },
+            //     child: Text("닫기", style: AppTextStyle.white_14_w400),
+            //   );
+            // },
+            closeButton: null,
+            isExpanded: true,
+          ),
+        ),
+        // Flexible(child: ChipGroup(items: itemType)),
       ],
     );
   }
@@ -441,8 +503,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 300,
-          child: CustomTitle.size20('필터 1 : 아이템 등급'),
+          width: 200,
+          child: CustomTitle.size20('아이템 등급'),
         ),
         SizedBox(
           width: kDefaultPadding,
@@ -460,7 +522,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
     return Row(
       children: [
         SizedBox(
-          width: 300,
+          width: 200,
           child: CustomTitle.size30('1.거래유형'),
         ),
         SizedBox(

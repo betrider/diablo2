@@ -8,7 +8,7 @@ class ExchangeLadderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-        minHeight: 900,
+        minHeight: 750,
         minWidth: double.infinity
       ),
       child: Container(

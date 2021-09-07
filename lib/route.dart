@@ -8,7 +8,7 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => Sample123()),
+      GetPage(name: '/sample', page: () => SamplePage()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
     ];
   }
@@ -58,6 +58,29 @@ class SampleArgumentPage extends StatelessWidget {
   }
 }
 
+class Sample12 extends StatelessWidget {
+  const Sample12({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          color: Colors.black,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ListItemInfo(),
+                ListItemInfo(),
+              ],
+            ),
+          ),
+        )
+      ),
+    );
+  }
+}
+
 class Sample123 extends StatelessWidget {
   const Sample123({Key? key}) : super(key: key);
 
@@ -100,7 +123,9 @@ class Sample123 extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: kDefaultPadding,),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -115,7 +140,9 @@ class Sample123 extends StatelessWidget {
                         Text('아이디 : 베트라이더', style: AppTextStyle.white_14_w400),
                       ],
                     ),
-                    SizedBox(width: kDefaultPadding,),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
                     OutlinedButton.icon(
                       onPressed: () {},
                       icon: Icon(Icons.message),

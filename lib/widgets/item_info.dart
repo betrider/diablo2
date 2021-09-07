@@ -11,6 +11,7 @@ class ItemInfo extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(4, 12, 4, 4),
           color: ItemColor.black,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 '구울 슬레이어',
@@ -43,65 +44,42 @@ class ItemInfo extends StatelessWidget {
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10모든 저항력 +10모든 저항력 +10모든 저항력 +10모든 저항력 +10모든 저항력',
+                '+7% 매우 빠른 회복속도 증가',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+9 힘',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+9 민첩성',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+7% 매우 빠른 회복속도 증가',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+9 힘',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+9 민첩성',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+7% 매우 빠른 회복속도 증가매우 빠른 회',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+9 힘',
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
-                '모든 저항력 +10',
+                '+9 민첩성',
                 style: TextStyle(color: ItemColor.blue),
               ),
-              Text(
-                '모든 저항력 +10',
-                style: TextStyle(color: ItemColor.blue),
-              ),
-              Text(
-                '모든 저항력 +10',
-                style: TextStyle(color: ItemColor.blue),
-              ),
-              Text(
-                '모든 저항력 +10',
-                style: TextStyle(color: ItemColor.blue),
-              ),
-              Text(
-                '모든 저항력 +10',
-                style: TextStyle(color: ItemColor.blue),
-              ),
-              Text(
-                '모든 저항력 +10',
-                style: TextStyle(color: ItemColor.blue),
-              ),
-              Text(
-                '모든 저항력 +10',
-                style: TextStyle(color: ItemColor.blue),
-              ),
+              
             ],
           )),
     );
