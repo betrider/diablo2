@@ -43,6 +43,62 @@ class ItemInfo extends StatelessWidget {
                 style: TextStyle(color: ItemColor.blue),
               ),
               Text(
+                '모든 저항력 +10모든 저항력 +10모든 저항력 +10모든 저항력 +10모든 저항력 +10모든 저항력',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
+                '모든 저항력 +10',
+                style: TextStyle(color: ItemColor.blue),
+              ),
+              Text(
                 '모든 저항력 +10',
                 style: TextStyle(color: ItemColor.blue),
               ),

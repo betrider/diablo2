@@ -66,99 +66,206 @@ class Sample123 extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          width: 800,
-          height: 500,
-          decoration: BoxDecoration(border: Border.all(width: 1)),
+          decoration: BoxDecoration(
+              // image: DecorationImage(
+              //   image: AssetImage('assets/images/body_background.jpg'),
+              //   repeat: ImageRepeat.repeat,
+              // ),
+              border: Border.all(width: 1),
+              color: Colors.grey[850]),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                child: Stack(
+              ItemInfo(),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      color: Colors.yellow,
-                      child: Center(
-                        child: Text('이미지'),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Image.asset('assets/icons/battlenet.png'),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text('배틀태그 : betrider#12345',
+                              style: AppTextStyle.white_14_w400),
+                        ],
                       ),
                     ),
-                    Positioned(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(width: 1),
-                            right: BorderSide(width: 1),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Text(
-                          '삽니다',
-                          style: TextStyle(color: Colors.green[400]),
-                        ),
-                      ),
-                      top: 0,
-                      left: 0,
-                    )
-                  ],
-                ),
-              ),
-              Divider(height: 1, color: Colors.black),
-              ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: 50),
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.white,
-                    child: Row(
+                    SizedBox(width: kDefaultPadding,),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
+                        SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: Image.asset('assets/icons/diablo2.png'),
+                        ),
                         SizedBox(
                           width: 8,
                         ),
-                        Text(DateTime.now().toFullDateTimeString5()),
-                        Container(
-                            height: 25,
-                            child: VerticalDivider(color: Colors.black)),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Image.asset('assets/icons/battlenet.png'),
-                            ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Text('배틀태그 : betrider#12345'),
-                          ],
-                        ),
-                        Container(
-                          height: 25,
-                          child: VerticalDivider(color: Colors.black),
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Image.asset('assets/icons/diablo2.png'),
-                            ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Text('계정 아이디 : 베트라이더'),
-                          ],
-                        ),
-                        Container(
-                          height: 25,
-                          child: VerticalDivider(color: Colors.black),
-                        ),
-                        OutlinedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.message),
-                          label: Text('메시지복사'),
-                        ),
+                        Text('아이디 : 베트라이더', style: AppTextStyle.white_14_w400),
                       ],
                     ),
-                  )),
+                    SizedBox(width: kDefaultPadding,),
+                    OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.message),
+                      label: Text('메시지복사', style: AppTextStyle.white_14_w400),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
+          // child: Center(
+          //   child: InkWell(
+          //     onTap: () {
+          //       showWidgetDialog(ItemInfo());
+          //     },
+          //     child: Container(
+          //       width: 600,
+          //       decoration: BoxDecoration(
+          //         color: Colors.transparent,
+          //         border: Border.all(width: 1),
+          //       ),
+          //       child: Column(
+          //         mainAxisSize: MainAxisSize.min,
+          //         children: [
+          //           FittedBox(
+          //             fit: BoxFit.fill,
+          //             child: ItemInfo(),
+          //           ),
+          //           SizedBox(
+          //             height: 50,
+          //             child: Row(
+          //               children: [
+          //                 Flexible(
+          //                     child: Container(
+          //                   color: Colors.yellow,
+          //                 )),
+          //                 Container(
+          //                   height: 50,
+          //                   child: VerticalDivider(
+          //                     color: Colors.black,
+          //                     width: 1,
+          //                   ),
+          //                 ),
+          //                 Flexible(
+          //                     child: Container(
+          //                   color: Colors.blue,
+          //                 )),
+          //               ],
+          //             ),
+          //           ),
+          //           SizedBox(
+          //             height: 50,
+          //             child: Row(
+          //               children: [
+          //                 Flexible(
+          //                     child: Container(
+          //                   color: Colors.blue,
+          //                 )),
+          //                 Container(
+          //                   height: 50,
+          //                   child: VerticalDivider(
+          //                     color: Colors.black,
+          //                     width: 1,
+          //                   ),
+          //                 ),
+          //                 Flexible(
+          //                     child: Container(
+          //                   color: Colors.yellow,
+          //                 )),
+          //               ],
+          //             ),
+          //           )
+          // Column(
+          //   children: [
+          //     ConstrainedBox(
+          //         constraints: BoxConstraints(minHeight: 50),
+          //         child: Container(
+          //           width: double.infinity,
+          //           color: Colors.white,
+          //           padding: EdgeInsets.symmetric(horizontal: 8),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //             children: [
+          //               Text(DateTime.now().toFullDateTimeString5()),
+          // Container(
+          //   height: 25,
+          //   child: VerticalDivider(color: Colors.black),
+          // ),
+          // OutlinedButton.icon(
+          //   onPressed: () {},
+          //   icon: Icon(Icons.message),
+          //   label: Text('메시지복사'),
+          // ),
+          //             ],
+          //           ),
+          //         )),
+          // ConstrainedBox(
+          //     constraints: BoxConstraints(minHeight: 50),
+          //     child: Container(
+          //       width: double.infinity,
+          //       color: Colors.white,
+          //       padding: EdgeInsets.symmetric(horizontal: 8),
+          //       child: Row(
+          //         children: [
+          //           Expanded(
+          //             child: Row(
+          //               children: [
+          // SizedBox(
+          //   width: 24,
+          //   height: 24,
+          //   child: Image.asset(
+          //       'assets/icons/battlenet.png'),
+          // ),
+          // SizedBox(
+          //   width: 2,
+          // ),
+          // Text('배틀태그 : betrider#12345'),
+          //               ],
+          //             ),
+          //           ),
+          //           Container(
+          //             height: 25,
+          //             child: VerticalDivider(color: Colors.black),
+          //           ),
+          //           Expanded(
+          //             child: Row(
+          //               children: [
+          // SizedBox(
+          //   width: 24,
+          //   height: 24,
+          //   child:
+          //       Image.asset('assets/icons/diablo2.png'),
+          // ),
+          // SizedBox(
+          //   width: 2,
+          // ),
+          // Text('아이디 : 베트라이더'),
+          //               ],
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     )),
+          //   ],
+          // ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ),
       ),
     );
@@ -182,7 +289,7 @@ class _Sample2State extends State<Sample2> {
           children: [
             InkWell(
               onTap: () {
-                showInfoDialog(ItemInfo());
+                showWidgetDialog(ItemInfo());
               },
               child: SizedBox(
                 width: 50,

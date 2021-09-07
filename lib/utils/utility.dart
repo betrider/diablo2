@@ -132,7 +132,7 @@ Future<String> getImagePath({
 }
 
 /// 위젯 정보보기
-Future<void> showInfoDialog(Widget widget) {
+Future<void> showWidgetDialog(Widget widget) {
   return showDialog(
     context: Get.context!,
     builder: (BuildContext context) {
