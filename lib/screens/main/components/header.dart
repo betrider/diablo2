@@ -5,6 +5,7 @@ import 'package:flutter_diablo2_exchange/localization_service.dart';
 import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
+import 'package:intl/intl.dart';
 import 'socal.dart';
 import 'web_menu.dart';
 
@@ -30,6 +31,11 @@ class Header extends StatelessWidget {
               child: CustomMenuButton(
                 itemList: LocalizationService.langs,
                 onChanged: (value) {
+                  if(value == 'English'){
+                    Intl.defaultLocale = 'en_US';
+                  }else{
+                    Intl.defaultLocale = 'ko_KR';
+                  }
                   LocalizationService().changeLocale(value);
                 },
               ),

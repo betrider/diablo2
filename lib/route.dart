@@ -1,15 +1,3 @@
-import 'package:flutter/rendering.dart';
-import 'package:flutter_diablo2_exchange/index.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
-import 'dart:io';
-import 'dart:async';
-import 'dart:ui' as ui;
-import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 
 class RouteGenerator {
@@ -20,7 +8,7 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => Sample2()),
+      GetPage(name: '/sample', page: () => Sample123()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
     ];
   }
@@ -70,6 +58,113 @@ class SampleArgumentPage extends StatelessWidget {
   }
 }
 
+class Sample123 extends StatelessWidget {
+  const Sample123({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          width: 800,
+          height: 500,
+          decoration: BoxDecoration(border: Border.all(width: 1)),
+          child: Column(
+            children: [
+              Expanded(
+                child: Stack(
+                  children: [
+                    Container(
+                      color: Colors.yellow,
+                      child: Center(
+                        child: Text('이미지'),
+                      ),
+                    ),
+                    Positioned(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(width: 1),
+                            right: BorderSide(width: 1),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Text(
+                          '삽니다',
+                          style: TextStyle(color: Colors.green[400]),
+                        ),
+                      ),
+                      top: 0,
+                      left: 0,
+                    )
+                  ],
+                ),
+              ),
+              Divider(height: 1, color: Colors.black),
+              ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: 50),
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(DateTime.now().toFullDateTimeString5()),
+                        Container(
+                            height: 25,
+                            child: VerticalDivider(color: Colors.black)),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Image.asset('assets/icons/battlenet.png'),
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Text('배틀태그 : betrider#12345'),
+                          ],
+                        ),
+                        Container(
+                          height: 25,
+                          child: VerticalDivider(color: Colors.black),
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Image.asset('assets/icons/diablo2.png'),
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Text('계정 아이디 : 베트라이더'),
+                          ],
+                        ),
+                        Container(
+                          height: 25,
+                          child: VerticalDivider(color: Colors.black),
+                        ),
+                        OutlinedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(Icons.message),
+                          label: Text('메시지복사'),
+                        ),
+                      ],
+                    ),
+                  )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class Sample2 extends StatefulWidget {
   const Sample2({Key? key}) : super(key: key);
 
@@ -78,10 +173,6 @@ class Sample2 extends StatefulWidget {
 }
 
 class _Sample2State extends State<Sample2> {
-  var globalKey = GlobalKey();
-
-  Uint8List? bytes1;
-
   @override
   Widget build(BuildContext context) {
     print('build');
@@ -105,30 +196,5 @@ class _Sample2State extends State<Sample2> {
         ),
       ),
     );
-    // return RepaintBoundary(
-    //   key: globalKey,
-    //   child: Scaffold(
-    //     body: Center(
-    //       child: InkWell(
-    //         onTap: () {
-    //           _capture();
-    //         },
-    //         child: Column(
-    //           children: [
-    //             Container(
-    //               width: 250,
-    //               height: 250,
-    //               color: Colors.yellow,
-    //               child: Text('Captuer'),
-    //             ),
-    //             bytes1 != null
-    //                 ? Image.memory(bytes1!, fit: BoxFit.fill)
-    //                 : Container()
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

@@ -5,6 +5,8 @@ import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //비동기 메소드 사용하기 위해 선언
@@ -13,6 +15,9 @@ void main() async {
   await Hive.openBox('cache'); //Hive cache박스 등록
 
   await GlobalConfiguration().loadFromAsset("config"); //환경설정 세팅
+
+  //intl 언어 설정
+  Intl.defaultLocale = 'ko_KR';
 
   runApp(MyApp());
 }
@@ -25,6 +30,17 @@ class MyApp extends StatelessWidget {
       locale: LocalizationService.locale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),
+      localizationsDelegates: [
+        //다국어 지원
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        //다국어 지원
+        const Locale('ko', 'KR'),
+        const Locale('en', 'US'),
+      ],
       getPages: RouteGenerator.getPages(),
       routingCallback: RouteGenerator.routingCallback,
       debugShowCheckedModeBanner: false,
