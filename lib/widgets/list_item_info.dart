@@ -23,54 +23,168 @@ class ListItemInfo extends StatelessWidget {
           ),
           Container(
             color: Colors.grey[850],
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+            child: Responsive.isMobile(context)
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Image.asset('assets/icons/battlenet.png'),
+                      Align(
+                        alignment: Alignment.center,
+                        child: TextButton.icon(
+                          onPressed: null,
+                          icon: Icon(
+                            Icons.timelapse_outlined,
+                            color: Colors.white,
+                          ),
+                          label: Text(
+                            '등록시간 : ${DateTime.now().toFullDateTimeString5()}',
+                            style: AppTextStyle.white_14_w400,
+                          ),
+                        ),
                       ),
                       SizedBox(
-                        width: 8,
+                        height: 4,
                       ),
-                      Text('배틀태그 : betrider#12345',
-                          style: AppTextStyle.white_14_w400),
+                      Align(
+                        alignment: Alignment.center,
+                        child: TextButton.icon(
+                          onPressed: () {},
+                          icon: Icon(Icons.message),
+                          label:
+                              Text('메시지복사', style: AppTextStyle.white_14_w400),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Image.asset('assets/icons/battlenet.png'),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('배틀태그 : betrider#12345',
+                                style: AppTextStyle.white_14_w400),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: Image.asset('assets/icons/diablo2.png'),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('아이디 : 베트라이더',
+                                style: AppTextStyle.white_14_w400),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: TextButton.icon(
+                                  onPressed: null,
+                                  icon: Icon(
+                                    Icons.timelapse_outlined,
+                                    color: Colors.white,
+                                  ),
+                                  label: Text(
+                                    '등록시간 : ${DateTime.now().toFullDateTimeString5()}',
+                                    style: AppTextStyle.white_14_w400,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: TextButton.icon(
+                                onPressed: () {},
+                                icon: Icon(Icons.message),
+                                label: Text('메시지복사',
+                                    style: AppTextStyle.white_14_w400),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: Image.asset(
+                                        'assets/icons/battlenet.png'),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text('배틀태그 : betrider#12345',
+                                      style: AppTextStyle.white_14_w400),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child:
+                                        Image.asset('assets/icons/diablo2.png'),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text('아이디 : 베트라이더',
+                                      style: AppTextStyle.white_14_w400),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: Image.asset('assets/icons/diablo2.png'),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Text('아이디 : 베트라이더', style: AppTextStyle.white_14_w400),
-                  ],
-                ),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                OutlinedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.message),
-                  label: Text('메시지복사', style: AppTextStyle.white_14_w400),
-                ),
-              ],
-            ),
           ),
           // Container(
           //   color: Colors.grey[700],

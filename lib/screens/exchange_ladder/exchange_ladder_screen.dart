@@ -23,11 +23,11 @@ class ExchangeLadderScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Container(
-              //   height: 100,
-              //   // color: Colors.yellow,
-              //   child: Text('11'),
-              // ),
+              Container(
+                height: 100,
+                // color: Colors.yellow,
+                child: Text('strIronHeel'.tr),
+              ),
               // Container(
               //   height: 100,
               //   // color: Colors.yellow,

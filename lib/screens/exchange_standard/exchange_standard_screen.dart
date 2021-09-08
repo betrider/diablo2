@@ -15,7 +15,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
   bool isSearch = false;
   bool isLoading = false;
 
-  List<int> selectedItems = [];
+  List<int> itemPrifixList = [];
+  List<int> itemSuffixList = [];
 
   String selectItem = '';
 
@@ -37,7 +38,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: Get.height, minWidth: double.infinity),
+      constraints:
+          BoxConstraints(minHeight: Get.height, minWidth: double.infinity),
       child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -46,7 +48,10 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Responsive.isMobile(context) ? kDefaultPadding : kDefaultPadding * 4),
+            padding: EdgeInsets.symmetric(
+                horizontal: Responsive.isMobile(context)
+                    ? kDefaultPadding
+                    : kDefaultPadding * 4),
             child: Column(
               children: [
                 // SizedBox(height: kDefaultPadding * 2),
@@ -175,7 +180,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
   Widget _getFourthItemSuffix(BuildContext context) {
     return Responsive.isMobile(context)
         ? Column(
-            crossAxisAlignment : CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: 200,
@@ -224,15 +229,13 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                     value: '접두사3',
                   ),
                 ],
-                selectedItems: selectedItems,
-                hint:
-                    Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                searchHint:
-                    Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
+                selectedItems: itemSuffixList,
+                hint: Text("Select 3 Items", style: AppTextStyle.white_14_w400),
+                searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
                 style: AppTextStyle.white_14_w400,
                 onChanged: (value) {
                   setState(() {
-                    selectedItems = value;
+                    itemSuffixList = value;
                   });
                 },
                 doneButton: (selectedItemsDone, doneContext) {
@@ -300,7 +303,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                       value: '접두사3',
                     ),
                   ],
-                  selectedItems: selectedItems,
+                  selectedItems: itemSuffixList,
                   hint:
                       Text("Select 3 Items", style: AppTextStyle.white_14_w400),
                   searchHint:
@@ -308,7 +311,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                   style: AppTextStyle.white_14_w400,
                   onChanged: (value) {
                     setState(() {
-                      selectedItems = value;
+                      itemSuffixList = value;
                     });
                   },
                   doneButton: (selectedItemsDone, doneContext) {
@@ -336,6 +339,72 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
               SizedBox(
                 width: 200,
                 child: CustomTitle.size20('옵션(접두사)'),
+              ),
+              SearchableDropdown.multiple(
+                items: [DropdownMenuItem(
+                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                    value: '접두사1',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                    value: '접두사2',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                    value: '접두사3',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                    value: '접두사1',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                    value: '접두사2',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                    value: '접두사3',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
+                    value: '접두사1',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
+                    value: '접두사2',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
+                    value: '접두사3',
+                  ),],
+                selectedItems: itemPrifixList,
+                hint: "Select 3 items",
+                searchHint: "Select 3",
+                validator: (selectedItemsForValidator) {
+                  if (selectedItemsForValidator.length != 3) {
+                    return ("Must select 3");
+                  }
+                  return (null);
+                },
+                onChanged: (value) {
+                  setState(() {
+                    itemPrifixList = value;
+                  });
+                },
+                doneButton: (selectedItemsDone, doneContext) {
+                  return (RaisedButton(
+                      onPressed: selectedItemsDone.length != 3
+                          ? null
+                          : () {
+                              Navigator.pop(doneContext);
+                              setState(() {});
+                            },
+                      child: Text("Save")));
+                },
+                closeButton: (selectedItems) {
+                  return (selectedItems.length == 3 ? "Ok" : null);
+                },
+                isExpanded: true,
               ),
               SizedBox(
                 height: kDefaultPadding,
@@ -380,14 +449,20 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                     value: '접두사3',
                   ),
                 ],
-                selectedItems: selectedItems,
+                selectedItems: itemPrifixList,
                 hint: Text("Select 3 Items", style: AppTextStyle.white_14_w400),
                 searchHint:
                     Text("Select 3 Items", style: AppTextStyle.white_14_w400),
                 style: AppTextStyle.white_14_w400,
+                validator: (selectedItemsForValidator) {
+                  if (selectedItemsForValidator.length != 3) {
+                    return ("Must select 3");
+                  }
+                  return (null);
+                },
                 onChanged: (value) {
                   setState(() {
-                    selectedItems = value;
+                    itemPrifixList = value;
                   });
                 },
                 doneButton: (selectedItemsDone, doneContext) {
@@ -455,7 +530,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                       value: '접두사3',
                     ),
                   ],
-                  selectedItems: selectedItems,
+                  selectedItems: itemPrifixList,
                   hint:
                       Text("Select 3 Items", style: AppTextStyle.white_14_w400),
                   searchHint:
@@ -463,7 +538,7 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
                   style: AppTextStyle.white_14_w400,
                   onChanged: (value) {
                     setState(() {
-                      selectedItems = value;
+                      itemPrifixList = value;
                     });
                   },
                   doneButton: (selectedItemsDone, doneContext) {
