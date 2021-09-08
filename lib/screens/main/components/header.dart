@@ -58,17 +58,18 @@ class Header extends StatelessWidget {
                             _controller.openOrCloseDrawer();
                           },
                         ),
-                      InkWell(
-                        onTap: () {
-                          if(isDebug){
-                            Get.toNamed('/sample');
-                          }else{
-                            _controller.setMenuIndex(0);
-                          }
-                        },
-                        child: Image.asset(
-                            'assets/icons/Diablo_II_Resurrected_Logo.png'),
-                      ),
+                      if(!Responsive.isMobile(context))
+                        InkWell(
+                          onTap: () {
+                            if(isDebug){
+                              Get.toNamed('/sample');
+                            }else{
+                              _controller.setMenuIndex(0);
+                            }
+                          },
+                          child: Image.asset(
+                              'assets/icons/Diablo_II_Resurrected_Logo.png'),
+                        ),
                       if (Responsive.isDesktop(context)) WebMenu(),
                       // Socal
                       Socal(),

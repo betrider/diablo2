@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 extension CustomListExtension<T> on List<T>? {
   /// Converts this list into a JSON string.
   ///
@@ -62,5 +64,19 @@ extension CustomListExtension<T> on List<T>? {
     if (this == null) return '';
 
     return this!.join(separator);
+  }
+
+  /// list text 항목 추가
+  List<String> firstAddText({String value = 'All'}){
+    if (this == null) return [];
+    List<String> temp = this!.cast<String>();
+    return [value,...temp];
+  }
+
+  /// list color 항목 추가
+  List<Color> firstAddColor({Color color = Colors.white}){
+    if (this == null) return [];
+    List<Color> temp = this!.cast<Color>();
+    return [color,...temp];
   }
 }

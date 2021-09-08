@@ -876,6 +876,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
       child: new Stack(
         children: <Widget>[
           new TextField(
+            style: TextStyle(color: _kDefaultColor),
             cursorColor: _kDefaultColor,
             controller: txtSearch,
             decoration: InputDecoration(
@@ -931,6 +932,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
                           child: new Icon(
                             Icons.close,
                             size: 24,
+                            color: _kDefaultColor,
                           ),
                         ),
                       ),

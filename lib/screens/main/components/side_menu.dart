@@ -1,7 +1,8 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 class SideMenu extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController(getCache.get('pageIndex')));
+  final MenuController _controller =
+      Get.put(MenuController(getCache.get('pageIndex')));
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,8 @@ class SideMenu extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: kDefaultPadding * 3.5),
-                  child: SvgPicture.asset("assets/icons/logo.svg"),
+                  child: Image.asset(
+                      'assets/icons/Diablo_II_Resurrected_Logo.png'),
                 ),
               ),
               ...List.generate(
