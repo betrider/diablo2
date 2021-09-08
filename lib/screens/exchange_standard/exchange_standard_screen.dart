@@ -15,6 +15,8 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
   bool isSearch = false;
   bool isLoading = false;
 
+  int prefixMaxCount = 3;
+  int suffixMaxCount = 1;
   List<int> itemPrifixList = [];
   List<int> itemSuffixList = [];
 
@@ -136,726 +138,6 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
     );
   }
 
-  // Row _getItemGoods(BuildContext context) {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.start,
-  //     children: [
-  //       SizedBox(
-  //         width: 200,
-  //         child: CustomTitle.size30('3.거래재화'),
-  //       ),
-  //       SizedBox(
-  //         width: kDefaultPadding,
-  //       ),
-  //       Flexible(
-  //           child: ChipGroup(
-  //         items: tradeItem,
-  //         itemsColor: [
-  //           ItemColor.white,
-  //           ItemColor.orange,
-  //           ItemColor.red,
-  //           ItemColor.blue,
-  //           ItemColor.yellow,
-  //           ItemColor.green,
-  //           ItemColor.white,
-  //           ItemColor.purple,
-  //           ItemColor.grey,
-  //         ],
-  //         itemsImagePath: [
-  //           '',
-  //           'icons/runes/Gul_Rune_25.png',
-  //           'icons/gems/perfect_ruby.png',
-  //           'icons/gems/perfect_saphire.png',
-  //           'icons/gems/perfect_topaz.png',
-  //           'icons/gems/perfect_emerald.png',
-  //           'icons/gems/perfect_diamond.png',
-  //           'icons/gems/perfect_amethyst.png',
-  //           'icons/gems/perfect_skull.png'
-  //         ],
-  //       )),
-  //     ],
-  //   );
-  // }
-
-  Widget _getFourthItemSuffix(BuildContext context) {
-    return Responsive.isMobile(context)
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('옵션(접미사)'),
-              ),
-              SizedBox(
-                width: kDefaultPadding,
-              ),
-              SearchableDropdown.multiple(
-                iconEnabledColor: Colors.white,
-                items: [
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                ],
-                selectedItems: itemSuffixList,
-                hint: Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                style: AppTextStyle.white_14_w400,
-                onChanged: (value) {
-                  setState(() {
-                    itemSuffixList = value;
-                  });
-                },
-                doneButton: (selectedItemsDone, doneContext) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(doneContext);
-                      setState(() {});
-                    },
-                    child: Text("저장", style: AppTextStyle.white_14_w400),
-                  );
-                },
-                closeButton: null,
-                isExpanded: true,
-              ),
-            ],
-          )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('옵션(접미사)'),
-              ),
-              SizedBox(
-                width: kDefaultPadding,
-              ),
-              Expanded(
-                child: SearchableDropdown.multiple(
-                  iconEnabledColor: Colors.white,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                      value: '접두사1',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                      value: '접두사2',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                      value: '접두사3',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                      value: '접두사1',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                      value: '접두사2',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                      value: '접두사3',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                      value: '접두사1',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                      value: '접두사2',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                      value: '접두사3',
-                    ),
-                  ],
-                  selectedItems: itemSuffixList,
-                  hint:
-                      Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                  searchHint:
-                      Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                  style: AppTextStyle.white_14_w400,
-                  onChanged: (value) {
-                    setState(() {
-                      itemSuffixList = value;
-                    });
-                  },
-                  doneButton: (selectedItemsDone, doneContext) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(doneContext);
-                        setState(() {});
-                      },
-                      child: Text("저장", style: AppTextStyle.white_14_w400),
-                    );
-                  },
-                  closeButton: null,
-                  isExpanded: true,
-                ),
-              ),
-            ],
-          );
-  }
-
-  Widget _getFourthItemPrefix(BuildContext context) {
-    return Responsive.isMobile(context)
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('옵션(접두사)'),
-              ),
-              SearchableDropdown.multiple(
-                items: [DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),],
-                selectedItems: itemPrifixList,
-                hint: "Select 3 items",
-                searchHint: "Select 3",
-                validator: (selectedItemsForValidator) {
-                  if (selectedItemsForValidator.length != 3) {
-                    return ("Must select 3");
-                  }
-                  return (null);
-                },
-                onChanged: (value) {
-                  setState(() {
-                    itemPrifixList = value;
-                  });
-                },
-                doneButton: (selectedItemsDone, doneContext) {
-                  return (RaisedButton(
-                      onPressed: selectedItemsDone.length != 3
-                          ? null
-                          : () {
-                              Navigator.pop(doneContext);
-                              setState(() {});
-                            },
-                      child: Text("Save")));
-                },
-                closeButton: (selectedItems) {
-                  return (selectedItems.length == 3 ? "Ok" : null);
-                },
-                isExpanded: true,
-              ),
-              SizedBox(
-                height: kDefaultPadding,
-              ),
-              SearchableDropdown.multiple(
-                iconEnabledColor: Colors.white,
-                items: [
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                    value: '접두사1',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                    value: '접두사2',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                    value: '접두사3',
-                  ),
-                ],
-                selectedItems: itemPrifixList,
-                hint: Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                searchHint:
-                    Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                style: AppTextStyle.white_14_w400,
-                validator: (selectedItemsForValidator) {
-                  if (selectedItemsForValidator.length != 3) {
-                    return ("Must select 3");
-                  }
-                  return (null);
-                },
-                onChanged: (value) {
-                  setState(() {
-                    itemPrifixList = value;
-                  });
-                },
-                doneButton: (selectedItemsDone, doneContext) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(doneContext);
-                      setState(() {});
-                    },
-                    child: Text("저장", style: AppTextStyle.white_14_w400),
-                  );
-                },
-                closeButton: null,
-                isExpanded: true,
-              ),
-            ],
-          )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('옵션(접두사)'),
-              ),
-              SizedBox(
-                width: kDefaultPadding,
-              ),
-              Expanded(
-                child: SearchableDropdown.multiple(
-                  iconEnabledColor: Colors.white,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                      value: '접두사1',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                      value: '접두사2',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                      value: '접두사3',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                      value: '접두사1',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                      value: '접두사2',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                      value: '접두사3',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사1', style: AppTextStyle.white_14_w400),
-                      value: '접두사1',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사2', style: AppTextStyle.white_14_w400),
-                      value: '접두사2',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('접두사3', style: AppTextStyle.white_14_w400),
-                      value: '접두사3',
-                    ),
-                  ],
-                  selectedItems: itemPrifixList,
-                  hint:
-                      Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                  searchHint:
-                      Text("Select 3 Items", style: AppTextStyle.white_14_w400),
-                  style: AppTextStyle.white_14_w400,
-                  onChanged: (value) {
-                    setState(() {
-                      itemPrifixList = value;
-                    });
-                  },
-                  doneButton: (selectedItemsDone, doneContext) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(doneContext);
-                        setState(() {});
-                      },
-                      child: Text("저장", style: AppTextStyle.white_14_w400),
-                    );
-                  },
-                  closeButton: null,
-                  isExpanded: true,
-                ),
-              ),
-            ],
-          );
-  }
-
-  Widget _getThirdItemName(BuildContext context) {
-    return Responsive.isMobile(context)
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('아이템 종류'),
-              ),
-              SizedBox(
-                height: kDefaultPadding,
-              ),
-              SearchableDropdown.single(
-                iconEnabledColor: Colors.white,
-                items: [
-                  DropdownMenuItem(
-                    child: Text('The Grandfather',
-                        style: AppTextStyle.white_14_w400),
-                    value: 'The Grandfather',
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      'bbb',
-                      style: AppTextStyle.white_14_w400,
-                    ),
-                    value: 'bbb',
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      'cc',
-                      style: AppTextStyle.white_14_w400,
-                    ),
-                    value: 'cc',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('The Grandfather',
-                        style: AppTextStyle.white_14_w400),
-                    value: 'The Grandfather',
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      'bbb',
-                      style: AppTextStyle.white_14_w400,
-                    ),
-                    value: 'bbb',
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      'cc',
-                      style: AppTextStyle.white_14_w400,
-                    ),
-                    value: 'cc',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('The Grandfather',
-                        style: AppTextStyle.white_14_w400),
-                    value: 'The Grandfather',
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      'bbb',
-                      style: AppTextStyle.white_14_w400,
-                    ),
-                    value: 'bbb',
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      'cc',
-                      style: AppTextStyle.white_14_w400,
-                    ),
-                    value: 'cc',
-                  ),
-                ],
-                value: selectItem,
-                style: AppTextStyle.white_14_w400,
-                hint: Text("Select one", style: AppTextStyle.white_14_w400),
-                searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                onChanged: (value) {
-                  print('1234');
-                  selectItem = value;
-                  Get.back();
-                },
-                // doneButton: (selectedItemsDone, doneContext) {
-                //   return ElevatedButton(
-                //     onPressed: () {
-                //       print('2345');
-                //       Navigator.pop(doneContext);
-                //       setState(() {});
-                //     },
-                //     child: Text("닫기", style: AppTextStyle.white_14_w400),
-                //   );
-                // },
-                closeButton: null,
-                isExpanded: true,
-              ),
-            ],
-          )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('아이템 종류'),
-              ),
-              SizedBox(
-                width: kDefaultPadding,
-              ),
-              Expanded(
-                child: SearchableDropdown.single(
-                  iconEnabledColor: Colors.white,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text('The Grandfather',
-                          style: AppTextStyle.white_14_w400),
-                      value: 'The Grandfather',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'bbb',
-                        style: AppTextStyle.white_14_w400,
-                      ),
-                      value: 'bbb',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'cc',
-                        style: AppTextStyle.white_14_w400,
-                      ),
-                      value: 'cc',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('The Grandfather',
-                          style: AppTextStyle.white_14_w400),
-                      value: 'The Grandfather',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'bbb',
-                        style: AppTextStyle.white_14_w400,
-                      ),
-                      value: 'bbb',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'cc',
-                        style: AppTextStyle.white_14_w400,
-                      ),
-                      value: 'cc',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('The Grandfather',
-                          style: AppTextStyle.white_14_w400),
-                      value: 'The Grandfather',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'bbb',
-                        style: AppTextStyle.white_14_w400,
-                      ),
-                      value: 'bbb',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'cc',
-                        style: AppTextStyle.white_14_w400,
-                      ),
-                      value: 'cc',
-                    ),
-                  ],
-                  value: selectItem,
-                  style: AppTextStyle.white_14_w400,
-                  hint: Text("Select one", style: AppTextStyle.white_14_w400),
-                  searchHint:
-                      Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                  onChanged: (value) {
-                    print('1234');
-                    selectItem = value;
-                    Get.back();
-                  },
-                  // doneButton: (selectedItemsDone, doneContext) {
-                  //   return ElevatedButton(
-                  //     onPressed: () {
-                  //       print('2345');
-                  //       Navigator.pop(doneContext);
-                  //       setState(() {});
-                  //     },
-                  //     child: Text("닫기", style: AppTextStyle.white_14_w400),
-                  //   );
-                  // },
-                  closeButton: null,
-                  isExpanded: true,
-                ),
-              ),
-            ],
-          );
-  }
-
-  Widget _getSecondItemType(BuildContext context) {
-    return Responsive.isMobile(context)
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('아이템 유형'),
-              ),
-              SizedBox(
-                height: kDefaultPadding,
-              ),
-              SearchableDropdown.single(
-                iconEnabledColor: Colors.white,
-                items: itemType
-                    .mapWithIndex(
-                      (value, index) => DropdownMenuItem(
-                        child:
-                            Text(value.tr, style: AppTextStyle.white_14_w400),
-                        value: value.tr,
-                      ),
-                    )
-                    .toList(),
-                value: selectItem,
-                style: AppTextStyle.white_14_w400,
-                hint: Text("Select one", style: AppTextStyle.white_14_w400),
-                searchHint: Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                onChanged: (value) {
-                  selectItem = value;
-                  Get.back();
-                },
-                // doneButton: (selectedItemsDone, doneContext) {
-                //   return ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.pop(doneContext);
-                //       setState(() {});
-                //     },
-                //     child: Text("닫기", style: AppTextStyle.white_14_w400),
-                //   );
-                // },
-                closeButton: null,
-                isExpanded: true,
-              ),
-            ],
-          )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 200,
-                child: CustomTitle.size20('아이템 유형'),
-              ),
-              SizedBox(
-                width: kDefaultPadding,
-              ),
-              Expanded(
-                child: SearchableDropdown.single(
-                  iconEnabledColor: Colors.white,
-                  items: itemType
-                      .mapWithIndex(
-                        (value, index) => DropdownMenuItem(
-                          child:
-                              Text(value.tr, style: AppTextStyle.white_14_w400),
-                          value: value.tr,
-                        ),
-                      )
-                      .toList(),
-                  // items: [
-                  // DropdownMenuItem(
-                  //   child:
-                  //       Text('The Grandfather', style: AppTextStyle.white_14_w400),
-                  //   value: 'The Grandfather',
-                  // ),
-                  // ],
-                  value: selectItem,
-                  style: AppTextStyle.white_14_w400,
-                  hint: Text("Select one", style: AppTextStyle.white_14_w400),
-                  searchHint:
-                      Text("유니크 > 무기", style: AppTextStyle.white_14_w400),
-                  onChanged: (value) {
-                    selectItem = value;
-                    Get.back();
-                  },
-                  // doneButton: (selectedItemsDone, doneContext) {
-                  //   return ElevatedButton(
-                  //     onPressed: () {
-                  //       Navigator.pop(doneContext);
-                  //       setState(() {});
-                  //     },
-                  //     child: Text("닫기", style: AppTextStyle.white_14_w400),
-                  //   );
-                  // },
-                  closeButton: null,
-                  isExpanded: true,
-                ),
-              ),
-              // Flexible(child: ChipGroup(items: itemType)),
-            ],
-          );
-  }
-
   Widget _getFirstItemGrade(BuildContext context) {
     return Responsive.isMobile(context)
         ? Column(
@@ -893,37 +175,419 @@ class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
           );
   }
 
-  // Row _buySellType(BuildContext context) {
-  //   return Responsive.isMobile(context)
-  //       ? Row(
-  //           children: [
-  //             SizedBox(
-  //               width: 200,
-  //               child: CustomTitle.size30('1.거래유형'),
-  //             ),
-  //             SizedBox(
-  //               width: kDefaultPadding,
-  //             ),
-  //             RadioGroup(
-  //               radioMap: {'buy': '삽니다', 'sell': '팝니다'},
-  //               onChanged: (value) {},
-  //             ),
-  //           ],
-  //         )
-  //       : Row(
-  //           children: [
-  //             SizedBox(
-  //               width: 200,
-  //               child: CustomTitle.size30('1.거래유형'),
-  //             ),
-  //             SizedBox(
-  //               width: kDefaultPadding,
-  //             ),
-  //             RadioGroup(
-  //               radioMap: {'buy': '삽니다', 'sell': '팝니다'},
-  //               onChanged: (value) {},
-  //             ),
-  //           ],
-  //         );
-  // }
+  Widget _getSecondItemType(BuildContext context) {
+    return Responsive.isMobile(context)
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('아이템 유형'),
+              ),
+              SizedBox(
+                height: kDefaultPadding,
+              ),
+              _itemTypeDropdown(),
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('아이템 유형'),
+              ),
+              SizedBox(
+                width: kDefaultPadding,
+              ),
+              Expanded(
+                child: _itemTypeDropdown(),
+              ),
+            ],
+          );
+  }
+
+  Widget _getThirdItemName(BuildContext context) {
+    return Responsive.isMobile(context)
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('아이템 이름'),
+              ),
+              SizedBox(
+                height: kDefaultPadding,
+              ),
+              _itemNameDropdown(),
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('아이템 이름'),
+              ),
+              SizedBox(
+                width: kDefaultPadding,
+              ),
+              Expanded(
+                child: _itemNameDropdown(),
+              ),
+            ],
+          );
+  }
+
+  Widget _getFourthItemPrefix(BuildContext context) {
+    return Responsive.isMobile(context)
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('옵션(접두사)'),
+              ),
+              SizedBox(
+                height: kDefaultPadding,
+              ),
+              _prefixDropdown(),
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('옵션(접두사)'),
+              ),
+              SizedBox(
+                width: kDefaultPadding,
+              ),
+              Expanded(child: _prefixDropdown()),
+            ],
+          );
+  }
+
+  Widget _getFourthItemSuffix(BuildContext context) {
+    return Responsive.isMobile(context)
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('옵션(접미사)'),
+              ),
+              SizedBox(
+                width: kDefaultPadding,
+              ),
+              _suffixDropdown(),
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('옵션(접미사)'),
+              ),
+              SizedBox(
+                width: kDefaultPadding,
+              ),
+              Expanded(
+                child: _suffixDropdown(),
+              ),
+            ],
+          );
+  }
+
+  SearchableDropdown<String> _itemTypeDropdown() {
+    return SearchableDropdown.single(
+      iconEnabledColor: Colors.white,
+      items: itemType
+          .mapWithIndex(
+            (value, index) => DropdownMenuItem(
+              child: Text(value.tr, style: AppTextStyle.white_14_w400),
+              value: value.tr,
+            ),
+          )
+          .toList(),
+      value: selectItem,
+      style: AppTextStyle.white_14_w400,
+      hint: Text("아이템 유형을 선택해주세요.", style: AppTextStyle.white_14_w400),
+      searchHint: Text("최대 1개만 선택가능합니다.", style: AppTextStyle.white_14_w400),
+      onChanged: (value) {
+        selectItem = value;
+        Get.back();
+      },
+      closeButton: Align(
+        alignment: Alignment.centerRight,
+        child: OutlinedButton(
+          onPressed: () {
+            Get.back();
+            setState(() {});
+          },
+          child: Text("닫기", style: AppTextStyle.white_14_w400),
+        ),
+      ),
+      isExpanded: true,
+    );
+  }
+
+  SearchableDropdown<String> _itemNameDropdown() {
+    return SearchableDropdown.single(
+              iconEnabledColor: Colors.white,
+              items: [
+                DropdownMenuItem(
+                  child: Text('The Grandfather',
+                      style: AppTextStyle.white_14_w400),
+                  value: 'The Grandfather',
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    'bbb',
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                  value: 'bbb',
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    'cc',
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                  value: 'cc',
+                ),
+                DropdownMenuItem(
+                  child: Text('The Grandfather',
+                      style: AppTextStyle.white_14_w400),
+                  value: 'The Grandfather',
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    'bbb',
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                  value: 'bbb',
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    'cc',
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                  value: 'cc',
+                ),
+                DropdownMenuItem(
+                  child: Text('The Grandfather',
+                      style: AppTextStyle.white_14_w400),
+                  value: 'The Grandfather',
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    'bbb',
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                  value: 'bbb',
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    'cc',
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                  value: 'cc',
+                ),
+              ],
+              value: selectItem,
+              style: AppTextStyle.white_14_w400,
+              hint: Text("아이템을 선택해주세요.", style: AppTextStyle.white_14_w400),
+              searchHint: Text("최대 1개만 선택가능합니다.", style: AppTextStyle.white_14_w400),
+              onChanged: (value) {
+                selectItem = value;
+                Get.back();
+              },
+              closeButton: Align(
+                alignment: Alignment.centerRight,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Get.back();
+                    setState(() {});
+                  },
+                  child: Text("닫기", style: AppTextStyle.white_14_w400),
+                ),
+              ),
+              isExpanded: true,
+            );
+  }
+
+  SearchableDropdown<String> _prefixDropdown() {
+    return SearchableDropdown.multiple(
+      iconEnabledColor: Colors.white,
+      items: [
+        DropdownMenuItem(
+          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+          value: '접두사1',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+          value: '접두사2',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+          value: '접두사3',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+          value: '접두사1',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+          value: '접두사2',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+          value: '접두사3',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사1', style: AppTextStyle.white_14_w400),
+          value: '접두사1',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사2', style: AppTextStyle.white_14_w400),
+          value: '접두사2',
+        ),
+        DropdownMenuItem(
+          child: Text('접두사3', style: AppTextStyle.white_14_w400),
+          value: '접두사3',
+        ),
+      ],
+      selectedItems: itemPrifixList,
+      hint: Text("접두사 항목을 선택해주세요.", style: AppTextStyle.white_14_w400),
+      searchHint: Text("최대 $prefixMaxCount개까지 선택이 가능합니다.",
+          style: AppTextStyle.white_14_w400),
+      style: AppTextStyle.white_14_w400,
+      validator: (selectedItemsForValidator) {
+        if (selectedItemsForValidator.length > prefixMaxCount) {
+          return ("최대 개수를 초과했습니다.");
+        } else {
+          return (null);
+        }
+      },
+      onChanged: (value) {
+        setState(() {});
+      },
+      doneButton: (selectedItemsDone, doneContext) {
+        return selectedItemsDone.length > prefixMaxCount
+            ? ElevatedButton(
+                onPressed: null,
+                child: Text("저장", style: AppTextStyle.white_14_w400),
+              )
+            : ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(doneContext);
+                  setState(() {
+                    itemPrifixList = selectedItemsDone;
+                  });
+                },
+                child: Text("저장", style: AppTextStyle.white_14_w400),
+              );
+      },
+      closeButton: Align(
+        alignment: Alignment.centerRight,
+        child: OutlinedButton(
+          onPressed: () {
+            Get.back();
+            setState(() {});
+          },
+          child: Text("닫기", style: AppTextStyle.white_14_w400),
+        ),
+      ),
+      isExpanded: true,
+    );
+  }
+
+  SearchableDropdown<String> _suffixDropdown() {
+    return SearchableDropdown.multiple(
+      iconEnabledColor: Colors.white,
+      items: [
+        DropdownMenuItem(
+          child: Text('접미사1', style: AppTextStyle.white_14_w400),
+          value: '접미사1',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사2', style: AppTextStyle.white_14_w400),
+          value: '접미사2',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사3', style: AppTextStyle.white_14_w400),
+          value: '접미사3',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사1', style: AppTextStyle.white_14_w400),
+          value: '접미사1',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사2', style: AppTextStyle.white_14_w400),
+          value: '접미사2',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사3', style: AppTextStyle.white_14_w400),
+          value: '접미사3',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사1', style: AppTextStyle.white_14_w400),
+          value: '접미사1',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사2', style: AppTextStyle.white_14_w400),
+          value: '접미사2',
+        ),
+        DropdownMenuItem(
+          child: Text('접미사3', style: AppTextStyle.white_14_w400),
+          value: '접미사3',
+        ),
+      ],
+      selectedItems: itemSuffixList,
+      hint: Text("접미사 항목을 선택해주세요.", style: AppTextStyle.white_14_w400),
+      searchHint: Text("최대 $suffixMaxCount개까지 선택이 가능합니다.",
+          style: AppTextStyle.white_14_w400),
+      style: AppTextStyle.white_14_w400,
+      validator: (selectedItemsForValidator) {
+        if (selectedItemsForValidator.length > suffixMaxCount) {
+          return ("최대 개수를 초과했습니다.");
+        } else {
+          return (null);
+        }
+      },
+      onChanged: (value) {
+        setState(() {});
+      },
+      doneButton: (selectedItemsDone, doneContext) {
+        return selectedItemsDone.length > suffixMaxCount
+            ? ElevatedButton(
+                onPressed: null,
+                child: Text("저장", style: AppTextStyle.white_14_w400),
+              )
+            : ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(doneContext);
+                  setState(() {
+                    itemSuffixList = selectedItemsDone;
+                  });
+                },
+                child: Text("저장", style: AppTextStyle.white_14_w400),
+              );
+      },
+      closeButton: Align(
+        alignment: Alignment.centerRight,
+        child: OutlinedButton(
+          onPressed: () {
+            Get.back();
+            setState(() {});
+          },
+          child: Text("닫기", style: AppTextStyle.white_14_w400),
+        ),
+      ),
+      isExpanded: true,
+    );
+  }
+
 }

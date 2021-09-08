@@ -730,8 +730,8 @@ class DropdownDialog<T> extends StatefulWidget {
 
 class _DropdownDialogState<T> extends State<DropdownDialog> {
   TextEditingController txtSearch = new TextEditingController();
-  TextStyle defaultButtonStyle =
-      new TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: _kDefaultColor);
+  TextStyle defaultButtonStyle = new TextStyle(
+      fontSize: 16, fontWeight: FontWeight.w500, color: _kDefaultColor);
   List<int> shownIndexes = [];
   Function searchFn;
 
@@ -855,14 +855,21 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
     return widget.hint != null
         ? new Container(
             margin: EdgeInsets.only(bottom: 8),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  prepareWidget(widget.hint),
-                  Column(
-                    children: <Widget>[doneButtonWidget, validatorOutputWidget],
-                  ),
-                ]),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    prepareWidget(widget.hint),
+                    doneButtonWidget,
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: validatorOutputWidget,
+                )
+              ],
+            ),
           )
         : new Container(
             child: Column(
