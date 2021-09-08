@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 
-class Socal extends StatelessWidget {
-  const Socal({
+class LoginButton extends StatelessWidget {
+  const LoginButton({
     Key? key,
   }) : super(key: key);
 

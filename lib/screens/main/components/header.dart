@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter_diablo2_exchange/responsive.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 import 'package:intl/intl.dart';
-import 'socal.dart';
+import 'login_button.dart';
 import 'web_menu.dart';
 
 class Header extends StatelessWidget {
@@ -71,8 +71,8 @@ class Header extends StatelessWidget {
                               'assets/icons/Diablo_II_Resurrected_Logo.png'),
                         ),
                       if (Responsive.isDesktop(context)) WebMenu(),
-                      // Socal
-                      Socal(),
+                      // 로그인 버튼
+                      LoginButton(),
                     ],
                   ),
                   SizedBox(height: kDefaultPadding),
@@ -84,36 +84,6 @@ class Header extends StatelessWidget {
                       fontFamily: 'kodia',
                     ),
                   ),
-                  Text(
-                    "",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Raleway',
-                      height: 1.5,
-                    ),
-                  ),
-                  // FittedBox(
-                  //   child: TextButton(
-                  //     onPressed: () {},
-                  //     child: Row(
-                  //       children: [
-                  //         Text(
-                  //           "Learn More",
-                  //           style: TextStyle(
-                  //             fontWeight: FontWeight.bold,
-                  //             color: Colors.white,
-                  //           ),
-                  //         ),
-                  //         SizedBox(width: kDefaultPadding / 2),
-                  //         Icon(
-                  //           Icons.arrow_forward,
-                  //           color: Colors.white,
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                   if (Responsive.isDesktop(context))
                     SizedBox(height: kDefaultPadding),
                 ],

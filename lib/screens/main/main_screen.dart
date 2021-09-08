@@ -1,6 +1,5 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/screens/exchange_ladder/exchange_ladder_screen.dart';
-import 'package:flutter_diablo2_exchange/screens/item_dictionary/item_dictionary_screen.dart';
 import 'package:flutter_diablo2_exchange/screens/exchange_standard/exchange_standard_screen.dart';
 import 'components/header.dart';
 import 'components/side_menu.dart';
