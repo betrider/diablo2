@@ -84,21 +84,20 @@ class Home extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: 15.0, right: 70.0, left: 70.0, bottom: 10.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Sign Up",
+                        "로그인",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.lightBlue,
                             fontWeight: FontWeight.w600,
                             fontSize: 35.0,
                             fontFamily: 'Merriweather'),
                       ),
-                      const SizedBox(height: 21.0),
+                      SizedBox(height: 21.0),
                       //InputField Widget from the widgets folder
                       InputField(label: "Username", content: "a_khanooo"),
-                      SizedBox(height: 20.0),
-                      //Gender Widget from the widgets folder
-                      Gender(),
                       SizedBox(height: 20.0),
                       //InputField Widget from the widgets folder
                       InputField(label: "Date of birth", content: "03/04/2000"),

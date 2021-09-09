@@ -1,4 +1,5 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:flutter_diablo2_exchange/widgets/sample/home.dart';
 
 class RouteGenerator {
   static void routingCallback(Routing? routing) {
@@ -8,7 +9,7 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => SamplePage()),
+      GetPage(name: '/sample', page: () => Home()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
     ];
   }

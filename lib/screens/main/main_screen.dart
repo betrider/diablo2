@@ -37,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       key: _controller.scaffoldkey,
       drawer: SideMenu(),
+      resizeToAvoidBottomInset : false, //키보드 화면밀어내지 않게 설정
       body: Scrollbar(
         // isAlwaysShown: true, //스크롤 항상 보이게할지 여부
         controller: _scrollController,
