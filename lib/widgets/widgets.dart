@@ -1,6 +1,7 @@
 export 'chip_group.dart';
 export 'custom_menu_button.dart';
 export 'custom_title.dart';
+export 'input_field.dart';
 export 'item_info.dart';
 export 'list_item_info.dart';
 export 'radio_group.dart';

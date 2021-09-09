@@ -1,6 +1,8 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/widgets/sample/home.dart';
 
+import 'screens/auth/auth.dart';
+
 class RouteGenerator {
   static void routingCallback(Routing? routing) {
     //푸시 이전 호출 , 팝 이후 호출
@@ -9,8 +11,12 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => Home()),
+      GetPage(name: '/sample', page: () => SamplePage()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
+
+      GetPage(name: '/sign_in', page: () => SignInScreen()), //로그인
+      GetPage(name: '/sign_up', page: () => SignUpScreen()), //회원가입
+      GetPage(name: '/sign_out', page: () => SignOutScreen()), //로그아웃
     ];
   }
 }
