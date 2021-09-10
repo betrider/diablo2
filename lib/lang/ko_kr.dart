@@ -109,7 +109,7 @@ const Map<String, String> koKR = {
   'Shael': '샤에(Shael)',
   'Dol': '돌(Dol)',
   'Hel': '헬(Hel)',
-  'Io': '포(Io)',
+  'Io': '이오(Io)',
   'Lum': '룸(Lum)',
   'Ko': '코(Ko)',
   'Fal': '팔(Fal)',

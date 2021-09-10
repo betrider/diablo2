@@ -13,7 +13,7 @@ class SignInScreen extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 image: AssetImage('assets/images/sign_in_background.jpg'),
               ),
             ),

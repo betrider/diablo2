@@ -3,11 +3,13 @@ import 'package:flutter_diablo2_exchange/index.dart';
 class InputField extends StatelessWidget {
   InputField({
     required this.label,
+    this.labelWidth = 80,
     required this.content,
     required this.onChanged,
   });
 
   final String label;
+  final double labelWidth;
   final String content;
   final ValueChanged<String> onChanged;
 
@@ -19,7 +21,7 @@ class InputField extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              width: 80.0,
+              width: labelWidth,
               child: Text(
                 "$label",
                 textAlign: TextAlign.left,

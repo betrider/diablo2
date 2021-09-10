@@ -124,7 +124,7 @@ const Map<String, String> koKR2 = {
   'Lo': '로(Lo)',
   'Sur': '수르(Sur)',
   'Ber': '베르(Ber)',
-  'Jah': '자(Jah)',
+  'Jah': '조(Jah)',
   'Cham': '참(Cham)',
   'Zod': '조드(Zod)',
 
