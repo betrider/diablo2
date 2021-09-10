@@ -37,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 525,
+                  height: 650,
                 ),
                 InputField(
                   autofocus: true,
@@ -72,6 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 SizedBox(
                   width: 400,
+                  height: 48,
                   child: OutlinedButton(
                     focusNode: focusLogin,
                     style: OutlinedButton.styleFrom(

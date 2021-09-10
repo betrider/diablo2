@@ -157,7 +157,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: kDefaultPadding * 2,
                       ),
                       SizedBox(
-                        width: 400,
+                        width: 440,
+                        height: 48,
                         child: OutlinedButton(
                           focusNode: focusLogin,
                           style: OutlinedButton.styleFrom(
