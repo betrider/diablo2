@@ -1,7 +1,23 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
+
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  FocusNode focusId = FocusNode();
+  FocusNode focusPassword = FocusNode();
+  FocusNode focusLogin = FocusNode();
+
+  @override
+  void dispose() {
+    focusId.dispose();
+    focusPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +40,31 @@ class SignInScreen extends StatelessWidget {
                   height: 525,
                 ),
                 InputField(
+                  autofocus: true,
+                  focusNode: focusId,
                   label: "아이디",
                   content: "아이디를 입력해주세요.",
                   onChanged: (value) {
                     print('id:$value');
+                  },
+                  onFieldSubmitted: (value) {
+                    focusId.unfocus();
+                    FocusScope.of(context).requestFocus(focusPassword);
                   },
                 ),
                 SizedBox(
                   height: kDefaultPadding,
                 ),
                 InputField(
+                  focusNode: focusPassword,
                   label: "비밀번호",
                   content: "비밀번호를 입력해주세요.",
                   onChanged: (value) {
                     print('password:$value');
+                  },
+                  onFieldSubmitted: (value) {
+                    focusPassword.unfocus();
+                    FocusScope.of(context).requestFocus(focusLogin);
                   },
                 ),
                 SizedBox(
@@ -46,6 +73,7 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(
                   width: 400,
                   child: OutlinedButton(
+                    focusNode: focusLogin,
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: Colors.grey[350]!),
                     ),
@@ -97,5 +125,3 @@ class SignInScreen extends StatelessWidget {
     );
   }
 }
-
-

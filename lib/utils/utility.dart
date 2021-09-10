@@ -1,4 +1,7 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:global_configuration/global_configuration.dart';
 
 bool get isDebug => kDebugMode;
@@ -43,6 +46,65 @@ GlobalConfiguration get getGlobalConfig => GlobalConfiguration();
 
 /// 장치의 세로 모드 확인
 // context.isPortrait()
+
+/// 전역에서 사용가능
+///
+/// 로딩 표시
+void showLoading({Color? progressIndicatorColor, Color? overlayColor}) {
+  Loader.show(
+    Get.overlayContext!,
+    progressIndicator: progressIndicatorColor == null
+        ? null
+        : CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(progressIndicatorColor),
+          ),
+    overlayColor: overlayColor,
+  );
+}
+
+/// 전역에서 사용가능
+///
+/// 로딩 숨기기
+void hideLoading() {
+  Loader.hide();
+}
+
+/// Snackbar
+void showSnackbar({
+  String title = '제목',
+  String subTitle = '내용',
+  SnackPosition? snackPosition,
+}) {
+  Get.snackbar(
+    title,
+    subTitle,
+    snackPosition: SnackPosition.TOP,
+  );
+}
+
+/// 메시지 - 토스트
+///
+///  * [message], 메시지 내용
+///  * [backgroundColor], 백그라운드 색상
+///  * [textColor], 텍스트 색상
+///  * [fontSize], 폰트 사이즈
+///
+Future<bool?> showToast({
+  required String message,
+  Color? backgroundColor,
+  Color? textColor,
+  double fontSize = 16,
+}) {
+  return Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    backgroundColor: backgroundColor,
+    textColor: textColor,
+    fontSize: fontSize,
+  );
+}
+
 
 enum UrlType {
   INTERNET,
@@ -149,5 +211,52 @@ Future<void> showWidgetDialog(Widget widget) {
         ),
       );
     },
+  );
+}
+
+/// 메시지 - Ok 다이얼로그
+///
+///  * [title], 메시지 제목
+///  * [message], 메시지 내용
+///  * [okLabel], OK 버튼 명칭 = '네'
+///  * [barrierDismissible], 가장자리 클릭 가능 여부
+///
+Future<OkCancelResult> showOkDialog({
+  String title = '제목',
+  String message = '내용',
+  String okLabel = '네',
+  bool barrierDismissible = true,
+}) {
+  return showOkAlertDialog(
+    barrierDismissible: barrierDismissible,
+    context: Get.overlayContext!,
+    title: title,
+    message: message,
+    okLabel: okLabel,
+  );
+}
+
+/// 메시지 - Ok & Cancle 다이얼로그
+///
+///  * [title], 메시지 제목
+///  * [message], 메시지 내용
+///  * [okLabel], OK 버튼 명칭 = '네'
+///  * [cancelLabel], NO 버튼 명칭 = '아니오'
+///  * [barrierDismissible], 가장자리 클릭 가능 여부
+///
+Future<OkCancelResult> showOkCancelDialog({
+  String title = '제목',
+  String message = '내용',
+  String okLabel = '네',
+  String cancelLabel = '아니오',
+  bool barrierDismissible = true,
+}) {
+  return showOkCancelAlertDialog(
+    barrierDismissible: barrierDismissible,
+    context: Get.overlayContext!,
+    title: title,
+    message: message,
+    okLabel: okLabel,
+    cancelLabel: cancelLabel,
   );
 }

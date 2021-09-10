@@ -6,12 +6,18 @@ class InputField extends StatelessWidget {
     this.labelWidth = 80,
     required this.content,
     required this.onChanged,
+    this.focusNode,
+    this.autofocus = false,
+    this.onFieldSubmitted,
   });
 
   final String label;
   final double labelWidth;
   final String content;
   final ValueChanged<String> onChanged;
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final void Function(String value)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,10 @@ class InputField extends StatelessWidget {
             Container(
               width: 300,
               color: Colors.black,
-              child: TextField(
+              child: TextFormField(
+                autofocus: autofocus,
+                focusNode: focusNode,
+                onFieldSubmitted: onFieldSubmitted,
                 style: AppTextStyle.white_16_w400,
                 onChanged: onChanged,
                 cursorColor: Colors.grey[600]!,
