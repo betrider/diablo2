@@ -61,11 +61,12 @@ class _SignInScreenState extends State<SignInScreen> {
                   content: "비밀번호를 입력해주세요.",
                   onChanged: (value) {
                     print('password:$value');
-                  },
+                  },      
                   onFieldSubmitted: (value) {
                     focusPassword.unfocus();
                     FocusScope.of(context).requestFocus(focusLogin);
                   },
+                  obscureText: true,
                 ),
                 SizedBox(
                   height: kDefaultPadding,

@@ -161,6 +161,42 @@ class AppTextStyle {
     fontFamily: _fontFamily
   );
 
+  /// Color : blue
+  ///
+  /// Size : 12
+  ///
+  /// Weight : Regular(400)
+  static const blue_12_w400 = TextStyle(
+    color: Colors.blue,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontFamily: _fontFamily
+  );
+
+  /// Color : blue
+  ///
+  /// Size : 14
+  ///
+  /// Weight : Regular(400)
+  static const blue_14_w400 = TextStyle(
+    color: Colors.blue,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: _fontFamily
+  );
+
+  /// Color : blue
+  ///
+  /// Size : 16
+  ///
+  /// Weight : Regular(400)
+  static const blue_16_w400 = TextStyle(
+    color: Colors.blue,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    fontFamily: _fontFamily
+  );
+
   /// Color : white
   ///
   /// Size : 12

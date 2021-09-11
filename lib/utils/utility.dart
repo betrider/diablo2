@@ -105,7 +105,6 @@ Future<bool?> showToast({
   );
 }
 
-
 enum UrlType {
   INTERNET,
   TEL,
@@ -214,49 +213,61 @@ Future<void> showWidgetDialog(Widget widget) {
   );
 }
 
-/// 메시지 - Ok 다이얼로그
-///
-///  * [title], 메시지 제목
-///  * [message], 메시지 내용
-///  * [okLabel], OK 버튼 명칭 = '네'
-///  * [barrierDismissible], 가장자리 클릭 가능 여부
-///
-Future<OkCancelResult> showOkDialog({
+/// ok dialog
+Future<bool> showOkDialog({
   String title = '제목',
-  String message = '내용',
-  String okLabel = '네',
-  bool barrierDismissible = true,
-}) {
-  return showOkAlertDialog(
-    barrierDismissible: barrierDismissible,
-    context: Get.overlayContext!,
-    title: title,
-    message: message,
-    okLabel: okLabel,
+  String content = '내용',
+  String okLabel = '네'
+}) async {
+  return await showDialog(
+    context: Get.context!,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.grey[850],
+        title: Text(title, style: AppTextStyle.white_20_w400,),
+        content: Text(content, style: AppTextStyle.white_12_w400,),
+        actions: <Widget>[
+          OutlinedButton(
+            child: Text(okLabel, style: AppTextStyle.blue_14_w400,),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      );
+    },
   );
 }
 
-/// 메시지 - Ok & Cancle 다이얼로그
-///
-///  * [title], 메시지 제목
-///  * [message], 메시지 내용
-///  * [okLabel], OK 버튼 명칭 = '네'
-///  * [cancelLabel], NO 버튼 명칭 = '아니오'
-///  * [barrierDismissible], 가장자리 클릭 가능 여부
-///
-Future<OkCancelResult> showOkCancelDialog({
+/// ok&cancel dialog
+Future<bool> showOkCancelDialog({
   String title = '제목',
-  String message = '내용',
+  String content = '내용',
   String okLabel = '네',
   String cancelLabel = '아니오',
-  bool barrierDismissible = true,
-}) {
-  return showOkCancelAlertDialog(
-    barrierDismissible: barrierDismissible,
-    context: Get.overlayContext!,
-    title: title,
-    message: message,
-    okLabel: okLabel,
-    cancelLabel: cancelLabel,
+}) async {
+  return await showDialog(
+    context: Get.context!,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.grey[850],
+        title: Text(title, style: AppTextStyle.white_20_w400,),
+        content: Text(content, style: AppTextStyle.white_12_w400,),
+        actions: <Widget>[
+          OutlinedButton(
+            child: Text(cancelLabel, style: AppTextStyle.red_14_w400,),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          OutlinedButton(
+            child: Text(okLabel, style: AppTextStyle.blue_14_w400,),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      );
+    },
   );
 }
