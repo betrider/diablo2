@@ -5,6 +5,7 @@ const Map<String, String> enUS = {
 
   //메뉴
   'login': 'Login',
+  'logout': 'Log Out',
   'home': 'Home',
   'exchange(standard)': 'Exchange(Standard)',
   'exchange(ladder)': 'Exchange(Ladder)',

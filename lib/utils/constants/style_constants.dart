@@ -211,6 +211,21 @@ class AppTextStyle {
 
   /// Color : white
   ///
+  /// Size : 12
+  ///
+  /// Weight : Regular(400)
+  /// 
+  /// Height : 1.5
+  static const white_12_w400_h1_5 = TextStyle(
+    color: Colors.white,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontFamily: _fontFamily,
+    height: 1.5
+  );
+
+  /// Color : white
+  ///
   /// Size : 14
   ///
   /// Weight : Regular(400)

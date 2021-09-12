@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_diablo2_exchange/controllers/MenuController.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/localization_service.dart';
 import 'package:get/get.dart';
@@ -31,9 +30,9 @@ class Header extends StatelessWidget {
               child: CustomMenuButton(
                 itemList: LocalizationService.langs,
                 onChanged: (value) {
-                  if(value == 'English'){
+                  if (value == 'English') {
                     Intl.defaultLocale = 'en_US';
-                  }else{
+                  } else {
                     Intl.defaultLocale = 'ko_KR';
                   }
                   LocalizationService().changeLocale(value);
@@ -58,12 +57,12 @@ class Header extends StatelessWidget {
                             _controller.openOrCloseDrawer();
                           },
                         ),
-                      if(!Responsive.isMobile(context))
+                      if (!Responsive.isMobile(context))
                         InkWell(
                           onTap: () {
-                            if(isDebug){
+                            if (isDebug) {
                               Get.toNamed('/sample');
-                            }else{
+                            } else {
                               _controller.setMenuIndex(0);
                             }
                           },
@@ -84,6 +83,14 @@ class Header extends StatelessWidget {
                       fontFamily: 'kodia',
                     ),
                   ),
+                  // Text(
+                  //   Get.find<UserController>().loginId ?? '노데이터',
+                  //   style: TextStyle(
+                  //     fontSize: 32,
+                  //     color: Colors.white,
+                  //     fontFamily: 'kodia',
+                  //   ),
+                  // ),
                   if (Responsive.isDesktop(context))
                     SizedBox(height: kDefaultPadding),
                 ],

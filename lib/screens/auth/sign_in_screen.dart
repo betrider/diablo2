@@ -51,6 +51,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     focusId.unfocus();
                     FocusScope.of(context).requestFocus(focusPassword);
                   },
+                  validator: customIdValidate,
                 ),
                 SizedBox(
                   height: kDefaultPadding,
@@ -61,12 +62,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   content: "비밀번호를 입력해주세요.",
                   onChanged: (value) {
                     print('password:$value');
-                  },      
+                  },
                   onFieldSubmitted: (value) {
                     focusPassword.unfocus();
                     FocusScope.of(context).requestFocus(focusLogin);
                   },
                   obscureText: true,
+                  validator: customPasswordValidate,
                 ),
                 SizedBox(
                   height: kDefaultPadding,
@@ -79,7 +81,16 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: Colors.grey[350]!),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      //로그인 정보 확인 후 정보 받아오기
+                      Get.find<UserController>().signin(
+                        loginId2: 'betrider',
+                        phoneNumber2: '01055254256',
+                        battleTagId2: 'betrider#12345',
+                        diabloId2: '베트라이더',
+                      );
+                      Get.back();
+                    },
                     child: Text('로그인'.tr, style: AppTextStyle.white_14_w400),
                   ),
                 ),

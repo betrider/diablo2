@@ -1,5 +1,4 @@
 import 'package:flutter_diablo2_exchange/index.dart';
-import 'package:flutter_diablo2_exchange/widgets/sample/home.dart';
 
 import 'screens/auth/auth.dart';
 

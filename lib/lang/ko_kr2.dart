@@ -4,7 +4,8 @@ const Map<String, String> koKR2 = {
   'All': '모두',
 
   //메뉴
-  'login': '로그인 하기',
+  'login': '로그인',
+  'logout': '로그아웃',
   'home': '홈',
   'exchange(standard)': '거래소(스탠다드)',
   'exchange(ladder)': '거래소(래더)',

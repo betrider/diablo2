@@ -1,6 +1,7 @@
 String? customIdValidate(String? value) {
-  // if (value!.length == 0) return null;
-  if (value!.length < 5) {
+  if (value!.length == 0){
+    return '아이디를 입력해주세요.';
+  }else if (value.length < 5) {
     return '아이디를 최소 5자 이상 입력해주세요.';
   } else {
     return null;
@@ -8,17 +9,19 @@ String? customIdValidate(String? value) {
 }
 
 String? customBattleTagIdValidate(String? value) {
-  // if (value!.length == 0) return null;
-  if (value!.length < 5) {
-    return '아이디를 최소 5자 이상 입력해주세요.';
+  if (value!.length == 0){
+    return '배틀넷 아이디를 입력해주세요.';
+  }else if (value.length < 5) {
+    return '배틀넷 아이디를 최소 5자 이상 입력해주세요.';
   } else {
     return null;
   }
 }
 
 String? customDialogIdValidate(String? value) {
-  // if (value!.length == 0) return null;
-  if (value!.length < 2) {
+  if (value!.length == 0){
+    return '디아블로 아이디를 입력해주세요.';
+  }else if (value.length < 2) {
     return '디아블로 아이디를 최소 1자 이상 입력해주세요.';
   } else {
     return null;
@@ -26,9 +29,19 @@ String? customDialogIdValidate(String? value) {
 }
 
 String? customPasswordValidate(String? value) {
-  // if (value!.length == 0) return null;
-  if (value!.length < 5) {
+  if (value!.length == 0) {
+    return '비밀번호를 입력해주세요.';
+  } else if (value.length < 5) {
     return '비밀번호를 최소 5자 이상 입력해주세요.';
+  } else {
+    return null;
+  }
+}
+String? customPhoneNumberValidate(String? value) {
+  if (value!.length == 0) {
+    return '휴대폰번호를 입력해주세요.';
+  } else if (value.length < 13) {
+    return '휴대폰번호를 정확히 입력해주세요.';
   } else {
     return null;
   }

@@ -23,6 +23,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  // Get.put(MenuController(getCache.get('pageIndex')));
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,16 @@ class MyApp extends StatelessWidget {
           headline5: TextStyle(color: kDarkBlackColor),
         ),
       ),
-      home: MainScreen(),
+      home: GetBuilder<UserController>(
+        init: UserController(),
+        builder: (controller) {
+          print('로그인 아이디 : ${controller.loginId}');
+          print('휴대폰 번호 : ${controller.phoneNumber}');
+          print('배틀태그 아이디 : ${controller.battleTagId}');
+          print('디아블로 아이디 : ${controller.diabloId}');
+          return MainScreen();
+        },
+      ),
     );
   }
 }

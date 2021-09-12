@@ -132,6 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 .requestFocus(focusBattleTagId);
                           },
                           inputFormatters: [PhoneNumberFormatter()],
+                          validator: customPhoneNumberValidate,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -148,6 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             focusBattleTagId.unfocus();
                             FocusScope.of(context).requestFocus(focusDiablo2Id);
                           },
+                          validator: customBattleTagIdValidate,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -164,6 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             focusDiablo2Id.unfocus();
                             FocusScope.of(context).requestFocus(focusLogin);
                           },
+                          validator: customDialogIdValidate,
                         ),
                         SizedBox(
                           height: kDefaultPadding * 2,
@@ -177,19 +180,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               side: BorderSide(color: Colors.grey[350]!),
                             ),
                             onPressed: () async {
-                              // bool aaa = await showOkCancelDialog();
-                              // print(aaa);
                               if (this.formKey.currentState!.validate()) {
+                              // if (true) {
                                 // validation 이 성공하면 true 가 리턴돼요!
 
                                 // validation 이 성공하면 폼 저장하기
                                 this.formKey.currentState!.save();
 
-                                Get.snackbar(
-                                  '저장완료!',
-                                  '폼 저장이 완료되었습니다!',
-                                  backgroundColor: Colors.white,
+                                // Get.snackbar(
+                                //   '저장완료!',
+                                //   '폼 저장이 완료되었습니다!',
+                                //   backgroundColor: Colors.white,
+                                // );
+
+                                bool result = await showOkCancelDialog(
+                                  title: '회원가입',
+                                  content: '등록된 정보로 경매가 이루어집니다.\n\n회원가입 하시겠습니까?',
                                 );
+                                print(result);
                               }
                             },
                             child: Text('가입하기'.tr,

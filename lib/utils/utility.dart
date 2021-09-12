@@ -1,4 +1,3 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -225,7 +224,7 @@ Future<bool> showOkDialog({
       return AlertDialog(
         backgroundColor: Colors.grey[850],
         title: Text(title, style: AppTextStyle.white_20_w400,),
-        content: Text(content, style: AppTextStyle.white_12_w400,),
+        content: Text(content, style: AppTextStyle.white_12_w400_h1_5,),
         actions: <Widget>[
           OutlinedButton(
             child: Text(okLabel, style: AppTextStyle.blue_14_w400,),
@@ -252,7 +251,7 @@ Future<bool> showOkCancelDialog({
       return AlertDialog(
         backgroundColor: Colors.grey[850],
         title: Text(title, style: AppTextStyle.white_20_w400,),
-        content: Text(content, style: AppTextStyle.white_12_w400,),
+        content: Text(content, style: AppTextStyle.white_12_w400_h1_5,),
         actions: <Widget>[
           OutlinedButton(
             child: Text(cancelLabel, style: AppTextStyle.red_14_w400,),
