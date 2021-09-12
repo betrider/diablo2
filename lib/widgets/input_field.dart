@@ -1,18 +1,20 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 class InputField extends StatelessWidget {
-  InputField(
-      {required this.label,
-      required this.content,
-      required this.onChanged,
-      this.labelWidth = 80,
-      this.maxLength = 20,
-      this.focusNode,
-      this.autofocus = false,
-      this.obscureText = false,
-      this.onFieldSubmitted,
-      this.inputFormatters,
-      this.validator});
+  InputField({
+    required this.label,
+    required this.content,
+    required this.onChanged,
+    this.labelWidth = 80,
+    this.maxLength = 20,
+    this.focusNode,
+    this.autofocus = false,
+    this.obscureText = false,
+    this.onFieldSubmitted,
+    this.inputFormatters,
+    this.validator,
+    this.controller
+  });
 
   final String label;
   final String content;
@@ -25,6 +27,7 @@ class InputField extends StatelessWidget {
   final void Function(String value)? onFieldSubmitted;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,7 @@ class InputField extends StatelessWidget {
                 maxLength: maxLength,
                 inputFormatters: inputFormatters,
                 style: AppTextStyle.white_16_w400,
+                controller: controller,
                 onChanged: (value) {
                   return onChanged(value);
                 },

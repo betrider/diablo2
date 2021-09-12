@@ -18,6 +18,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   FocusNode focusDiablo2Id = FocusNode();
   FocusNode focusLogin = FocusNode();
 
+  TextEditingController idTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController passwordCheckTextController = TextEditingController();
+  TextEditingController phoneNumberTextController = TextEditingController();
+  TextEditingController battleTagTextController = TextEditingController();
+  TextEditingController diabloIdTextController = TextEditingController();
+
   @override
   void dispose() {
     focusId.dispose();
@@ -26,6 +33,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     focusPhoneNumber.dispose();
     focusBattleTagId.dispose();
     focusDiablo2Id.dispose();
+    focusLogin.dispose();
+
+    idTextController.dispose();
+    passwordTextController.dispose();
+    passwordCheckTextController.dispose();
+    phoneNumberTextController.dispose();
+    battleTagTextController.dispose();
+    diabloIdTextController.dispose();
+
     super.dispose();
   }
 
@@ -76,6 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             FocusScope.of(context).requestFocus(focusPassword);
                           },
                           validator: customIdValidate,
+                          controller: idTextController,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -95,6 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           validator: customPasswordValidate,
                           obscureText: true,
+                          controller: passwordTextController,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -114,6 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           validator: customPasswordValidate,
                           obscureText: true,
+                          controller: passwordCheckTextController,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -133,6 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           inputFormatters: [PhoneNumberFormatter()],
                           validator: customPhoneNumberValidate,
+                          controller: phoneNumberTextController,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -150,6 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             FocusScope.of(context).requestFocus(focusDiablo2Id);
                           },
                           validator: customBattleTagIdValidate,
+                          controller: battleTagTextController,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -167,6 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             FocusScope.of(context).requestFocus(focusLogin);
                           },
                           validator: customDialogIdValidate,
+                          controller: diabloIdTextController,
                         ),
                         SizedBox(
                           height: kDefaultPadding * 2,
@@ -181,23 +203,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             onPressed: () async {
                               if (this.formKey.currentState!.validate()) {
-                              // if (true) {
-                                // validation 이 성공하면 true 가 리턴돼요!
+                                if (passwordTextController.text !=
+                                    passwordCheckTextController.text) {
+                                  showToast(message: '비밀번호가 다릅니다.');
+                                } else {
+                                  // validation 이 성공하면 폼 저장하기
+                                  this.formKey.currentState!.save();
 
-                                // validation 이 성공하면 폼 저장하기
-                                this.formKey.currentState!.save();
+                                  bool result = await showOkCancelDialog(
+                                    title: '회원가입',
+                                    content:
+                                        '등록된 정보로 경매가 이루어집니다.\n\n회원가입 하시겠습니까?',
+                                  );
 
-                                // Get.snackbar(
-                                //   '저장완료!',
-                                //   '폼 저장이 완료되었습니다!',
-                                //   backgroundColor: Colors.white,
-                                // );
-
-                                bool result = await showOkCancelDialog(
-                                  title: '회원가입',
-                                  content: '등록된 정보로 경매가 이루어집니다.\n\n회원가입 하시겠습니까?',
-                                );
-                                print(result);
+                                  if (result) {
+                                    Get.find<UserController>().signin(
+                                      loginId2: idTextController.text,
+                                      phoneNumber2:
+                                          phoneNumberTextController.text,
+                                      battleTagId2:
+                                          battleTagTextController.text,
+                                      diabloId2: diabloIdTextController.text,
+                                    );
+                                    Get.back();
+                                    Get.back();
+                                  }
+                                }
                               }
                             },
                             child: Text('가입하기'.tr,
