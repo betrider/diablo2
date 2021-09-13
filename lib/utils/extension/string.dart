@@ -299,4 +299,11 @@ extension StringExtension2 on String? {
       return false;
     }
   }
+
+  ///정규식
+  bool hasMatch(String regEx){
+    String p = regEx;
+    RegExp regExp = new RegExp(p);
+    return regExp.hasMatch(this!);
+  }
 }

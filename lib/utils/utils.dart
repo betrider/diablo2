@@ -3,3 +3,4 @@ export 'extension/extension.dart';
 export 'formatter.dart';
 export 'validate.dart';
 export 'utility.dart';
+export 'regexp.dart';

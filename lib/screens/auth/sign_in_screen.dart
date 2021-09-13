@@ -52,6 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     FocusScope.of(context).requestFocus(focusPassword);
                   },
                   validator: customIdValidate,
+                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')), LowerCaseTextFormatter()], //asdf
                 ),
                 SizedBox(
                   height: kDefaultPadding,
