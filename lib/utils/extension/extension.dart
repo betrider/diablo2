@@ -1,3 +1,4 @@
+export 'bool.dart';
 export 'datetime.dart';
 export 'dynamic.dart';
 export 'file.dart';
