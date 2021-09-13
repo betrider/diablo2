@@ -93,6 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           validator: customIdValidate,
                           controller: idTextController,
+                          inputFormatters: idTextInputFormatter,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -153,15 +154,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           inputFormatters: [PhoneNumberFormatter()],
                           validator: customPhoneNumberValidate,
                           controller: phoneNumberTextController,
+                          maxLength: 13,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
                         InputField(
                           focusNode: focusBattleTagId,
-                          label: "배틀태그 아이디",
+                          label: "배틀태그",
                           labelWidth: 120,
-                          content: "배틀태그 아이디를 입력해주세요.",
+                          content: "배틀태그를 입력해주세요.",
                           onChanged: (value) {
                             print('battle tag:$value');
                           },

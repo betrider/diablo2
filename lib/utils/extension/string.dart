@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 extension StringExtension2 on String? {
-
   /// 문자열 변환 시 데이터가 없는경우 초기값 제공
   ///
   /// Example:
@@ -137,7 +136,7 @@ extension StringExtension2 on String? {
       return "";
     }
 
-    if(this!.contains('-')) return this!;
+    if (this!.contains('-')) return this!;
 
     if (this!.length >= 2 && areaNumberList.contains(this!.substring(0, 2))) {
       if (this!.length <= 6) {
@@ -301,7 +300,8 @@ extension StringExtension2 on String? {
   }
 
   ///정규식
-  bool hasMatch(String regEx){
+  bool hasMatch(String regEx) {
+    if (this == null) return false;
     String p = regEx;
     RegExp regExp = new RegExp(p);
     return regExp.hasMatch(this!);

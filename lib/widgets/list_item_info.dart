@@ -155,7 +155,7 @@ class ListItemInfo extends StatelessWidget {
                                   SizedBox(
                                     width: 8,
                                   ),
-                                  Text('배틀태그 : betrider#12345',
+                                  SelectableText ('배틀태그 : betrider#12345',
                                       style: AppTextStyle.white_14_w400),
                                 ],
                               ),
@@ -176,7 +176,7 @@ class ListItemInfo extends StatelessWidget {
                                   SizedBox(
                                     width: 8,
                                   ),
-                                  Text('아이디 : 베트라이더',
+                                  SelectableText ('아이디 : 베트라이더',
                                       style: AppTextStyle.white_14_w400),
                                 ],
                               ),
@@ -191,7 +191,7 @@ class ListItemInfo extends StatelessWidget {
             width: double.infinity,
             color: Colors.grey[800],
             padding: EdgeInsets.all(8),
-            child: Text(
+            child: SelectableText(
               '136891 \n12569812 \n983126u918u6981698161269 \nslkajfglsejg \n안녕하세요',
               style: AppTextStyle.white_14_w400,
             ),

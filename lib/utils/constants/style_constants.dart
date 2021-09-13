@@ -250,6 +250,17 @@ class AppTextStyle {
 
   /// Color : white
   ///
+  /// Size : 16
+  ///
+  /// Weight : Regular(400)
+  static const white_16_w400_NF = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w400
+  );
+
+  /// Color : white
+  ///
   /// Size : 20
   ///
   /// Weight : Regular(400)

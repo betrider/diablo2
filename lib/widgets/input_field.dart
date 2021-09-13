@@ -58,7 +58,7 @@ class InputField extends StatelessWidget {
                 onFieldSubmitted: onFieldSubmitted,
                 maxLength: maxLength,
                 inputFormatters: inputFormatters,
-                style: AppTextStyle.white_16_w400,
+                style: AppTextStyle.white_16_w400_NF,
                 controller: controller,
                 onChanged: (value) {
                   return onChanged(value);
