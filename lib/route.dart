@@ -10,7 +10,7 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => SamplePage()),
+      GetPage(name: '/sample', page: () => Sample12()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
 
       GetPage(name: '/sign_in', page: () => SignInScreen()), //로그인
@@ -77,7 +77,7 @@ class Sample12 extends StatelessWidget {
             child: Column(
               children: [
                 ListItemInfo(),
-                ListItemInfo(),
+                // ListItemInfo(),
               ],
             ),
           ),

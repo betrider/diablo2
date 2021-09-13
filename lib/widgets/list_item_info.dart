@@ -23,6 +23,7 @@ class ListItemInfo extends StatelessWidget {
           ),
           Container(
             color: Colors.grey[850],
+            padding: EdgeInsets.symmetric(vertical: 8),
             child: Responsive.isMobile(context)
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -186,17 +187,15 @@ class ListItemInfo extends StatelessWidget {
                     ],
                   ),
           ),
-          // Container(
-          //   color: Colors.grey[700],
-          //   child: Wrap(
-          //     children: [
-          //       Text(
-          //         '125125125125125121251251251251251251251251251255125125125125125125125125125125125125125125125125125125',
-          //         style: AppTextStyle.white_14_w400,
-          //       )
-          //     ],
-          //   ),
-          // ),
+          Container(
+            width: double.infinity,
+            color: Colors.grey[800],
+            padding: EdgeInsets.all(8),
+            child: Text(
+              '136891 \n12569812 \n983126u918u6981698161269 \nslkajfglsejg \n안녕하세요',
+              style: AppTextStyle.white_14_w400,
+            ),
+          ),
         ],
       ),
     );
