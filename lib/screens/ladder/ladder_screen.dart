@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 
-class ExchangeLadderScreen extends StatelessWidget {
-  const ExchangeLadderScreen({Key? key}) : super(key: key);
+class LadderScreen extends StatelessWidget {
+  const LadderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -456,7 +456,7 @@ const Map<String, String> enUS = {
   "r02L": "Eld",
   "r01L": "El",
   "RuneQuote": "'",
-  "Runeword1": "Ancients' Pledge",
+  "Runeword1": "Ancient's Pledge",
   "Runeword2": "Armageddon",
   "Runeword3": "Authority",
   "Runeword4": "Beast",

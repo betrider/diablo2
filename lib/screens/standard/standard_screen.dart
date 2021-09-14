@@ -2,14 +2,14 @@ import 'package:flutter_diablo2_exchange/index.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
-class ExchangeStandardScreen extends StatefulWidget {
-  const ExchangeStandardScreen({Key? key}) : super(key: key);
+class StandardScreen extends StatefulWidget {
+  const StandardScreen({Key? key}) : super(key: key);
 
   @override
-  ExchangeStandardScreenState createState() => ExchangeStandardScreenState();
+  StandardScreenState createState() => StandardScreenState();
 }
 
-class ExchangeStandardScreenState extends State<ExchangeStandardScreen> {
+class StandardScreenState extends State<StandardScreen> {
   int get count => list.length;
   List<int> list = [];
   bool isSearch = false;

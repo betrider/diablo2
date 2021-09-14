@@ -1,4 +1,6 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:flutter_diablo2_exchange/screens/ladder/ladder_item_registration_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/standard/standard_item_registration_screen.dart';
 
 import 'screens/auth/auth.dart';
 
@@ -16,6 +18,8 @@ class RouteGenerator {
       GetPage(name: '/sign_in', page: () => SignInScreen()), //로그인
       GetPage(name: '/sign_up', page: () => SignUpScreen()), //회원가입
       GetPage(name: '/sign_out', page: () => SignOutScreen()), //로그아웃
+      GetPage(name: '/ladder_item_add', page: () => LadderItemRegistrationScreen()), //래더 아이템 등록
+      GetPage(name: '/standard_item_add', page: () => StandardItemRegistrationScreen()), //스탠 아이템 등록
     ];
   }
 }
