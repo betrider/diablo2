@@ -39,7 +39,7 @@ String? customPasswordValidate(String? value) {
 String? customPhoneNumberValidate(String? value) {
   if (value!.length == 0) {
     return '휴대폰번호를 입력해주세요.';
-  } else if (value.length < 13 || !value.contains('-')) {
+  } else if (value.replaceAll('-', '').length < 11) {
     return '휴대폰번호를 정확히 입력해주세요.';
   } else {
     return null;

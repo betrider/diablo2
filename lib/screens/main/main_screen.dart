@@ -1,6 +1,6 @@
 import 'package:flutter_diablo2_exchange/index.dart';
-import 'package:flutter_diablo2_exchange/screens/exchange_ladder/exchange_ladder_screen.dart';
-import 'package:flutter_diablo2_exchange/screens/exchange_standard/exchange_standard_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/ladder/ladder_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/standard/standard_screen.dart';
 import 'components/header.dart';
 import 'components/side_menu.dart';
 
@@ -13,8 +13,8 @@ class _MainScreenState extends State<MainScreen> {
   final MenuController _controller =
       Get.put(MenuController(getCache.get('pageIndex')));
   final _scrollController = ScrollController();
-  final GlobalKey<ExchangeStandardScreenState> _standardKey =
-      new GlobalKey<ExchangeStandardScreenState>();
+  final GlobalKey<StandardScreenState> _standardKey =
+      new GlobalKey<StandardScreenState>();
 
   @override
   void initState() {
@@ -23,11 +23,14 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _scrollListener() {
-    if(_controller.selectedIndex == 0){ //스탠다드
-      if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
-      _standardKey.currentState!.load();
-    }
-    }else if(_controller.selectedIndex == 1){ //래더
+    if (_controller.selectedIndex == 0) {
+      //스탠다드
+      if (_scrollController.offset ==
+          _scrollController.position.maxScrollExtent) {
+        _standardKey.currentState!.load();
+      }
+    } else if (_controller.selectedIndex == 1) {
+      //래더
 
     }
   }
@@ -37,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       key: _controller.scaffoldkey,
       drawer: SideMenu(),
-      resizeToAvoidBottomInset : false, //키보드 화면밀어내지 않게 설정
+      resizeToAvoidBottomInset: false, //키보드 화면밀어내지 않게 설정
       body: Scrollbar(
         // isAlwaysShown: true, //스크롤 항상 보이게할지 여부
         controller: _scrollController,
@@ -50,13 +53,13 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (controller) {
                   switch (controller.selectedIndex) {
                     case 0:
-                      return ExchangeStandardScreen(key: _standardKey);
+                      return StandardScreen(key: _standardKey);
                     case 1:
-                      return ExchangeLadderScreen();
+                      return LadderScreen();
                     // case 2:
                     //   return ItemDictionaryScreen();
                     default:
-                      return ExchangeStandardScreen(key: _standardKey);
+                      return StandardScreen(key: _standardKey);
                   }
                 },
               ),
@@ -64,20 +67,52 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: null,
-        onPressed: () {
-          // _scrollController.jumpTo(0);
-          _scrollController.animateTo(0,
-              duration: Duration(milliseconds: 500), curve: Curves.ease);
-        },
-        child: Icon(
-          Icons.arrow_circle_up,
-          color: Colors.black,
+      floatingActionButton: Container(
+        // padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 28),
+              child: FloatingActionButton(
+                heroTag: null,
+                onPressed: () {
+                  _scrollController.animateTo(0,duration: Duration(milliseconds: 500), curve: Curves.ease);
+                },
+                child: Icon(
+                  Icons.arrow_circle_up,
+                  color: Colors.black,
+                ),
+                mini: true,
+                backgroundColor: Colors.white,
+              ),
+            ),
+            FloatingActionButton.extended(
+              heroTag: null,
+              onPressed: () {
+                Get.toNamed('/ladder_item_add');
+              },
+              icon: Icon(Icons.add_circle_outline_outlined),
+              label: Text('아이템 등록', style: AppTextStyle.white_14_w400),
+              backgroundColor: Colors.red,
+            ),
+          ],
         ),
-        mini: true,
-        backgroundColor: Colors.white,
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   heroTag: null,
+      //   onPressed: () {
+      //     // _scrollController.jumpTo(0);
+      //     _scrollController.animateTo(0,
+      //         duration: Duration(milliseconds: 500), curve: Curves.ease);
+      //   },
+      //   child: Icon(
+      //     Icons.arrow_circle_up,
+      //     color: Colors.black,
+      //   ),
+      //   mini: true,
+      //   backgroundColor: Colors.white,
+      // ),
     );
   }
 }
