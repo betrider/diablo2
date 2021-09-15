@@ -38,8 +38,8 @@ class LoginButton extends StatelessWidget {
                   )
                 : ElevatedButton(
                     onPressed: () async {
-                      showToast(message: '성공적으로 로그아웃되었습니다.');
                       controller.signout();
+                      showToast(message: '성공적으로 로그아웃되었습니다.');
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.symmetric(

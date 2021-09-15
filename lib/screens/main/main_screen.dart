@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
           _scrollController.position.maxScrollExtent) {
         _standardKey.currentState!.load();
       }
-    } else{
+    } else {
       //래더
 
     }
@@ -77,7 +77,9 @@ class _MainScreenState extends State<MainScreen> {
               child: FloatingActionButton(
                 heroTag: null,
                 onPressed: () {
-                  _scrollController.animateTo(0,duration: Duration(milliseconds: 500), curve: Curves.ease);
+                  _scrollController.animateTo(0,
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.ease);
                 },
                 child: Icon(
                   Icons.arrow_circle_up,
@@ -89,15 +91,31 @@ class _MainScreenState extends State<MainScreen> {
             ),
             FloatingActionButton.extended(
               heroTag: null,
-              onPressed: () {
-                if (_controller.selectedIndex == 0) {
-                  Get.toNamed('/standard_item_add');
-                }else{
-                  Get.toNamed('/ladder_item_add');
+              onPressed: () async {
+                UserController userController = Get.find<UserController>();
+
+                if (userController.loginId == null) {
+                  bool result = await showOkCancelDialog(
+                    title: '알림메시지',
+                    content: '아이템 등록은 로그인 후 이용가능합니다.\n\n로그인 페이지로 이동 하시겠습니까?',
+                  );
+                  if(result){
+                    Get.toNamed('/sign_in');
+                  }
+                } else {
+                  if (_controller.selectedIndex == 0) {
+                    Get.toNamed('/standard_item_add');
+                  } else {
+                    Get.toNamed('/ladder_item_add');
+                  }
                 }
               },
               icon: Icon(Icons.add_circle_outline_outlined),
-              label: Text('아이템\n등록', style: AppTextStyle.white_14_w400, textAlign: TextAlign.center,),
+              label: Text(
+                '아이템\n등록',
+                style: AppTextStyle.white_14_w400,
+                textAlign: TextAlign.center,
+              ),
               backgroundColor: Colors.red,
             ),
           ],

@@ -8,23 +8,35 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  ScrollController _scrollController = ScrollController();
+
   FocusNode focusId = FocusNode();
   FocusNode focusPassword = FocusNode();
   FocusNode focusLogin = FocusNode();
 
   @override
   void dispose() {
+    _scrollController.dispose();
     focusId.dispose();
     focusPassword.dispose();
+    focusLogin.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    
+    // After 1 second, it takes you to the bottom of the ListView
+    Timer(Duration(seconds: 1), () {
+      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 500), curve: Curves.ease).then((value) => FocusScope.of(context).requestFocus(focusId));
+    });
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: SingleChildScrollView(
+          controller: _scrollController,
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
@@ -40,7 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 650,
                 ),
                 InputField(
-                  autofocus: true,
+                  // autofocus: true,
                   focusNode: focusId,
                   label: "아이디",
                   content: "아이디를 입력해주세요.",
@@ -91,11 +103,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         diabloId2: '베트라이더',
                       );
 
-                      if(true){ //로그인 성공 시
-                        showToast(message: '성공적으로 로그인되었습니다.');
+                      if (true) {
+                        //로그인 성공 시
                         Get.back();
-                      // ignore: dead_code
-                      }else{
+                        showToast(message: '성공적으로 로그인되었습니다.');
+                        // ignore: dead_code
+                      } else {
                         showToast(message: '로그인에 실패했습니다.');
                       }
                     },

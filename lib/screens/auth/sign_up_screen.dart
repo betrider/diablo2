@@ -229,9 +229,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             battleTagTextController.text,
                                         diabloId2: diabloIdTextController.text,
                                       );
+                                      Get.back();
+                                      Get.back();
                                       showToast(message: '회원가입이 성공적으로 완료되었습니다.');
-                                      Get.back();
-                                      Get.back();
                                     // ignore: dead_code
                                     }else{
                                       showToast(message: '회원가입에 실패했습니다.');
