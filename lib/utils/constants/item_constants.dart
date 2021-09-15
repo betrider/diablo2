@@ -56,16 +56,43 @@ const otherItems = [
 ];
 
 /// 아이템 등급
-const itemQuality = [
-  'Unique',
-  'Set',
-  'Runewords',
-  'Crafted',
-  'Rare',
-  'Magical',
-  'Socketed Standard',
-  'Standard'
-];
+enum ItemQuality {
+  Unique,
+  Set,
+  Runewords,
+  Crafted,
+  Rare,
+  Magical,
+  SocketedStandard,
+  Standard
+}
+
+/// 아이템 등급 리스트
+List<String> get itemQualityList => ItemQuality.values.map((e) => e.name).toList();
+
+extension ItemQualityExtension on ItemQuality {
+  String get name {
+    switch (this) {
+      case ItemQuality.Unique:
+        return "Unique";
+      case ItemQuality.Set:
+        return "Set";
+      case ItemQuality.Runewords:
+        return "Runewords";
+      case ItemQuality.Crafted:
+        return "Crafted";
+      case ItemQuality.Rare:
+        return "Rare";
+      case ItemQuality.Magical:
+        return "Magical";
+      case ItemQuality.SocketedStandard:
+        return "Socketed Standard";
+      case ItemQuality.Standard:
+        return "Standard";
+    }
+  }
+}
+
 
 /// 아이템 등급별 색상
 const itemQualityColor = [

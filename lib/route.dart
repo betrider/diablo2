@@ -18,8 +18,8 @@ class RouteGenerator {
       GetPage(name: '/sign_in', page: () => SignInScreen()), //로그인
       GetPage(name: '/sign_up', page: () => SignUpScreen()), //회원가입
       GetPage(name: '/sign_out', page: () => SignOutScreen()), //로그아웃
-      GetPage(name: '/ladder_item_add', page: () => LadderItemRegistrationScreen()), //래더 아이템 등록
       GetPage(name: '/standard_item_add', page: () => StandardItemRegistrationScreen()), //스탠 아이템 등록
+      GetPage(name: '/ladder_item_add', page: () => LadderItemRegistrationScreen()), //래더 아이템 등록
     ];
   }
 }
@@ -80,7 +80,7 @@ class Sample12 extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ListItemInfo(),
+                // ListItemInfo(),
                 // ListItemInfo(),
               ],
             ),
@@ -109,7 +109,7 @@ class Sample123 extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ItemInfo(),
+              // ItemInfo(),
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Row(
@@ -324,18 +324,18 @@ class _Sample2State extends State<Sample2> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            InkWell(
-              onTap: () {
-                showWidgetDialog(ItemInfo());
-              },
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: FittedBox(
-                  child: ItemInfo(),
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     showWidgetDialog(ItemInfo());
+            //   },
+            //   child: SizedBox(
+            //     width: 50,
+            //     height: 50,
+            //     child: FittedBox(
+            //       child: ItemInfo(),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

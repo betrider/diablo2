@@ -1,7 +1,9 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 class ItemInfo extends StatelessWidget {
-  const ItemInfo({ Key? key }) : super(key: key);
+  const ItemInfo({required this.itemModel});
+
+  final ItemModel itemModel;
 
   @override
   Widget build(BuildContext context) {

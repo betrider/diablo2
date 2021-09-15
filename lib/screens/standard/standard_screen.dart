@@ -99,7 +99,21 @@ class StandardScreenState extends State<StandardScreen> {
                       shrinkWrap: true,
                       primary: false,
                       itemBuilder: (BuildContext context, int index) {
-                        return ListItemInfo();
+                        return ListItemInfo(
+                          listItemModel: ListItemModel(
+                            boardId: '0001',
+                            itemModel: ItemModel(
+                              itemQuality: ItemQuality.Unique,
+                              name: 'test',
+                              additionalProperties: [],
+                              basicProperties: [],
+                            ),
+                            battleTagId: 'betrider#12345',
+                            dateTime: DateTime.now().toFullDateTimeString5(),
+                            diabloId: 'BETRIDER',
+                            memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
+                          ),
+                        );
                       },
                       itemCount: count,
                       separatorBuilder: (context, index) {
@@ -151,7 +165,7 @@ class StandardScreenState extends State<StandardScreen> {
                 height: kDefaultPadding,
               ),
               ChipGroup(
-                items: itemQuality.firstAddText(),
+                items: itemQualityList.firstAddText(),
                 itemsColor: itemQualityColor.firstAddColor(),
               ),
             ],
@@ -168,7 +182,7 @@ class StandardScreenState extends State<StandardScreen> {
               ),
               Flexible(
                   child: ChipGroup(
-                items: itemQuality.firstAddText(),
+                items: itemQualityList.firstAddText(),
                 itemsColor: itemQualityColor.firstAddColor(),
               )),
             ],
@@ -336,86 +350,83 @@ class StandardScreenState extends State<StandardScreen> {
 
   SearchableDropdown<String> _itemNameDropdown() {
     return SearchableDropdown.single(
-              iconEnabledColor: Colors.white,
-              items: [
-                DropdownMenuItem(
-                  child: Text('The Grandfather',
-                      style: AppTextStyle.white_14_w400),
-                  value: 'The Grandfather',
-                ),
-                DropdownMenuItem(
-                  child: Text(
-                    'bbb',
-                    style: AppTextStyle.white_14_w400,
-                  ),
-                  value: 'bbb',
-                ),
-                DropdownMenuItem(
-                  child: Text(
-                    'cc',
-                    style: AppTextStyle.white_14_w400,
-                  ),
-                  value: 'cc',
-                ),
-                DropdownMenuItem(
-                  child: Text('The Grandfather',
-                      style: AppTextStyle.white_14_w400),
-                  value: 'The Grandfather',
-                ),
-                DropdownMenuItem(
-                  child: Text(
-                    'bbb',
-                    style: AppTextStyle.white_14_w400,
-                  ),
-                  value: 'bbb',
-                ),
-                DropdownMenuItem(
-                  child: Text(
-                    'cc',
-                    style: AppTextStyle.white_14_w400,
-                  ),
-                  value: 'cc',
-                ),
-                DropdownMenuItem(
-                  child: Text('The Grandfather',
-                      style: AppTextStyle.white_14_w400),
-                  value: 'The Grandfather',
-                ),
-                DropdownMenuItem(
-                  child: Text(
-                    'bbb',
-                    style: AppTextStyle.white_14_w400,
-                  ),
-                  value: 'bbb',
-                ),
-                DropdownMenuItem(
-                  child: Text(
-                    'cc',
-                    style: AppTextStyle.white_14_w400,
-                  ),
-                  value: 'cc',
-                ),
-              ],
-              value: selectItem,
-              style: AppTextStyle.white_14_w400,
-              hint: Text("아이템을 선택해주세요.", style: AppTextStyle.white_14_w400),
-              searchHint: Text("최대 1개만 선택가능합니다.", style: AppTextStyle.white_14_w400),
-              onChanged: (value) {
-                selectItem = value;
-                Get.back();
-              },
-              closeButton: Align(
-                alignment: Alignment.centerRight,
-                child: OutlinedButton(
-                  onPressed: () {
-                    Get.back();
-                    setState(() {});
-                  },
-                  child: Text("닫기", style: AppTextStyle.white_14_w400),
-                ),
-              ),
-              isExpanded: true,
-            );
+      iconEnabledColor: Colors.white,
+      items: [
+        DropdownMenuItem(
+          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
+          value: 'The Grandfather',
+        ),
+        DropdownMenuItem(
+          child: Text(
+            'bbb',
+            style: AppTextStyle.white_14_w400,
+          ),
+          value: 'bbb',
+        ),
+        DropdownMenuItem(
+          child: Text(
+            'cc',
+            style: AppTextStyle.white_14_w400,
+          ),
+          value: 'cc',
+        ),
+        DropdownMenuItem(
+          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
+          value: 'The Grandfather',
+        ),
+        DropdownMenuItem(
+          child: Text(
+            'bbb',
+            style: AppTextStyle.white_14_w400,
+          ),
+          value: 'bbb',
+        ),
+        DropdownMenuItem(
+          child: Text(
+            'cc',
+            style: AppTextStyle.white_14_w400,
+          ),
+          value: 'cc',
+        ),
+        DropdownMenuItem(
+          child: Text('The Grandfather', style: AppTextStyle.white_14_w400),
+          value: 'The Grandfather',
+        ),
+        DropdownMenuItem(
+          child: Text(
+            'bbb',
+            style: AppTextStyle.white_14_w400,
+          ),
+          value: 'bbb',
+        ),
+        DropdownMenuItem(
+          child: Text(
+            'cc',
+            style: AppTextStyle.white_14_w400,
+          ),
+          value: 'cc',
+        ),
+      ],
+      value: selectItem,
+      style: AppTextStyle.white_14_w400,
+      hint: Text("아이템을 선택해주세요.", style: AppTextStyle.white_14_w400),
+      searchHint: Text("최대 1개만 선택가능합니다.", style: AppTextStyle.white_14_w400),
+      onChanged: (value) {
+        selectItem = value;
+        Get.back();
+      },
+      closeButton: Align(
+        alignment: Alignment.centerRight,
+        child: OutlinedButton(
+          onPressed: () {
+            Get.back();
+            setState(() {});
+          },
+          child: Text("닫기", style: AppTextStyle.white_14_w400),
+        ),
+      ),
+      isExpanded: true,
+    );
   }
 
   SearchableDropdown<String> _prefixDropdown() {
@@ -589,5 +600,4 @@ class StandardScreenState extends State<StandardScreen> {
       isExpanded: true,
     );
   }
-
 }

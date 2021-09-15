@@ -219,16 +219,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   );
 
                                   if (result) {
-                                    Get.find<UserController>().signin(
-                                      loginId2: idTextController.text,
-                                      phoneNumber2:
-                                          phoneNumberTextController.text,
-                                      battleTagId2:
-                                          battleTagTextController.text,
-                                      diabloId2: diabloIdTextController.text,
-                                    );
-                                    Get.back();
-                                    Get.back();
+
+                                    if(true){ //회원가입 성공 시
+                                      Get.find<UserController>().signin(
+                                        loginId2: idTextController.text,
+                                        phoneNumber2:
+                                            phoneNumberTextController.text,
+                                        battleTagId2:
+                                            battleTagTextController.text,
+                                        diabloId2: diabloIdTextController.text,
+                                      );
+                                      showToast(message: '회원가입이 성공적으로 완료되었습니다.');
+                                      Get.back();
+                                      Get.back();
+                                    // ignore: dead_code
+                                    }else{
+                                      showToast(message: '회원가입에 실패했습니다.');
+                                    }
                                   }
                                 }
                               }

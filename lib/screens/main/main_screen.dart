@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
           _scrollController.position.maxScrollExtent) {
         _standardKey.currentState!.load();
       }
-    } else if (_controller.selectedIndex == 1) {
+    } else{
       //래더
 
     }
@@ -90,10 +90,14 @@ class _MainScreenState extends State<MainScreen> {
             FloatingActionButton.extended(
               heroTag: null,
               onPressed: () {
-                Get.toNamed('/ladder_item_add');
+                if (_controller.selectedIndex == 0) {
+                  Get.toNamed('/standard_item_add');
+                }else{
+                  Get.toNamed('/ladder_item_add');
+                }
               },
               icon: Icon(Icons.add_circle_outline_outlined),
-              label: Text('아이템 등록', style: AppTextStyle.white_14_w400),
+              label: Text('아이템\n등록', style: AppTextStyle.white_14_w400, textAlign: TextAlign.center,),
               backgroundColor: Colors.red,
             ),
           ],

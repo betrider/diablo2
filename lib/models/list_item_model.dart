@@ -2,8 +2,11 @@ import 'package:flutter_diablo2_exchange/index.dart';
 
 class ListItemModel {
 
+  /// 게시판 아이디
+  String boardId;
+
   /// 아이템 정보
-  ItemInfo itemInfo;
+  ItemModel itemModel;
 
   /// 등록 시간
   String dateTime;
@@ -18,7 +21,8 @@ class ListItemModel {
   String memo;
 
   ListItemModel({
-    required this.itemInfo,
+    required this.boardId,
+    required this.itemModel,
     required this.dateTime,
     required this.battleTagId,
     required this.diabloId,

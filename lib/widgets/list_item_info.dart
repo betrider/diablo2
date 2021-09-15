@@ -1,7 +1,9 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 class ListItemInfo extends StatelessWidget {
-  const ListItemInfo({Key? key}) : super(key: key);
+  const ListItemInfo({required this.listItemModel});
+
+  final ListItemModel listItemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,9 @@ class ListItemInfo extends StatelessWidget {
             color: Colors.black,
             child: FittedBox(
               fit: BoxFit.contain,
-              child: ItemInfo(),
+              child: ItemInfo(
+                itemModel: listItemModel.itemModel,
+              ),
             ),
           ),
           Container(
@@ -28,112 +32,30 @@ class ListItemInfo extends StatelessWidget {
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: TextButton.icon(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.timelapse_outlined,
-                            color: Colors.white,
-                          ),
-                          label: Text(
-                            '등록시간 : ${DateTime.now().toFullDateTimeString5()}',
-                            style: AppTextStyle.white_14_w400,
-                          ),
-                        ),
-                      ),
+                      _getDateTime(), //등록시간
                       SizedBox(
                         height: 4,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: TextButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.message),
-                          label:
-                              Text('메시지복사', style: AppTextStyle.white_14_w400),
-                        ),
-                      ),
+                      _copyMessage(), //메시지복사
                       SizedBox(
                         height: 4,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Image.asset('assets/icons/battlenet.png'),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text('배틀태그 : betrider#12345',
-                                style: AppTextStyle.white_14_w400),
-                          ],
-                        ),
-                      ),
+                      _getBattleTag(), //배틀태그
                       SizedBox(
                         height: 4,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Image.asset('assets/icons/diablo2.png'),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text('아이디 : 베트라이더',
-                                style: AppTextStyle.white_14_w400),
-                          ],
-                        ),
-                      ),
+                      _getDiabloId(), //디아블로 아이디
                     ],
                   )
                 : Column(
                     children: [
                       Row(
                         children: [
+                          Expanded(flex: 1, child: _getDateTime() //등록시간
+                              ),
                           Expanded(
                             flex: 1,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: FittedBox(
-                                fit: BoxFit.contain,
-                                child: TextButton.icon(
-                                  onPressed: null,
-                                  icon: Icon(
-                                    Icons.timelapse_outlined,
-                                    color: Colors.white,
-                                  ),
-                                  label: Text(
-                                    '등록시간 : ${DateTime.now().toFullDateTimeString5()}',
-                                    style: AppTextStyle.white_14_w400,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: TextButton.icon(
-                                onPressed: () {},
-                                icon: Icon(Icons.message),
-                                label: Text('메시지복사',
-                                    style: AppTextStyle.white_14_w400),
-                              ),
-                            ),
+                            child: _copyMessage(), //메시지복사
                           ),
                         ],
                       ),
@@ -141,46 +63,10 @@ class ListItemInfo extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Expanded(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: Image.asset(
-                                        'assets/icons/battlenet.png'),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  SelectableText ('배틀태그 : betrider#12345',
-                                      style: AppTextStyle.white_14_w400),
-                                ],
-                              ),
-                            ),
+                            child: _getBattleTag(), //배틀태그
                           ),
                           Expanded(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child:
-                                        Image.asset('assets/icons/diablo2.png'),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  SelectableText ('아이디 : 베트라이더',
-                                      style: AppTextStyle.white_14_w400),
-                                ],
-                              ),
-                            ),
+                            child: _getDiabloId(), //디아블로 아이디
                           ),
                         ],
                       ),
@@ -192,11 +78,85 @@ class ListItemInfo extends StatelessWidget {
             color: Colors.grey[800],
             padding: EdgeInsets.all(8),
             child: SelectableText(
-              '136891 \n12569812 \n983126u918u6981698161269 \nslkajfglsejg \n안녕하세요',
+              listItemModel.memo,
               style: AppTextStyle.white_14_w400,
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Align _getDateTime() {
+    return Align(
+      alignment: Alignment.center,
+      child: TextButton.icon(
+        onPressed: null,
+        icon: Icon(
+          Icons.timelapse_outlined,
+          color: Colors.white,
+        ),
+        label: Text(
+          '등록시간 : ${listItemModel.dateTime}',
+          style: AppTextStyle.white_14_w400,
+        ),
+      ),
+    );
+  }
+
+  Align _getDiabloId() {
+    return Align(
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 24,
+            height: 24,
+            child: Image.asset('assets/icons/diablo2.png'),
+          ),
+          SizedBox(
+            width: 8,
+          ),
+          Text('아이디 : ${listItemModel.diabloId}',
+              style: AppTextStyle.white_14_w400),
+        ],
+      ),
+    );
+  }
+
+  Align _getBattleTag() {
+    return Align(
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 24,
+            height: 24,
+            child: Image.asset('assets/icons/battlenet.png'),
+          ),
+          SizedBox(
+            width: 8,
+          ),
+          Text('배틀태그 : ${listItemModel.battleTagId}',
+              style: AppTextStyle.white_14_w400),
+        ],
+      ),
+    );
+  }
+
+  Align _copyMessage() {
+    return Align(
+      alignment: Alignment.center,
+      child: TextButton.icon(
+        onPressed: () {
+          Clipboard.setData(ClipboardData(text: '\\w ${listItemModel.diabloId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.')).then((value) {
+            showToast(message: '복사되었습니다.');
+          });
+        },
+        icon: Icon(Icons.message),
+        label: Text('메시지복사', style: AppTextStyle.white_14_w400),
       ),
     );
   }

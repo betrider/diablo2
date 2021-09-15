@@ -90,7 +90,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         battleTagId2: 'betrider#12345',
                         diabloId2: '베트라이더',
                       );
-                      Get.back();
+
+                      if(true){ //로그인 성공 시
+                        showToast(message: '성공적으로 로그인되었습니다.');
+                        Get.back();
+                      // ignore: dead_code
+                      }else{
+                        showToast(message: '로그인에 실패했습니다.');
+                      }
                     },
                     child: Text('로그인'.tr, style: AppTextStyle.white_14_w400),
                   ),
