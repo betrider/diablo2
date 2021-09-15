@@ -25,11 +25,12 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     // After 1 second, it takes you to the bottom of the ListView
     Timer(Duration(seconds: 1), () {
-      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 500), curve: Curves.ease).then((value) => FocusScope.of(context).requestFocus(focusId));
+      _scrollController
+          .animateTo(_scrollController.position.maxScrollExtent,
+              duration: Duration(milliseconds: 500), curve: Curves.ease)
+          .then((value) => FocusScope.of(context).requestFocus(focusId));
     });
 
     return Scaffold(
@@ -86,70 +87,79 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   height: kDefaultPadding,
                 ),
-                SizedBox(
-                  width: 400,
-                  height: 48,
-                  child: OutlinedButton(
-                    focusNode: focusLogin,
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.grey[350]!),
-                    ),
-                    onPressed: () {
-                      //로그인 정보 확인 후 정보 받아오기
-                      Get.find<UserController>().signin(
-                        loginId2: 'betrider',
-                        phoneNumber2: '01055254256',
-                        battleTagId2: 'betrider#12345',
-                        diabloId2: '베트라이더',
-                      );
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 400),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 48,
+                          child: OutlinedButton(
+                            focusNode: focusLogin,
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(color: Colors.grey[350]!),
+                            ),
+                            onPressed: () {
+                              //로그인 정보 확인 후 정보 받아오기
+                              Get.find<UserController>().signin(
+                                loginId2: 'betrider',
+                                phoneNumber2: '01055254256',
+                                battleTagId2: 'betrider#12345',
+                                diabloId2: '베트라이더',
+                              );
 
-                      if (true) {
-                        //로그인 성공 시
-                        Get.back();
-                        showToast(message: '성공적으로 로그인되었습니다.');
-                        // ignore: dead_code
-                      } else {
-                        showToast(message: '로그인에 실패했습니다.');
-                      }
-                    },
-                    child: Text('로그인'.tr, style: AppTextStyle.white_14_w400),
+                              if (true) {
+                                //로그인 성공 시
+                                Get.back();
+                                showToast(message: '성공적으로 로그인되었습니다.');
+                                // ignore: dead_code
+                              } else {
+                                showToast(message: '로그인에 실패했습니다.');
+                              }
+                            },
+                            child:
+                                Text('로그인'.tr, style: AppTextStyle.white_14_w400),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
                   height: kDefaultPadding,
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.grey[350]!),
-                        ),
-                        onPressed: () {
-                          Get.toNamed('sign_up');
-                        },
-                        child: Text(
-                          '계정 찾기'.tr,
-                          style: AppTextStyle.white_14_w400,
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 400),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: Colors.grey[350]!),
+                          ),
+                          onPressed: () {
+                            Get.toNamed('sign_up');
+                          },
+                          child: Text(
+                            '계정 찾기'.tr,
+                            style: AppTextStyle.white_14_w400,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 200,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.grey[350]!),
+                      Expanded(
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: Colors.grey[350]!),
+                          ),
+                          onPressed: () {
+                            Get.toNamed('sign_up');
+                          },
+                          child: Text('새로운 계정 만들기'.tr,
+                              style: AppTextStyle.white_14_w400),
                         ),
-                        onPressed: () {
-                          Get.toNamed('sign_up');
-                        },
-                        child: Text('새로운 계정 만들기'.tr,
-                            style: AppTextStyle.white_14_w400),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
