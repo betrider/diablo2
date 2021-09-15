@@ -10,10 +10,9 @@ class StandardScreen extends StatefulWidget {
 }
 
 class StandardScreenState extends State<StandardScreen> {
-  int get count => list.length;
-  List<int> list = [];
+  ItemListController itemListController = Get.put(ItemListController());
+
   bool isSearch = false;
-  bool isLoading = false;
 
   int prefixMaxCount = 3;
   int suffixMaxCount = 1;
@@ -24,16 +23,10 @@ class StandardScreenState extends State<StandardScreen> {
 
   void load() async {
     if (isSearch) {
-      setState(() {
-        isLoading = true;
-      });
-
-      await Future.delayed(Duration(seconds: 0, milliseconds: 2000));
-
-      setState(() {
-        isLoading = false;
-        list.addAll(List.generate(20, (v) => v));
-      });
+      itemListController.updateLoading(true);
+      await Future.delayed(Duration(seconds: 0, milliseconds: 2000)); //api 호출
+      itemListController.itemAdd();
+      itemListController.updateLoading(false);
     }
   }
 
@@ -46,6 +39,7 @@ class StandardScreenState extends State<StandardScreen> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/body_background.jpg'),
+              fit: BoxFit.contain,
               repeat: ImageRepeat.repeat,
             ),
           ),
@@ -75,68 +69,85 @@ class StandardScreenState extends State<StandardScreen> {
                 _getFourthItemSuffix(context), // 2.4-2 아이템 접미사
                 // SizedBox(height: kDefaultPadding * 2),
                 // _getItemGoods(context), // 3.아이템 재화
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                if (!isSearch) ...[
-                  ElevatedButton(
-                    onPressed: () {
-                      isSearch = true;
-                      load();
-                    },
-                    child: Text(
-                      '아이템 검색',
-                      style: TextStyle(fontFamily: 'kodia'),
-                    ),
-                  ),
-                ] else ...[
-                  Container(
-                    width: 600,
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      primary: false,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListItemInfo(
-                          listItemModel: ListItemModel(
-                            boardId: '0001',
-                            itemModel: ItemModel(
-                              itemQuality: ItemQuality.Unique,
-                              name: 'test',
-                              additionalProperties: [],
-                              basicProperties: [],
-                            ),
-                            battleTagId: 'betrider#12345',
-                            dateTime: DateTime.now().toFullDateTimeString5(),
-                            diabloId: 'BETRIDER',
-                            memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
-                          ),
-                        );
-                      },
-                      itemCount: count,
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          height: kDefaultPadding / 2,
-                        );
-                      },
-                    ),
-                  ),
-                  if (isLoading) ...[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                // SizedBox(
+                //   height: kDefaultPadding * 2,
+                // ),
+                GetBuilder<ItemListController>(
+                  builder: (controller) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
-                          strokeWidth: 2,
-                        ),
-                        SizedBox(
-                          width: kDefaultPadding,
-                        ),
-                        Text('로딩중입니다...', style: AppTextStyle.white_14_w400)
+                        if (!isSearch) ...[
+                          SizedBox(
+                            height: kDefaultPadding * 2,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              isSearch = true;
+                              load();
+                            },
+                            child: Text(
+                              '아이템 검색',
+                              style: TextStyle(fontFamily: 'kodia'),
+                            ),
+                          ),
+                        ] else ...[
+                          SizedBox(
+                              height: kDefaultPadding * 2,
+                            ),
+                          Container(
+                            width: 600,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              primary: false,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListItemInfo(
+                                  listItemModel: ListItemModel(
+                                    boardId: '0001',
+                                    itemModel: ItemModel(
+                                      itemQuality: ItemQuality.Unique,
+                                      name: 'test',
+                                      additionalProperties: [],
+                                      basicProperties: [],
+                                    ),
+                                    battleTagId: 'betrider#12345',
+                                    dateTime:
+                                        DateTime.now().toFullDateTimeString5(),
+                                    diabloId: 'BETRIDER',
+                                    memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
+                                  ),
+                                );
+                              },
+                              itemCount: controller.count,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(
+                                  height: kDefaultPadding / 2,
+                                );
+                              },
+                            ),
+                          ),
+                          if (controller.isLoading) ...[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
+                                  strokeWidth: 2,
+                                ),
+                                SizedBox(
+                                  width: kDefaultPadding,
+                                ),
+                                Text('로딩중입니다...',
+                                    style: AppTextStyle.white_14_w400)
+                              ],
+                            ),
+                          ],
+                        ],
                       ],
-                    ),
-                  ],
-                ],
+                    );
+                  },
+                ),
                 SizedBox(
                   height: kDefaultPadding * 2,
                 )

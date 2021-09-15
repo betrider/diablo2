@@ -151,7 +151,10 @@ class ListItemInfo extends StatelessWidget {
       alignment: Alignment.center,
       child: TextButton.icon(
         onPressed: () {
-          Clipboard.setData(ClipboardData(text: '\\w ${listItemModel.diabloId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.')).then((value) {
+          Clipboard.setData(ClipboardData(
+                  text:
+                      '\\w ${listItemModel.diabloId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.'))
+              .then((value) {
             showToast(message: '복사되었습니다.');
           });
         },
