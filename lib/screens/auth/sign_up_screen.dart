@@ -67,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Container(
                     width: Get.width,
                     // alignment: Alignment.center,
+                    padding: EdgeInsets.all(kDefaultPadding),
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.center,
                       // mainAxisSize: MainAxisSize.min,
@@ -219,8 +220,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   );
 
                                   if (result) {
-
-                                    if(true){ //회원가입 성공 시
+                                    if (true) {
+                                      //회원가입 성공 시
                                       Get.find<UserController>().signin(
                                         loginId2: idTextController.text,
                                         phoneNumber2:
@@ -231,17 +232,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       );
                                       Get.back();
                                       Get.back();
-                                      showToast(message: '회원가입이 성공적으로 완료되었습니다.');
-                                    // ignore: dead_code
-                                    }else{
+                                      showToast(
+                                          message: '회원가입이 성공적으로 완료되었습니다.');
+                                      // ignore: dead_code
+                                    } else {
                                       showToast(message: '회원가입에 실패했습니다.');
                                     }
                                   }
                                 }
                               }
                             },
-                            child: Text('가입하기'.tr,
-                                style: AppTextStyle.white_14_w400),
+                            child: Text(
+                              '가입하기'.tr,
+                              style: AppTextStyle.white_14_w400,
+                            ),
                           ),
                         ),
                         SizedBox(

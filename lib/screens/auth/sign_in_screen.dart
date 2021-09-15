@@ -26,11 +26,12 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     // After 1 second, it takes you to the bottom of the ListView
-    Timer(Duration(seconds: 1), () {
-      _scrollController
-          .animateTo(_scrollController.position.maxScrollExtent,
-              duration: Duration(milliseconds: 500), curve: Curves.ease)
-          .then((value) => FocusScope.of(context).requestFocus(focusId));
+    Timer(Duration(seconds: 1), () async {
+      if (_scrollController.hasClients) {
+        await _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+            duration: Duration(milliseconds: 500), curve: Curves.ease);
+        FocusScope.of(context).requestFocus(focusId);
+      }
     });
 
     return Scaffold(
@@ -117,8 +118,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 showToast(message: '로그인에 실패했습니다.');
                               }
                             },
-                            child:
-                                Text('로그인'.tr, style: AppTextStyle.white_14_w400),
+                            child: Text('로그인'.tr,
+                                style: AppTextStyle.white_14_w400),
                           ),
                         ),
                       ),

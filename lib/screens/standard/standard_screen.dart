@@ -40,8 +40,8 @@ class StandardScreenState extends State<StandardScreen> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints:
-          BoxConstraints(minHeight: Get.height, minWidth: double.infinity),
+      constraints: BoxConstraints(
+          minHeight: Get.height - 200, minWidth: double.infinity),
       child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -76,12 +76,9 @@ class StandardScreenState extends State<StandardScreen> {
                 // SizedBox(height: kDefaultPadding * 2),
                 // _getItemGoods(context), // 3.아이템 재화
                 SizedBox(
-                  height: kDefaultPadding * 4,
+                  height: kDefaultPadding * 2,
                 ),
                 if (!isSearch) ...[
-                  SizedBox(
-                    height: kDefaultPadding * 2,
-                  ),
                   ElevatedButton(
                     onPressed: () {
                       isSearch = true;
@@ -124,9 +121,6 @@ class StandardScreenState extends State<StandardScreen> {
                     ),
                   ),
                   if (isLoading) ...[
-                    SizedBox(
-                      height: kDefaultPadding * 2,
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -337,6 +331,9 @@ class StandardScreenState extends State<StandardScreen> {
       closeButton: Align(
         alignment: Alignment.centerRight,
         child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(color: Colors.white),
+          ),
           onPressed: () {
             Get.back();
             setState(() {});
