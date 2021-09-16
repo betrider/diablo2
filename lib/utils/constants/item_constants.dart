@@ -2,14 +2,25 @@ import 'package:flutter_diablo2_exchange/index.dart';
 
 /// 아이템 종류
 const itemType = [
-  ...weapons,
-  ...armors,
-  ...otherItems,
-  ...classWeapons,
-  ...classArmors,
+  ...Armor, //갑옷
+  ...Weapons, //무기
+  ...OtherItems, //기타
 ];
 
-const weapons = [
+const Armor = [
+  'Helms',
+  'Body Armor',
+  'Shields',
+  'Gloves',
+  'Boots',
+  'Belts',
+  'Druid Pelts',
+  'Barbarian Helms',
+  'Paladin Shields',
+  'Necromancer Shrunken Heads',
+];
+
+const Weapons = [
   'Axes',
   'Bows',
   'Crossbows',
@@ -22,37 +33,20 @@ const weapons = [
   'Staves',
   'Swords',
   'Throwing Weapons',
-  'Wands'
-];
-
-const classWeapons = [
+  'Wands',
   'Amazon Weapons',
   'Assassin Katars',
   'Sorceress Orbs',
 ];
 
-const armors = [
-  'Armor',
-  'Belts',
-  'Boots',
+const OtherItems = [
   'Circlets',
-  'Gloves',
-  'Helms',
-  'Shields',
-];
-
-const classArmors = [
-  'Barbarian Helms',
-  'Druid Pelts',
-  'Necromancer Shrunken Heads',
-  'Paladin Shields',
-];
-
-const otherItems = [
-  'Amulets',
-  'Charms',
-  'Jewels',
-  'Rings',
+  'Gem Type',
+  'Rune',
+  'Charm',
+  'Jewel',
+  'Amulet',
+  'Ring',
 ];
 
 /// 아이템 등급

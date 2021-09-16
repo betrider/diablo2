@@ -26,45 +26,39 @@ const Map<String, String> koKR = {
   //-------------------
 
   //무기
-  'Daggers': '단검',
-  'Swords': '도검',
   'Axes': '도끼',
-  'Maces': '둔기',
-  'Scepters': '홀',
-  'Staves': '지팡이',
-  'Wands': '마술봉',
-  'Spears': '창',
-  'Polearms': '미늘창',
-  'Throwing Weapons': '투척 무기',
-  'Javelins': '투창',
   'Bows': '활',
   'Crossbows': '쇠뇌',
-
-  //클래스 무기
+  'Daggers': '단검',
+  'Javelins': '투창',
+  'Maces': '둔기',
+  'Polearms': '미늘창',
+  'Scepters': '홀',
+  'Spears': '창',
+  'Staves': '지팡이',
+  'Swords': '도검',
+  'Throwing Weapons': '투척 무기',
+  'Wands': '마술봉',
   'Amazon Weapons': '아마존 무기',
   'Assassin Katars': '어쌔신 카타르',
   'Sorceress Orbs': '소서리스 오브',
 
   //방어구
-  'Circlets': '띠관',
   'Helms': '투구',
-  'Armor': '갑옷',
+  'Body Armor': '갑옷',
   'Shields': '방패',
   'Gloves': '장갑',
   'Boots': '신발',
   'Belts': '허리띠',
-
-  //클래스 방어구
+  'Druid Pelts': '드루이드 펠트',
   'Barbarian Helms': '바바리안 헬름',
   'Paladin Shields': '팔라딘 쉴드',
-  'Druid Pelts': '드루이드 펠트',
   'Necromancer Shrunken Heads': '네크로맨서 쉬렁큰 헤드',
 
-  //기타
-  'Amulets': '아뮬렛',
-  'Rings': '링',
-  'Charms': '차암',
-  'Jewels': '주얼',
+  //나머지
+  'Circlets': '띠관',
+  'Amulet': '아뮬렛',
+  'Ring': '링',
 
   //-------------------
 
@@ -81,9 +75,11 @@ const Map<String, String> koKR = {
 
   //주얼
   'Jewel': '주얼',
+  'Jewels': '주얼',
 
   //참
   'Charm': '차암',
+  'Charms': '차암',
 
   'Grand Charms': '그랜드 차암',
   'Large Charms': '라지 차암',

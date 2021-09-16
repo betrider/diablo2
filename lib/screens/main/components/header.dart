@@ -128,9 +128,12 @@ class Header extends StatelessWidget {
 //     // ignore: undefined_prefixed_name
 //     ui.platformViewRegistry.registerViewFactory("add_script", (int viewId) {
 //       ScriptElement element = ScriptElement()
+//         ..async = true
 //         ..src =
 //             "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2827386973394827"
-//         ..type = "text/javascript";
+//         ..type = "text/javascript"
+//         ..crossOrigin = "anonymous";
+        
 //       return element;
 //     });
 //   }

@@ -26,50 +26,45 @@ const Map<String, String> enUS = {
   //-------------------
 
   //무기
-  'Daggers': 'Daggers',
-  'Swords': 'Swords',
   'Axes': 'Axes',
-  'Maces': 'Maces',
-  'Scepters': 'Scepters',
-  'Staves': 'Staves',
-  'Wands': 'Wands',
-  'Spears': 'Spears',
-  'Polearms': 'Polearms',
-  'Throwing Weapons': 'Throwing Weapons',
-  'Javelins': 'Javelins',
   'Bows': 'Bows',
   'Crossbows': 'Crossbows',
-
-  //클래스 무기
+  'Daggers': 'Daggers',
+  'Javelins': 'Javelins',
+  'Maces': 'Maces',
+  'Polearms': 'Polearms',
+  'Scepters': 'Scepters',
+  'Spears': 'Spears',
+  'Staves': 'Staves',
+  'Swords': 'Swords',
+  'Throwing Weapons': 'Throwing Weapons',
+  'Wands': 'Wands',
   'Amazon Weapons': 'Amazon Weapons',
   'Assassin Katars': 'Assassin Katars',
   'Sorceress Orbs': 'Sorceress Orbs',
 
   //방어구
-  'Circlets': 'Circlets',
   'Helms': 'Helms',
-  'Armor': 'Armor',
+  'Body Armor': 'Body Armor',
   'Shields': 'Shields',
   'Gloves': 'Gloves',
   'Boots': 'Boots',
   'Belts': 'Belts',
-
-  //클래스 방어구
+  'Druid Pelts': 'Druid Pelts',
   'Barbarian Helms': 'Barbarian Helms',
   'Paladin Shields': 'Paladin Shields',
-  'Druid Pelts': 'Druid Pelts',
   'Necromancer Shrunken Heads': 'Necromancer Shrunken Heads',
 
-  //기타
-  'Amulets': 'Amulets',
-  'Rings': 'Rings',
-  'Charms': 'Charms',
-  'Jewels': 'Jewels',
+  //나머지
+  'Circlets': 'Circlets',
+  'Amulet': 'Amulet',
+  'Ring': 'Ring',
 
   //-------------------
 
   //잼
   'Gem': 'Gem',
+  'Gem Type': 'Gem',
 
   'Perfect Ruby': 'Perfect Ruby',
   'Perfect Sapphire': 'Perfect Sapphire',
@@ -81,9 +76,11 @@ const Map<String, String> enUS = {
 
   //주얼
   'Jewel': 'Jewel',
+  'Jewels': 'Jewels',
 
   //참
   'Charm': 'Charm',
+  'Charms': 'Charms',
 
   'Grand Charms': 'Grand Charms',
   'Large Charms': 'Large Charms',

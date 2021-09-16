@@ -52,8 +52,11 @@ class PhoneNumberFormatter extends TextInputFormatter {
     var newText = newValue.text;
 
     //모든 번호 지운경우
-    if (newText == "") {
-      return TextEditingValue();
+    if (newText == ""){
+      return TextEditingValue(
+        text: newText,
+        selection: TextSelection.collapsed(offset: newText.length),
+      );
     }
 
     var regExp = RegExp(r'^[\d-]+$'); //숫자 또는 하이펀 만 허용
