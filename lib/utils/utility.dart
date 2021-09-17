@@ -68,18 +68,18 @@ void hideLoading() {
   Loader.hide();
 }
 
-/// Snackbar --사용안함 토스트로 대체
-// void showSnackbar({
-//   String title = '제목',
-//   String subTitle = '내용',
-//   SnackPosition? snackPosition,
-// }) {
-//   Get.snackbar(
-//     title,
-//     subTitle,
-//     snackPosition: SnackPosition.TOP,
-//   );
-// }
+/// Snackbar --사용안함 토스트로 대체/* 
+void showSnackbar({
+  String title = '제목',
+  String subTitle = '내용',
+  SnackPosition? snackPosition,
+}) {
+  Get.snackbar(
+    title,
+    subTitle,
+    snackPosition: SnackPosition.TOP,
+  );
+}
 
 /// 메시지 - 토스트
 ///

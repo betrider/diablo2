@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_diablo2_exchange/localization_service.dart';
 import 'package:flutter_diablo2_exchange/route.dart';
 import 'package:flutter_diablo2_exchange/screens/main/main_screen.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //비동기 메소드 사용하기 위해 선언
+
+  if(GetPlatform.isMobile) await Firebase.initializeApp(); //파이어베이스 초기화
 
   await Hive.initFlutter(); //Hive 초기화
   await Hive.openBox('cache'); //Hive cache박스 등록

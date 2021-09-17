@@ -12,12 +12,17 @@ class SideMenu extends StatelessWidget {
         child: Obx(
           () => ListView(
             children: [
-              DrawerHeader(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding * 3.5),
-                  child: Image.asset(
-                      'assets/icons/Diablo_II_Resurrected_Logo.png'),
+              InkWell(
+                onTap: Responsive.isMobile(context) && isDebug ? (){
+                  Get.toNamed('/sample');
+                } : null,
+                child: DrawerHeader(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: kDefaultPadding * 3.5),
+                    child: Image.asset(
+                        'assets/icons/Diablo_II_Resurrected_Logo.png'),
+                  ),
                 ),
               ),
               ...List.generate(

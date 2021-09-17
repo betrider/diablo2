@@ -25,10 +25,10 @@ class LoginButton extends StatelessWidget {
 
                       // urlLauncher(url:'$domain?client_id=$clientId&redirect_uri=$redirectUri&response_type=$responseType', urlType: UrlType.INTERNET);
                     },
-                    style: TextButton.styleFrom(
+                    style: Responsive.isMobile(context) ? null : TextButton.styleFrom(
                       padding: EdgeInsets.symmetric(
                         horizontal: kDefaultPadding * 1.5,
-                        vertical: kDefaultPadding,
+                        vertical: kDefaultPadding
                       ),
                     ),
                     child: Text(
