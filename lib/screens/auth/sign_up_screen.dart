@@ -1,4 +1,7 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -10,31 +13,19 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final formKey = GlobalKey<FormState>();
 
-  FocusNode focusId = FocusNode();
-  FocusNode focusPassword = FocusNode();
-  FocusNode focusPasswordCheck = FocusNode();
-  FocusNode focusPhoneNumber = FocusNode();
-  FocusNode focusBattleTagId = FocusNode();
-  FocusNode focusDiablo2Id = FocusNode();
-  FocusNode focusLogin = FocusNode();
-
   TextEditingController idTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
   TextEditingController passwordCheckTextController = TextEditingController();
   TextEditingController phoneNumberTextController = TextEditingController();
+  TextEditingController authenticationTextController = TextEditingController();
   TextEditingController battleTagTextController = TextEditingController();
   TextEditingController diabloIdTextController = TextEditingController();
 
+  ConfirmationResult? webConfirmationResult; //sms 인증번호 결과
+  bool showAuthenticationField = false;
+
   @override
   void dispose() {
-    focusId.dispose();
-    focusPassword.dispose();
-    focusPasswordCheck.dispose();
-    focusPhoneNumber.dispose();
-    focusBattleTagId.dispose();
-    focusDiablo2Id.dispose();
-    focusLogin.dispose();
-
     idTextController.dispose();
     passwordTextController.dispose();
     passwordCheckTextController.dispose();
@@ -50,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Form(
-          key: this.formKey,
+          key: formKey,
           child: Stack(
             children: <Widget>[
               Container(
@@ -81,7 +72,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         InputField(
                           autofocus: true,
-                          focusNode: focusId,
                           label: "아이디",
                           labelWidth: 120,
                           content: "아이디를 입력해주세요.",
@@ -89,18 +79,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print('id:$value');
                           },
                           onFieldSubmitted: (value) {
-                            focusId.unfocus();
-                            FocusScope.of(context).requestFocus(focusPassword);
+                            print(value);
                           },
                           validator: customIdValidate,
                           controller: idTextController,
                           inputFormatters: idTextInputFormatter,
+                          textInputAction: TextInputAction.next,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
                         InputField(
-                          focusNode: focusPassword,
                           label: "패스워드",
                           labelWidth: 120,
                           content: "패스워드를 입력해주세요.",
@@ -108,99 +97,172 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print('password:$value');
                           },
                           onFieldSubmitted: (value) {
-                            focusPassword.unfocus();
-                            FocusScope.of(context)
-                                .requestFocus(focusPasswordCheck);
+                            print(value);
                           },
                           validator: customPasswordValidate,
                           obscureText: true,
                           controller: passwordTextController,
+                          textInputAction: TextInputAction.next,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
                         InputField(
-                          focusNode: focusPasswordCheck,
                           label: "패스워드 확인",
                           labelWidth: 120,
                           content: "패스워드를 입력해주세요.",
                           onChanged: (value) {
                             print('password1:$value');
                           },
-                          onFieldSubmitted: (value) {
-                            focusPasswordCheck.unfocus();
-                            FocusScope.of(context)
-                                .requestFocus(focusPhoneNumber);
-                          },
+                          onFieldSubmitted: (value) {},
                           validator: customPasswordValidate,
                           obscureText: true,
                           controller: passwordCheckTextController,
+                          textInputAction: TextInputAction.next,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
-                        InputField(
-                          focusNode: focusPhoneNumber,
-                          label: "휴대폰 번호",
-                          labelWidth: 120,
-                          content: "휴대폰 번호를 입력해주세요.",
-                          onChanged: (value) {
-                            print('password2:$value');
-                          },
-                          onFieldSubmitted: (value) {
-                            focusPhoneNumber.unfocus();
-                            FocusScope.of(context)
-                                .requestFocus(focusBattleTagId);
-                          },
-                          inputFormatters: [PhoneNumberFormatter()],
-                          validator: customPhoneNumberValidate,
-                          controller: phoneNumberTextController,
-                          maxLength: 13,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InputField(
+                              label: "휴대폰 번호",
+                              labelWidth: 120,
+                              maxWidth: 300,
+                              content: "휴대폰 번호를 입력해주세요.",
+                              onChanged: (value) {
+                                print('password2:$value');
+                              },
+                              onFieldSubmitted: (value) {},
+                              inputFormatters: [PhoneNumberFormatter()],
+                              validator: customPhoneNumberValidate,
+                              controller: phoneNumberTextController,
+                              textInputAction: TextInputAction.done,
+                              maxLength: 13,
+                            ),
+                            SizedBox(
+                              width: kDefaultPadding,
+                            ),
+                            SizedBox(
+                              width: 80,
+                              height: 40,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  String? validate = customPhoneNumberValidate(
+                                      phoneNumberTextController.text);
+                                  if (validate == null) {
+                                    await _verifyWebPhoneNumber();
+                                    showToast(message: '인증번호가 발송되었습니다.');
+                                    setState(() {
+                                      showAuthenticationField = true;
+                                    });
+                                  } else {
+                                    showToast(message: validate);
+                                  }
+                                },
+                                child: Text(
+                                  '인증번호\n발송'.tr,
+                                  style: AppTextStyle.white_12_w400,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
+                        Visibility(
+                            visible: showAuthenticationField,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  height: kDefaultPadding,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    InputField(
+                                      label: "인증번호",
+                                      labelWidth: 120,
+                                      maxWidth: 300,
+                                      content: "인증번호입력",
+                                      onChanged: (value) {
+                                        print('auth2:$value');
+                                      },
+                                      onFieldSubmitted: (value) {
+                                        print(value);
+                                      },
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly
+                                      ],
+                                      controller: authenticationTextController,
+                                      maxLength: 6,
+                                      textInputAction: TextInputAction.done,
+                                    ),
+                                    SizedBox(
+                                      width: kDefaultPadding,
+                                    ),
+                                    SizedBox(
+                                      width: 80,
+                                      height: 40,
+                                      child: ElevatedButton(
+                                          onPressed: () async {
+                                            String? test = customAuthentication(
+                                                authenticationTextController
+                                                    .text);
+                                            if (test == null) {
+                                              await _confirmCodeWeb();
+                                            } else {
+                                              showToast(message: test);
+                                            }
+                                          },
+                                          child: Text(
+                                            '인증번호\n확인'.tr,
+                                            style: AppTextStyle.white_12_w400,
+                                            textAlign: TextAlign.center,
+                                          )),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
                         InputField(
-                          focusNode: focusBattleTagId,
                           label: "배틀태그",
                           labelWidth: 120,
                           content: "배틀태그를 입력해주세요.",
                           onChanged: (value) {
                             print('battle tag:$value');
                           },
-                          onFieldSubmitted: (value) {
-                            focusBattleTagId.unfocus();
-                            FocusScope.of(context).requestFocus(focusDiablo2Id);
-                          },
+                          onFieldSubmitted: (value) {},
                           validator: customBattleTagIdValidate,
                           controller: battleTagTextController,
+                          textInputAction: TextInputAction.next,
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
                         InputField(
-                          focusNode: focusDiablo2Id,
                           label: "디아블로 아이디",
                           labelWidth: 120,
                           content: "디아블로 아이디를 입력해주세요.",
                           onChanged: (value) {
                             print('diablo2 id:$value');
                           },
-                          onFieldSubmitted: (value) {
-                            focusDiablo2Id.unfocus();
-                            FocusScope.of(context).requestFocus(focusLogin);
-                          },
+                          onFieldSubmitted: (value) {},
                           validator: customDialogIdValidate,
                           controller: diabloIdTextController,
+                          textInputAction: TextInputAction.done,
                         ),
                         SizedBox(
                           height: kDefaultPadding * 2,
                         ),
                         SizedBox(
-                          width: 440,
+                          width: 400,
                           height: 48,
                           child: OutlinedButton(
-                            focusNode: focusLogin,
                             style: OutlinedButton.styleFrom(
                               side: BorderSide(color: Colors.grey[350]!),
                             ),
@@ -259,5 +321,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           ),
         ));
+  }
+
+  Future<void> _verifyWebPhoneNumber() async {
+    ConfirmationResult confirmationResult = await _auth.signInWithPhoneNumber(
+        '+82 ${phoneNumberTextController.text.replaceAll('-', '').trim()}');
+    webConfirmationResult = confirmationResult;
+  }
+
+  Future<void> _confirmCodeWeb() async {
+    try {
+      dynamic result = await webConfirmationResult!
+          .confirm(authenticationTextController.text);
+      print('성공:$result');
+      showToast(message: '인증에 성공했습니다.');
+    } catch (e) {
+      showSnackbar(
+        title: '오류',
+        subTitle: '인증에 실패했습니다 : ${e.toString()}',
+      );
+    }
   }
 }

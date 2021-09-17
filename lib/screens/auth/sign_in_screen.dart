@@ -10,29 +10,25 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   ScrollController _scrollController = ScrollController();
 
-  FocusNode focusId = FocusNode();
-  FocusNode focusPassword = FocusNode();
-  FocusNode focusLogin = FocusNode();
-
   @override
   void dispose() {
     _scrollController.dispose();
-    focusId.dispose();
-    focusPassword.dispose();
-    focusLogin.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // After 1 second, it takes you to the bottom of the ListView
-    Timer(Duration(seconds: 1), () async {
-      if (_scrollController.hasClients) {
-        await _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-            duration: Duration(milliseconds: 500), curve: Curves.ease);
-        FocusScope.of(context).requestFocus(focusId);
-      }
-    });
+    if (!GetPlatform.isMobile) {
+      // After 1 second, it takes you to the bottom of the ListView
+      Timer(Duration(seconds: 1), () async {
+        if (_scrollController.hasClients) {
+          await _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              duration: Duration(milliseconds: 500),
+              curve: Curves.ease);
+        }
+      });
+    }
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -54,36 +50,34 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 650,
                 ),
                 InputField(
-                  // autofocus: true,
-                  focusNode: focusId,
+                  autofocus: true,
                   label: "아이디",
                   content: "아이디를 입력해주세요.",
                   onChanged: (value) {
                     print('id:$value');
                   },
                   onFieldSubmitted: (value) {
-                    focusId.unfocus();
-                    FocusScope.of(context).requestFocus(focusPassword);
+                    print(value);
                   },
                   validator: customIdValidate,
                   inputFormatters: idTextInputFormatter,
+                  textInputAction: TextInputAction.next,
                 ),
                 SizedBox(
                   height: kDefaultPadding,
                 ),
                 InputField(
-                  focusNode: focusPassword,
                   label: "비밀번호",
                   content: "비밀번호를 입력해주세요.",
                   onChanged: (value) {
                     print('password:$value');
                   },
                   onFieldSubmitted: (value) {
-                    focusPassword.unfocus();
-                    FocusScope.of(context).requestFocus(focusLogin);
+                    print(value);
                   },
                   obscureText: true,
                   validator: customPasswordValidate,
+                  textInputAction: TextInputAction.done,
                 ),
                 SizedBox(
                   height: kDefaultPadding,
@@ -96,7 +90,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: SizedBox(
                           height: 48,
                           child: OutlinedButton(
-                            focusNode: focusLogin,
                             style: OutlinedButton.styleFrom(
                               side: BorderSide(color: Colors.grey[350]!),
                             ),

@@ -6,6 +6,7 @@ class InputField extends StatelessWidget {
     required this.content,
     required this.onChanged,
     this.labelWidth = 80,
+    this.maxWidth = 400,
     this.maxLength = 20,
     this.focusNode,
     this.autofocus = false,
@@ -14,12 +15,14 @@ class InputField extends StatelessWidget {
     this.inputFormatters,
     this.validator,
     this.controller,
+    this.textInputAction,
   });
 
   final String label;
   final String content;
   final ValueChanged<String> onChanged;
   final double labelWidth;
+  final double maxWidth;
   final int maxLength;
   final FocusNode? focusNode;
   final bool autofocus;
@@ -28,11 +31,12 @@ class InputField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: labelWidth + 320),
+      constraints: BoxConstraints(maxWidth: maxWidth),
       child: Row(
         children: <Widget>[
           SizedBox(
@@ -48,6 +52,7 @@ class InputField extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
+              textInputAction: textInputAction,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: obscureText,
               autofocus: autofocus,

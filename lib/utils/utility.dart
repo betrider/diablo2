@@ -78,6 +78,7 @@ void showSnackbar({
     title,
     subTitle,
     snackPosition: SnackPosition.TOP,
+    backgroundColor: Colors.white
   );
 }
 

@@ -45,3 +45,13 @@ String? customPhoneNumberValidate(String? value) {
     return null;
   }
 }
+
+String? customAuthentication(String? value) {
+  if (value!.length == 0) {
+    return '인증번호를 정확히 입력해주세요.';
+  } else if (value.length < 6) {
+    return '인증번호를 6자리 입력해주세요.';
+  } else {
+    return null;
+  }
+}
