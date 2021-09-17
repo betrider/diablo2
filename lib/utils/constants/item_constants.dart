@@ -62,7 +62,8 @@ enum ItemQuality {
 }
 
 /// 아이템 등급 리스트
-List<String> get itemQualityList => ItemQuality.values.map((e) => e.name).toList();
+List<String> get itemQualityList =>
+    ItemQuality.values.map((e) => e.name).toList();
 
 extension ItemQualityExtension on ItemQuality {
   String get name {
@@ -86,7 +87,6 @@ extension ItemQualityExtension on ItemQuality {
     }
   }
 }
-
 
 /// 아이템 등급별 색상
 const itemQualityColor = [
@@ -115,57 +115,14 @@ const itemQualityColor = [
   ItemColor.white
 ];
 
-/// 최상급 보석
-const perfectGems = [
-  'Perfect Ruby',
-  'Perfect Sapphire',
-  'Perfect Topaz',
-  'Perfect Emerald',
-  'Perfect Diamond',
-  'Perfect Amethyst',
-  'Perfect Skull',
-];
-
-/// 룬
-const runes = [
-  'El',
-  'Eld',
-  'Tir',
-  'Nef',
-  'Eth',
-  'Ith',
-  'Tal',
-  'Ral',
-  'Ort',
-  'Thul',
-  'Amn',
-  'Sol',
-  'Shael',
-  'Dol',
-  'Hel',
-  'Io',
-  'Lum',
-  'Ko',
-  'Fal',
-  'Lem',
-  'Pul',
-  'Um',
-  'Mal',
-  'Ist',
-  'Gul',
-  'Vex',
-  'Ohm',
-  'Lo',
-  'Sur',
-  'Ber',
-  'Jah',
-  'Cham',
-  'Zod',
-];
-
-/// 거래 재화(전부, 굴 룬, 보석)
+/// 거래 재화(룬, 보석)
 const tradeItem = [
-  'All',
-  'Gul',
-  ...perfectGems,
+  'r25', //굴 룬
+  'gpw', //최상급 다이아몬드
+  'gpv', //최상급 자수정
+  'gpb', //최상급 사파이어
+  'gpy', //최상급 토파즈
+  'gpr', //최상급 루비
+  'skz', //최상급 스컬
+  'gpg', //최상급 에메랄드
 ];
