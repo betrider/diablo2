@@ -124,7 +124,8 @@ class _StandardItemRegistrationScreenState
             boardId: '',
             itemModel: ItemModel(
               itemQuality: ItemQuality.Unique,
-              name: 'test',
+              index: 'test',
+              code: '7gd',
               reqLevel: 50,
               additionalProperties: [],
               basicProperties: [],
