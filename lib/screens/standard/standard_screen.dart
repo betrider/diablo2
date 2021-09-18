@@ -107,6 +107,7 @@ class StandardScreenState extends State<StandardScreen> {
                                     itemModel: ItemModel(
                                       itemQuality: ItemQuality.Unique,
                                       name: 'test',
+                                      reqLevel: 50,
                                       additionalProperties: [],
                                       basicProperties: [],
                                     ),

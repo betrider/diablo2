@@ -125,6 +125,7 @@ class _StandardItemRegistrationScreenState
             itemModel: ItemModel(
               itemQuality: ItemQuality.Unique,
               name: 'test',
+              reqLevel: 50,
               additionalProperties: [],
               basicProperties: [],
             ),

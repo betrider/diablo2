@@ -22,7 +22,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController diabloIdTextController = TextEditingController();
 
   ConfirmationResult? webConfirmationResult; //sms 인증번호 결과
-  bool showAuthenticationField = false;
+  bool showAuthenticationField = false; //인증번호란 표시 여부
+  bool inputFieldEnable = true; //인증여부
 
   @override
   void dispose() {
@@ -127,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             InputField(
+                              enabled: inputFieldEnable,
                               label: "휴대폰 번호",
                               labelWidth: 120,
                               maxWidth: 300,
@@ -148,19 +150,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               width: 80,
                               height: 40,
                               child: ElevatedButton(
-                                onPressed: () async {
-                                  String? validate = customPhoneNumberValidate(
-                                      phoneNumberTextController.text);
-                                  if (validate == null) {
-                                    await _verifyWebPhoneNumber();
-                                    showToast(message: '인증번호가 발송되었습니다.');
-                                    setState(() {
-                                      showAuthenticationField = true;
-                                    });
-                                  } else {
-                                    showToast(message: validate);
-                                  }
-                                },
+                                onPressed: inputFieldEnable
+                                    ? () async {
+                                        String? validate =
+                                            customPhoneNumberValidate(
+                                                phoneNumberTextController.text);
+                                        if (validate == null) {
+                                          await _verifyWebPhoneNumber();
+                                          showToast(message: '인증번호가 발송되었습니다.');
+                                          setState(() {
+                                            showAuthenticationField = true;
+                                          });
+                                        } else {
+                                          showToast(message: validate);
+                                        }
+                                      }
+                                    : null,
                                 child: Text(
                                   '인증번호\n발송'.tr,
                                   style: AppTextStyle.white_12_w400,
@@ -182,6 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     InputField(
+                                      enabled: inputFieldEnable,
                                       label: "인증번호",
                                       labelWidth: 120,
                                       maxWidth: 300,
@@ -206,16 +212,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       width: 80,
                                       height: 40,
                                       child: ElevatedButton(
-                                          onPressed: () async {
-                                            String? test = customAuthentication(
-                                                authenticationTextController
-                                                    .text);
-                                            if (test == null) {
-                                              await _confirmCodeWeb();
-                                            } else {
-                                              showToast(message: test);
-                                            }
-                                          },
+                                          onPressed: inputFieldEnable
+                                              ? () async {
+                                                  String? test =
+                                                      customAuthentication(
+                                                          authenticationTextController
+                                                              .text);
+                                                  if (test == null) {
+                                                    await _confirmCodeWeb();
+                                                  } else {
+                                                    showToast(message: test);
+                                                  }
+                                                }
+                                              : null,
                                           child: Text(
                                             '인증번호\n확인'.tr,
                                             style: AppTextStyle.white_12_w400,
@@ -334,12 +343,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       dynamic result = await webConfirmationResult!
           .confirm(authenticationTextController.text);
       print('성공:$result');
+      setState(() {
+        inputFieldEnable = false; //휴대폰번호, 인증번호란 수정불가
+      });
       showToast(message: '인증에 성공했습니다.');
     } catch (e) {
-      showSnackbar(
-        title: '오류',
-        subTitle: '인증에 실패했습니다 : ${e.toString()}',
-      );
+      showToast(message: '인증에 실패했습니다.');
     }
   }
 }

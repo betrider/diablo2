@@ -16,6 +16,7 @@ class InputField extends StatelessWidget {
     this.validator,
     this.controller,
     this.textInputAction,
+    this.enabled = true,
   });
 
   final String label;
@@ -32,6 +33,7 @@ class InputField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class InputField extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
+              enabled: enabled,
               textInputAction: textInputAction,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: obscureText,
@@ -70,6 +73,13 @@ class InputField extends StatelessWidget {
               decoration: InputDecoration(
                 counterText: '',
                 contentPadding: EdgeInsets.all(10.0),
+                disabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 3,
+                    color: Colors.grey[400]!,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     width: 3,
