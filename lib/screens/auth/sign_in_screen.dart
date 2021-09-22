@@ -9,10 +9,14 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   ScrollController _scrollController = ScrollController();
+  TextEditingController idTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
 
   @override
   void dispose() {
     _scrollController.dispose();
+    idTextController.dispose();
+    passwordTextController.dispose();
     super.dispose();
   }
 
@@ -62,6 +66,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   validator: customIdValidate,
                   inputFormatters: idTextInputFormatter,
                   textInputAction: TextInputAction.next,
+                  controller: idTextController,
+                  suffixIcon: IconButton(
+                    onPressed: idTextController.clear,
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.grey[600]!,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: kDefaultPadding,
@@ -78,6 +90,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   obscureText: true,
                   validator: customPasswordValidate,
                   textInputAction: TextInputAction.done,
+                  controller: passwordTextController,
+                  suffixIcon: IconButton(
+                    onPressed: passwordTextController.clear,
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.grey[600]!,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: kDefaultPadding,

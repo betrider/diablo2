@@ -11,6 +11,7 @@ class StandardScreen extends StatefulWidget {
 
 class StandardScreenState extends State<StandardScreen> {
   ItemListController itemListController = Get.put(ItemListController());
+  TextEditingController memoTextController = TextEditingController();
 
   bool isSearch = false;
 
@@ -27,6 +28,12 @@ class StandardScreenState extends State<StandardScreen> {
       await Future.delayed(Duration(seconds: 0, milliseconds: 2000)); //api 호출
       itemListController.itemAdd();
       itemListController.updateLoading(false);
+    }
+  }
+
+  void reset() async {
+    if (!isSearch) {
+      itemListController.reset();
     }
   }
 
@@ -58,15 +65,17 @@ class StandardScreenState extends State<StandardScreen> {
                 //   child: CustomTitle.size30('1.검색 필터'),
                 // ),
                 SizedBox(height: kDefaultPadding * 2),
-                _getFirstItemGrade(context), // 2.1아이템 등급
+                _getFirstItemGrade(context), // 2.1 아이템 등급
                 SizedBox(height: kDefaultPadding * 2),
-                _getSecondItemType(context), // 2.2아이템 유형
+                _getSecondItemType(context), // 2.2 아이템 유형
                 SizedBox(height: kDefaultPadding * 2),
-                _getThirdItemName(context), // 2.3아이템명
+                _getThirdItemName(context), // 2.3 아이템명
                 SizedBox(height: kDefaultPadding * 2),
-                _getFourthItemPrefix(context), // 2.4-1아이템 접두사
-                SizedBox(height: kDefaultPadding * 2),
-                _getFourthItemSuffix(context), // 2.4-2 아이템 접미사
+                _getFourthItemMemo(context), // 2.4 메모
+                // SizedBox(height: kDefaultPadding * 2),
+                // _getFourthItemPrefix(context), // 2.4-1아이템 접두사
+                // SizedBox(height: kDefaultPadding * 2),
+                // _getFourthItemSuffix(context), // 2.4-2 아이템 접미사
                 // SizedBox(height: kDefaultPadding * 2),
                 // _getItemGoods(context), // 3.아이템 재화
                 // SizedBox(
@@ -77,24 +86,41 @@ class StandardScreenState extends State<StandardScreen> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (!isSearch) ...[
+                        SizedBox(
+                          height: kDefaultPadding * 2,
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                isSearch = true;
+                                load();
+                              },
+                              child: Text(
+                                '아이템 검색',
+                                style: TextStyle(fontFamily: 'kodia'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: kDefaultPadding,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                isSearch = false;
+                                reset();
+                              },
+                              child: Text(
+                                '검색 초기화',
+                                style: TextStyle(fontFamily: 'kodia'),
+                              ),
+                            ),
+                          ],
+                        ),
+                        if (isSearch) ...[
                           SizedBox(
                             height: kDefaultPadding * 2,
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              isSearch = true;
-                              load();
-                            },
-                            child: Text(
-                              '아이템 검색',
-                              style: TextStyle(fontFamily: 'kodia'),
-                            ),
-                          ),
-                        ] else ...[
-                          SizedBox(
-                              height: kDefaultPadding * 2,
-                            ),
                           Container(
                             width: 600,
                             child: ListView.separated(
@@ -188,10 +214,11 @@ class StandardScreenState extends State<StandardScreen> {
                 width: kDefaultPadding,
               ),
               Flexible(
-                  child: ChipGroup(
-                items: itemQualityList.firstAddText(),
-                itemsColor: itemQualityColor.firstAddColor(),
-              )),
+                child: ChipGroup(
+                  items: itemQualityList.firstAddText(),
+                  itemsColor: itemQualityColor.firstAddColor(),
+                ),
+              ),
             ],
           );
   }
@@ -255,6 +282,62 @@ class StandardScreenState extends State<StandardScreen> {
               ),
               Expanded(
                 child: _itemNameDropdown(),
+              ),
+            ],
+          );
+  }
+
+  Widget _getFourthItemMemo(BuildContext context) {
+    return Responsive.isMobile(context)
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('메모'),
+              ),
+              SizedBox(
+                height: kDefaultPadding,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: InputField(
+                  label: '',
+                  content: '검색어를 입력해주세요.',
+                  controller: memoTextController,
+                  onChanged: (value) {},
+                  suffixIcon: IconButton(
+                    onPressed: memoTextController.clear,
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.grey[600]!,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 200,
+                child: CustomTitle.size20('메모'),
+              ),
+              SizedBox(
+                width: kDefaultPadding,
+              ),
+              Expanded(
+                child: InputField(
+                  label: '',
+                  content: '검색어를 입력해주세요.',
+                  controller: memoTextController,
+                  onChanged: (value) {},
+                  suffixIcon: IconButton(
+                    onPressed: memoTextController.clear,
+                    icon: Icon(Icons.clear, color: Colors.white),
+                  ),
+                ),
               ),
             ],
           );

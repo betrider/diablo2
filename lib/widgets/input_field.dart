@@ -17,6 +17,7 @@ class InputField extends StatelessWidget {
     this.controller,
     this.textInputAction,
     this.enabled = true,
+    this.suffixIcon,
   });
 
   final String label;
@@ -34,6 +35,7 @@ class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
   final bool enabled;
+  final Widget? suffixIcon; 
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +43,19 @@ class InputField extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: maxWidth),
       child: Row(
         children: <Widget>[
-          SizedBox(
-            width: labelWidth,
-            child: Text(
-              "$label",
-              textAlign: TextAlign.left,
-              style: AppTextStyle.white_16_w400,
+          if (label != '') ...[
+            SizedBox(
+              width: labelWidth,
+              child: Text(
+                "$label",
+                textAlign: TextAlign.left,
+                style: AppTextStyle.white_16_w400,
+              ),
             ),
-          ),
-          SizedBox(
-            width: 20.0,
-          ),
+            SizedBox(
+              width: 20.0,
+            ),
+          ],
           Expanded(
             child: TextFormField(
               enabled: enabled,
@@ -104,6 +108,7 @@ class InputField extends StatelessWidget {
                 hintText: "$content",
                 hintStyle: AppTextStyle.grey_14_w400,
                 fillColor: Colors.black,
+                suffixIcon: suffixIcon
               ),
             ),
           ),

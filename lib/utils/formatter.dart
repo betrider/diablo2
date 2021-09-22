@@ -1,7 +1,11 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 List<TextInputFormatter> idTextInputFormatter = [
-  FilteringTextInputFormatter.deny(RegExp(RegExpSpecial)),
+  FilteringTextInputFormatter.allow(RegExp(RegExpId)),
+];
+
+List<TextInputFormatter> battleTagTextInputFormatter = [
+  FilteringTextInputFormatter.allow(RegExp(RegExpBattleTag)),
 ];
 
 class LowerCaseTextFormatter extends TextInputFormatter {

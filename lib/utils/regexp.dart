@@ -30,6 +30,12 @@ const RegExpNUMBER = r'(\d+)';
 ///한글 형식
 const RegExpKOREAN = r'[ㄱ-ㅎ|ㅏ-ㅣ|가-힣\]';
 
+///로그인 아이디 형식(영문+한글)
+const RegExpId = r'[a-zA-Z0-9]';
+
+///배틀태그 아이디
+const RegExpBattleTag = r'[a-zA-Z0-9#]';
+
 ///특수문자 형식
 const RegExpSpecial = r'[!?@#$%^&*():;+-=~{}<>_`"|\[\]\\''\']';
 

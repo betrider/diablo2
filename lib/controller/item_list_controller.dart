@@ -18,4 +18,9 @@ class ItemListController extends GetxController {
     isLoading = loading;
     update();
   }
+
+  void reset() {
+    if(count > 0) list.clear();
+    update();
+  }
 }

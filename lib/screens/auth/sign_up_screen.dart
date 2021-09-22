@@ -86,6 +86,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           controller: idTextController,
                           inputFormatters: idTextInputFormatter,
                           textInputAction: TextInputAction.next,
+                          suffixIcon: IconButton(
+                            onPressed: idTextController.clear,
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.grey[600]!,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -104,6 +111,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           obscureText: true,
                           controller: passwordTextController,
                           textInputAction: TextInputAction.next,
+                          suffixIcon: IconButton(
+                            onPressed: passwordTextController.clear,
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.grey[600]!,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -120,6 +134,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           obscureText: true,
                           controller: passwordCheckTextController,
                           textInputAction: TextInputAction.next,
+                          suffixIcon: IconButton(
+                            onPressed: passwordCheckTextController.clear,
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.grey[600]!,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -142,6 +163,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: phoneNumberTextController,
                               textInputAction: TextInputAction.done,
                               maxLength: 13,
+                              suffixIcon: IconButton(
+                                onPressed: phoneNumberTextController.clear,
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.grey[600]!,
+                                ),
+                              ),
                             ),
                             SizedBox(
                               width: kDefaultPadding,
@@ -204,6 +232,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       controller: authenticationTextController,
                                       maxLength: 6,
                                       textInputAction: TextInputAction.done,
+                                      suffixIcon: IconButton(
+                                        onPressed:
+                                            authenticationTextController.clear,
+                                        icon: Icon(
+                                          Icons.clear,
+                                          color: Colors.grey[600]!,
+                                        ),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: kDefaultPadding,
@@ -248,7 +284,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onFieldSubmitted: (value) {},
                           validator: customBattleTagIdValidate,
                           controller: battleTagTextController,
+                          inputFormatters: battleTagTextInputFormatter,
                           textInputAction: TextInputAction.next,
+                          suffixIcon: IconButton(
+                            onPressed: authenticationTextController.clear,
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.grey[600]!,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -263,7 +307,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onFieldSubmitted: (value) {},
                           validator: customDialogIdValidate,
                           controller: diabloIdTextController,
+                          inputFormatters: idTextInputFormatter,
                           textInputAction: TextInputAction.done,
+                          suffixIcon: IconButton(
+                            onPressed: diabloIdTextController.clear,
+                            icon: Icon(
+                              Icons.clear,
+                              color: Colors.grey[600]!,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: kDefaultPadding * 2,
