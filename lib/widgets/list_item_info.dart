@@ -10,21 +10,16 @@ class ListItemInfo extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.white),
-        color: Colors.black,
+        color: Color.fromRGBO(0, 0, 0, 0.9),
       ),
       width: 600,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ColoredBox(
-            color: Colors.black,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: ItemInfo(
-                itemModel: listItemModel.itemModel,
-              ),
-            ),
-          ),
+          listItemModel.itemImagePath.isEmpty
+              // ? Image.asset('assets/images/image-not-found.jpeg')
+              ? Image.asset('assets/images/sample_item.png')
+              : Image.network(listItemModel.itemImagePath),
           Container(
             color: Colors.grey[850],
             padding: EdgeInsets.symmetric(vertical: 8),

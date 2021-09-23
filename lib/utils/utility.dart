@@ -167,17 +167,9 @@ Future<void> urlLauncher({
 }
 
 /// 이미지 가지고오기(단일모드)
-///
-/// ImageSource.camera : 사진
-///
 /// ImageSource.gallery : 갤러리
 ///
-Future<String> getImagePath({
-  required ImageSource imageSource,
-  int aspectRatioX = 1,
-  int aspectRatioY = 1,
-  bool useCrop = false,
-}) async {
+Future<String> getImagePath() async {
   String? filePath;
 
   XFile? pickedFile = await ImagePicker().pickImage(

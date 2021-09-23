@@ -122,14 +122,7 @@ class _StandardItemRegistrationScreenState
         ListItemInfo(
           listItemModel: ListItemModel(
             boardId: '',
-            itemModel: ItemModel(
-              itemQuality: ItemQuality.Unique,
-              index: 'test',
-              code: '7gd',
-              reqLevel: 50,
-              additionalProperties: [],
-              basicProperties: [],
-            ),
+            itemImagePath: 'assets/images/runeword sample.png',
             battleTagId: userController.battleTagId!,
             dateTime: DateTime.now().toFullDateTimeString5(),
             diabloId: userController.diabloId!,

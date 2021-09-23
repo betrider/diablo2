@@ -6,7 +6,7 @@ class ListItemModel {
   String boardId;
 
   /// 아이템 정보
-  ItemModel itemModel;
+  String itemImagePath;
 
   /// 등록 시간
   String dateTime;
@@ -22,7 +22,7 @@ class ListItemModel {
 
   ListItemModel({
     required this.boardId,
-    required this.itemModel,
+    required this.itemImagePath,
     required this.dateTime,
     required this.battleTagId,
     required this.diabloId,

@@ -118,43 +118,41 @@ class StandardScreenState extends State<StandardScreen> {
                           ],
                         ),
                         if (isSearch) ...[
-                          SizedBox(
-                            height: kDefaultPadding * 2,
-                          ),
-                          Container(
-                            width: 600,
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              primary: false,
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListItemInfo(
-                                  listItemModel: ListItemModel(
-                                    boardId: '0001',
-                                    itemModel: ItemModel(
-                                      itemQuality: ItemQuality.Unique,
-                                      index: 'test',
-                                      code: '7gd',
-                                      reqLevel: 50,
-                                      additionalProperties: [],
-                                      basicProperties: [],
-                                    ),
-                                    battleTagId: 'betrider#12345',
-                                    dateTime:
-                                        DateTime.now().toFullDateTimeString5(),
-                                    diabloId: 'BETRIDER',
-                                    memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
-                                  ),
-                                );
-                              },
-                              itemCount: controller.count,
-                              separatorBuilder: (context, index) {
-                                return SizedBox(
-                                  height: kDefaultPadding / 2,
-                                );
-                              },
+                          if(controller.count > 0)...[
+                            SizedBox(
+                              height: kDefaultPadding * 2,
                             ),
-                          ),
+                            Container(
+                              width: 600,
+                              child: ListView.separated(
+                                shrinkWrap: true,
+                                primary: false,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ListItemInfo(
+                                    listItemModel: ListItemModel(
+                                      boardId: '0001',
+                                      itemImagePath: '',
+                                      battleTagId: 'betrider#12345',
+                                      dateTime:
+                                          DateTime.now().toFullDateTimeString5(),
+                                      diabloId: 'BETRIDER',
+                                      memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
+                                    ),
+                                  );
+                                },
+                                itemCount: controller.count,
+                                separatorBuilder: (context, index) {
+                                  return SizedBox(
+                                    height: kDefaultPadding / 2,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                           if (controller.isLoading) ...[
+                            SizedBox(
+                              height: kDefaultPadding * 2,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

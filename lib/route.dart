@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/screens/ladder/ladder_item_registration_screen.dart';
 import 'package:flutter_diablo2_exchange/screens/standard/standard_item_registration_screen.dart';
@@ -14,7 +17,7 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => MyHomePage()),
+      GetPage(name: '/sample', page: () => MyImagePicker()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
 
       GetPage(name: '/sign_in', page: () => SignInScreen()), //로그인
@@ -72,6 +75,178 @@ class SampleArgumentPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SamplePage2 extends StatefulWidget {
+  const SamplePage2({Key? key}) : super(key: key);
+
+  @override
+  State<SamplePage2> createState() => _SamplePage2State();
+}
+
+class _SamplePage2State extends State<SamplePage2> {
+  String imagePath = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListItemInfo(
+                listItemModel: ListItemModel(
+                  boardId: '0001',
+                  itemImagePath: imagePath,
+                  battleTagId: 'betrider#12345',
+                  dateTime: DateTime.now().toFullDateTimeString5(),
+                  diabloId: 'BETRIDER',
+                  memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
+                ),
+              ),
+              ElevatedButton(
+                child: Text("이미지 가져오기"),
+                onPressed: () async {
+                  imagePath = await getImagePath();
+                  setState(() {});
+                  print('imagePath : $imagePath');
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyImagePicker extends StatefulWidget {
+  @override
+  _MyImagePickerState createState() => _MyImagePickerState();
+}
+
+class _MyImagePickerState extends State<MyImagePicker> {
+  XFile? _imageFile;
+  final String uploadUrl = 'https://api.imgur.com/3/upload';
+  // final String uploadUrl = 'https://httpbin.org/post';
+  final ImagePicker _picker = ImagePicker();
+
+  Future<String?> uploadImage(XFile? file, filepath , url) async {
+
+    Uint8List fileByte = await file!.readAsBytes();
+    print(filepath.split("/").last);
+
+    // Map<String, String> headers = { "Accesstoken": "access_token"};
+    var request = http.MultipartRequest('POST', Uri.parse(url));
+
+    // request.headers.addAll(headers); //1번
+    // request.headers["Accesstoken"] = 'access_token'; //2번
+    
+    // request.files.add(await http.MultipartFile.fromPath('image', filepath));
+    request.files.add(
+        http.MultipartFile.fromBytes(
+            'picture',
+            fileByte,
+            filename: filepath.split("/").last
+        )
+    );
+    // request.files.add(
+    //   http.MultipartFile(
+    //     'image',
+    //     File(filepath).readAsBytes().asStream(),
+    //     File(filepath).lengthSync(),
+    //     filename: filepath.split("/").last,
+    //   ),
+    // );
+
+    //request.fields['key'] = 'value';
+    var res = await request.send();
+    return res.reasonPhrase;
+  }
+
+  Future<void> retriveLostData() async {
+    final LostDataResponse response = await _picker.retrieveLostData();
+    if (response.isEmpty) {
+      return;
+    }
+    if (response.file != null) {
+      setState(() {
+        _imageFile = response.file;
+      });
+    } else {
+      print('Retrieve error ' + response.exception!.code);
+    }
+  }
+
+  Widget _previewImage() {
+    if (_imageFile != null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // Image.file(File(_imageFile!.path)),
+            Image.network(_imageFile!.path),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                var res = await uploadImage(_imageFile, _imageFile!.path, uploadUrl);
+                print('result');
+                print(res);
+              },
+              child: const Text('Upload'),
+            )
+          ],
+        ),
+      );
+    } else {
+      return const Text(
+        'You have not yet picked an image.',
+        textAlign: TextAlign.center,
+      );
+    }
+  }
+
+  void _pickImage() async {
+    try {
+      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _imageFile = pickedFile;
+      });
+    } catch (e) {
+      print("Image picker error " + e.toString());
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('image upload'),
+      ),
+      body: Center(
+          child: FutureBuilder<void>(
+        future: retriveLostData(),
+        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return const Text('Picked an image');
+            case ConnectionState.done:
+              return _previewImage();
+            default:
+              return const Text('Picked an image');
+          }
+        },
+      )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _pickImage,
+        tooltip: 'Pick Image from gallery',
+        child: Icon(Icons.photo_library),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
