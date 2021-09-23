@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/screens/ladder/ladder_item_registration_screen.dart';
@@ -17,7 +15,7 @@ class RouteGenerator {
 
   static List<GetPage<dynamic>> getPages() {
     return [
-      GetPage(name: '/sample', page: () => MyImagePicker()),
+      GetPage(name: '/sample', page: () => APISamplePage()),
       GetPage(name: '/sample/:uid', page: () => SampleArgumentPage()),
 
       GetPage(name: '/sign_in', page: () => SignInScreen()), //로그인
@@ -122,36 +120,90 @@ class _SamplePage2State extends State<SamplePage2> {
   }
 }
 
-class MyImagePicker extends StatefulWidget {
+class APISamplePage extends StatefulWidget {
+
   @override
-  _MyImagePickerState createState() => _MyImagePickerState();
+  _APISamplePageState createState() => _APISamplePageState();
 }
 
-class _MyImagePickerState extends State<MyImagePicker> {
+class _APISamplePageState extends State<APISamplePage> {
+late Future<Post> post;
+
+  @override
+  void initState() {
+    super.initState();
+    post = ApiService.fetchPost();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Fetch Data Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Fetch Data Example'),
+        ),
+        body: Center(
+          child: FutureBuilder<Post>(
+            future: post,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data!.title);
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+
+              // 기본적으로 로딩 Spinner를 보여줍니다.
+              return CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ImageUploadSample extends StatefulWidget {
+  @override
+  _ImageUploadSampleState createState() => _ImageUploadSampleState();
+}
+
+class _ImageUploadSampleState extends State<ImageUploadSample> {
   XFile? _imageFile;
   final String uploadUrl = 'https://api.imgur.com/3/upload';
   // final String uploadUrl = 'https://httpbin.org/post';
   final ImagePicker _picker = ImagePicker();
 
-  Future<String?> uploadImage(XFile? file, filepath , url) async {
+  // _postRequest() async {
+  //   String url = 'http://example.com/login';
 
-    Uint8List fileByte = await file!.readAsBytes();
-    print(filepath.split("/").last);
+  //   http.Response response = await http.post(
+  //     Uri.parse(uploadUrl),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     body: <String, String>{
+  //       'user_id': 'user_id_value',
+  //       'user_pwd': 'user_pwd_value'
+  //     },
+  //   );
+  // }
+
+  Future<String?> uploadImage(XFile? file, filepath, url) async {
+    dynamic fileByte = await file!.readAsBytes();
 
     // Map<String, String> headers = { "Accesstoken": "access_token"};
     var request = http.MultipartRequest('POST', Uri.parse(url));
 
     // request.headers.addAll(headers); //1번
     // request.headers["Accesstoken"] = 'access_token'; //2번
-    
+
     // request.files.add(await http.MultipartFile.fromPath('image', filepath));
-    request.files.add(
-        http.MultipartFile.fromBytes(
-            'picture',
-            fileByte,
-            filename: filepath.split("/").last
-        )
-    );
+    request.files.add(http.MultipartFile.fromBytes('picture', fileByte,
+        filename: filepath.split("/").last));
     // request.files.add(
     //   http.MultipartFile(
     //     'image',
@@ -193,7 +245,8 @@ class _MyImagePickerState extends State<MyImagePicker> {
             ),
             ElevatedButton(
               onPressed: () async {
-                var res = await uploadImage(_imageFile, _imageFile!.path, uploadUrl);
+                var res =
+                    await uploadImage(_imageFile, _imageFile!.path, uploadUrl);
                 print('result');
                 print(res);
               },
@@ -251,14 +304,14 @@ class _MyImagePickerState extends State<MyImagePicker> {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class SMSAUthSample extends StatefulWidget {
+  const SMSAUthSample({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SMSAUthSampleState createState() => _SMSAUthSampleState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SMSAUthSampleState extends State<SMSAUthSample> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _smsController = TextEditingController();
 

@@ -1,6 +1,13 @@
 import 'package:intl/intl.dart';
 
 extension StringExtension2 on String? {
+
+  /// 문자열 -> Uri 변환
+  Uri get toUri{
+    if (this == null) return Uri.parse('');
+    return Uri.parse(this!);
+  }
+  
   /// 문자열 변환 시 데이터가 없는경우 초기값 제공
   ///
   /// Example:

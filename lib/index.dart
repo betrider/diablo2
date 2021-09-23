@@ -22,6 +22,9 @@ export 'package:flutter_diablo2_exchange/utils/utils.dart';
 // Controllers
 export 'package:flutter_diablo2_exchange/controller/controller.dart';
 
+// API
+export 'package:flutter_diablo2_exchange/api/api_service.dart';
+
 // Others Packages
 export 'package:get/get.dart';
 export 'package:flutter_svg/flutter_svg.dart';
