@@ -15,7 +15,7 @@ class MenuController extends GetxController {
 
   int get selectedIndex => _selectedIndex.value;
   List<String> get menuItems =>
-      ["exchange(standard)", "exchange(ladder)"]; //"item dictionary"
+      ["exchange(standard)", "exchange(ladder)", "my registered information"]; //"item dictionary"
   GlobalKey<ScaffoldState> get scaffoldkey => _scaffoldKey;
 
   void openOrCloseDrawer() {

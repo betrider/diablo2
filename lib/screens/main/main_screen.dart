@@ -1,5 +1,6 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/screens/ladder/ladder_screen.dart';
+import 'package:flutter_diablo2_exchange/screens/registered/my_registered_screen.dart';
 import 'package:flutter_diablo2_exchange/screens/standard/standard_screen.dart';
 import 'components/header.dart';
 import 'components/side_menu.dart';
@@ -56,8 +57,8 @@ class _MainScreenState extends State<MainScreen> {
                       return StandardScreen(key: _standardKey);
                     case 1:
                       return LadderScreen();
-                    // case 2:
-                    //   return ItemDictionaryScreen();
+                    case 2:
+                      return MyRegisteredScreen();
                     default:
                       return StandardScreen(key: _standardKey);
                   }

@@ -9,6 +9,7 @@ const Map<String, String> koKR = {
   'home': '홈',
   'exchange(standard)': '거래소(스탠다드)',
   'exchange(ladder)': '거래소(래더)',
+  'my registered information': '내 등록 정보',
   'welcome to the diablo2 exchange': '디아블로2 거래소에 오신걸 환영합니다.',
   'item dictionary': '아이템 사전',
 
