@@ -36,6 +36,9 @@ const RegExpId = r'[a-zA-Z0-9]';
 ///배틀태그 아이디
 const RegExpBattleTag = r'[a-zA-Z0-9#]';
 
+///디아블로 아이디
+const RegExpDiabloId = r'[a-zA-Z]';
+
 ///특수문자 형식
 const RegExpSpecial = r'[!?@#$%^&*():;+-=~{}<>_`"|\[\]\\''\']';
 

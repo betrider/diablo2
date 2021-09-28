@@ -16,58 +16,25 @@ class ListItemInfo extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          listItemModel.itemImagePath.isEmpty
-              // ? Image.asset('assets/images/image-not-found.jpeg')
-              ? Image.asset('assets/images/sample_item.png')
-              : Image.network(listItemModel.itemImagePath),
           Container(
             color: Colors.grey[850],
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: Responsive.isMobile(context)
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _getDateTime(), //등록시간
-                      SizedBox(
-                        height: 4,
-                      ),
-                      _copyMessage(), //메시지복사
-                      SizedBox(
-                        height: 4,
-                      ),
-                      _getBattleTag(), //배틀태그
-                      SizedBox(
-                        height: 4,
-                      ),
-                      _getDiabloId(), //디아블로 아이디
-                    ],
-                  )
-                : Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(flex: 1, child: _getDateTime() //등록시간
-                              ),
-                          Expanded(
-                            flex: 1,
-                            child: _copyMessage(), //메시지복사
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            child: _getBattleTag(), //배틀태그
-                          ),
-                          Expanded(
-                            child: _getDiabloId(), //디아블로 아이디
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+            height: 30,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Text('카테고리 : 유니크 > 무기 > 할배검',
+                    style: AppTextStyle.white_14_w400),
+              ],
+            ),
           ),
+          Divider(
+            color: Colors.white,
+            height: 1,
+          ),
+          listItemModel.itemImagePath.isEmpty
+              ? Container()
+              // ? Image.asset('assets/images/sample_item.png')
+              : Image.network(listItemModel.itemImagePath),
           Container(
             width: double.infinity,
             color: Colors.grey[800],
@@ -77,14 +44,52 @@ class ListItemInfo extends StatelessWidget {
               style: AppTextStyle.white_14_w400,
             ),
           ),
+          Container(
+              color: Colors.grey[850],
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Responsive.isMobile(context)
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _getDateTime(Alignment.center),
+                        _copyMessage(Alignment.center),
+                        _getBattleTag(Alignment.center),
+                        _getDiabloId(Alignment.center)
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                                child:
+                                    _getDateTime(Alignment.centerLeft)), //등록시간
+                            Expanded(
+                                child:
+                                    _copyMessage(Alignment.centerLeft)), //메시지복사
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child:
+                                    _getBattleTag(Alignment.centerLeft)), //배틀태그
+                            Expanded(
+                                child: _getDiabloId(
+                                    Alignment.centerLeft)), //디아블로 아이디
+                          ],
+                        ),
+                      ],
+                    )),
         ],
       ),
     );
   }
 
-  Align _getDateTime() {
+  Widget _getDateTime(Alignment align) {
     return Align(
-      alignment: Alignment.center,
+      alignment: align,
       child: TextButton.icon(
         onPressed: null,
         icon: Icon(
@@ -99,9 +104,28 @@ class ListItemInfo extends StatelessWidget {
     );
   }
 
-  Align _getDiabloId() {
+  Widget _copyMessage(Alignment align) {
     return Align(
-      alignment: Alignment.center,
+      alignment: align,
+      child: TextButton.icon(
+        onPressed: () {
+          Clipboard.setData(ClipboardData(
+                  text:
+                      '\\w ${listItemModel.diabloId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.'))
+              .then((value) {
+            showToast(message: '복사되었습니다.');
+          });
+        },
+        icon: Icon(Icons.message),
+        label: Text('메시지복사', style: AppTextStyle.white_14_w400),
+      ),
+    );
+  }
+
+  Widget _getDiabloId(Alignment align) {
+    return Container(
+      alignment: align,
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -120,9 +144,10 @@ class ListItemInfo extends StatelessWidget {
     );
   }
 
-  Align _getBattleTag() {
-    return Align(
-      alignment: Alignment.center,
+  Widget _getBattleTag(Alignment align) {
+    return Container(
+      alignment: align,
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -137,24 +162,6 @@ class ListItemInfo extends StatelessWidget {
           Text('배틀태그 : ${listItemModel.battleTagId}',
               style: AppTextStyle.white_14_w400),
         ],
-      ),
-    );
-  }
-
-  Align _copyMessage() {
-    return Align(
-      alignment: Alignment.center,
-      child: TextButton.icon(
-        onPressed: () {
-          Clipboard.setData(ClipboardData(
-                  text:
-                      '\\w ${listItemModel.diabloId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.'))
-              .then((value) {
-            showToast(message: '복사되었습니다.');
-          });
-        },
-        icon: Icon(Icons.message),
-        label: Text('메시지복사', style: AppTextStyle.white_14_w400),
       ),
     );
   }

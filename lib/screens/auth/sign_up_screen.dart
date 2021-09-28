@@ -307,7 +307,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onFieldSubmitted: (value) {},
                           validator: customDialogIdValidate,
                           controller: diabloIdTextController,
-                          inputFormatters: idTextInputFormatter,
+                          inputFormatters: diabloIdTextInputFormatter,
                           textInputAction: TextInputAction.done,
                           suffixIcon: IconButton(
                             onPressed: diabloIdTextController.clear,

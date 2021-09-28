@@ -8,6 +8,10 @@ List<TextInputFormatter> battleTagTextInputFormatter = [
   FilteringTextInputFormatter.allow(RegExp(RegExpBattleTag)),
 ];
 
+List<TextInputFormatter> diabloIdTextInputFormatter = [
+  FilteringTextInputFormatter.allow(RegExp(RegExpDiabloId)),
+];
+
 class LowerCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

@@ -64,6 +64,7 @@ const Map<String, String> koKR = {
 
   //잼
   'Gem': '잼',
+  'Gem Type': '잼',
 
   'Perfect Ruby': '최상급 루비',
   'Perfect Sapphire': '최상급 사파이어',
