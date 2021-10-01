@@ -295,5 +295,17 @@ class AppTextStyle {
     fontFamily: _fontFamily
   );
 
+  /// Color : green
+  ///
+  /// Size : 14
+  ///
+  /// Weight : Regular(400)
+  static const green_14_w400 = TextStyle(
+    color: Colors.green,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: _fontFamily
+  );
+
 }
 

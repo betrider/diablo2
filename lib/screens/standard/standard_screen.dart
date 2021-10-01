@@ -118,7 +118,7 @@ class StandardScreenState extends State<StandardScreen> {
                           ],
                         ),
                         if (isSearch) ...[
-                          if(controller.count > 0)...[
+                          if (controller.count > 0) ...[
                             SizedBox(
                               height: kDefaultPadding * 2,
                             ),
@@ -132,9 +132,11 @@ class StandardScreenState extends State<StandardScreen> {
                                     listItemModel: ListItemModel(
                                       boardId: '0001',
                                       itemImagePath: '',
+                                      dealStatus: index % 2 == 0 ?  DealStatus.REGISTERED : DealStatus.COMPLETE,
+                                      dealType: index % 2 == 0 ? DealType.SELL : DealType.BUY,
                                       battleTagId: 'betrider#12345',
-                                      dateTime:
-                                          DateTime.now().toFullDateTimeString5(),
+                                      dateTime: DateTime.now()
+                                          .toFullDateTimeString5(),
                                       diabloId: 'BETRIDER',
                                       memo: '메모입니다.1\n메모입니다.2\n메모입니다.3',
                                     ),

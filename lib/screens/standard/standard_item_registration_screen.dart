@@ -123,6 +123,8 @@ class _StandardItemRegistrationScreenState
           listItemModel: ListItemModel(
             boardId: '',
             itemImagePath: 'assets/images/runeword sample.png',
+            dealStatus: DealStatus.REGISTERED,
+            dealType: DealType.SELL,
             battleTagId: userController.battleTagId!,
             dateTime: DateTime.now().toFullDateTimeString5(),
             diabloId: userController.diabloId!,

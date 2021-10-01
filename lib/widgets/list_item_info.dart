@@ -7,82 +7,129 @@ class ListItemInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.white),
-        color: Color.fromRGBO(0, 0, 0, 0.9),
-      ),
-      width: 600,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            color: Colors.grey[850],
-            height: 30,
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Row(
+    return Opacity(
+      opacity: listItemModel.dealStatus == DealStatus.REGISTERED ? 1 : 0.5,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: Colors.white),
+          color: Color.fromRGBO(0, 0, 0, 0.9),
+        ),
+        width: 600,
+        child: Stack(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text('카테고리 : 유니크 > 무기 > 할배검',
-                    style: AppTextStyle.white_14_w400),
+                Container(
+                  color: Colors.grey[850],
+                  height: 30,
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          listItemModel.dealType == DealType.BUY
+                              ? Text(
+                                  '삽니다',
+                                  style: AppTextStyle.green_14_w400,
+                                )
+                              : Text(
+                                  '팝니다',
+                                  style: AppTextStyle.red_14_w400,
+                                ),
+                          VerticalDivider(
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Text(
+                          '유니크 > 무기 > 할배검',
+                          style: AppTextStyle.white_14_w400,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          VerticalDivider(
+                            color: Colors.white,
+                          ),
+                          listItemModel.dealStatus == DealStatus.REGISTERED
+                              ? Text(
+                                  '등록완료',
+                                  style: AppTextStyle.white_14_w400,
+                                )
+                              : Text(
+                                  '거래완료',
+                                  style: AppTextStyle.white_14_w400,
+                                ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  color: Colors.white,
+                  height: 1,
+                ),
+                listItemModel.itemImagePath.isEmpty
+                    ? Container()
+                    // ? Image.asset('assets/images/sample_item.png')
+                    : Image.network(listItemModel.itemImagePath),
+                Container(
+                  width: double.infinity,
+                  color: Colors.grey[800],
+                  padding: EdgeInsets.all(8),
+                  child: SelectableText(
+                    listItemModel.memo,
+                    style: AppTextStyle.white_14_w400,
+                  ),
+                ),
+                Container(
+                    color: Colors.grey[850],
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: Responsive.isMobile(context)
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _getDateTime(Alignment.center),
+                              _copyMessage(Alignment.center),
+                              _getBattleTag(Alignment.center),
+                              _getDiabloId(Alignment.center)
+                            ],
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: _getDateTime(Alignment.centerLeft),
+                                  ), //등록시간
+                                  Expanded(
+                                    child: _copyMessage(Alignment.centerLeft),
+                                  ), //메시지복사
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: _getBattleTag(Alignment.centerLeft),
+                                  ), //배틀태그
+                                  Expanded(
+                                    child: _getDiabloId(Alignment.centerLeft),
+                                  ), //디아블로 아이디
+                                ],
+                              ),
+                            ],
+                          )),
               ],
             ),
-          ),
-          Divider(
-            color: Colors.white,
-            height: 1,
-          ),
-          listItemModel.itemImagePath.isEmpty
-              ? Container()
-              // ? Image.asset('assets/images/sample_item.png')
-              : Image.network(listItemModel.itemImagePath),
-          Container(
-            width: double.infinity,
-            color: Colors.grey[800],
-            padding: EdgeInsets.all(8),
-            child: SelectableText(
-              listItemModel.memo,
-              style: AppTextStyle.white_14_w400,
-            ),
-          ),
-          Container(
-              color: Colors.grey[850],
-              padding: EdgeInsets.symmetric(vertical: 8),
-              child: Responsive.isMobile(context)
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        _getDateTime(Alignment.center),
-                        _copyMessage(Alignment.center),
-                        _getBattleTag(Alignment.center),
-                        _getDiabloId(Alignment.center)
-                      ],
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                                child:
-                                    _getDateTime(Alignment.centerLeft)), //등록시간
-                            Expanded(
-                                child:
-                                    _copyMessage(Alignment.centerLeft)), //메시지복사
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                                child:
-                                    _getBattleTag(Alignment.centerLeft)), //배틀태그
-                            Expanded(
-                                child: _getDiabloId(
-                                    Alignment.centerLeft)), //디아블로 아이디
-                          ],
-                        ),
-                      ],
-                    )),
-        ],
+          ],
+        ),
       ),
     );
   }

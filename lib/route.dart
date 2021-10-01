@@ -98,6 +98,8 @@ class _SamplePage2State extends State<SamplePage2> {
                 listItemModel: ListItemModel(
                   boardId: '0001',
                   itemImagePath: imagePath,
+                  dealStatus: DealStatus.REGISTERED,
+                  dealType: DealType.SELL,
                   battleTagId: 'betrider#12345',
                   dateTime: DateTime.now().toFullDateTimeString5(),
                   diabloId: 'BETRIDER',
