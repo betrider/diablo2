@@ -1,7 +1,7 @@
 // 음역 번역
 const Map<String, String> koKR2 = {
   //기타
-  'All': '모두',
+  'All': '전체',
 
   //메뉴
   'login': '로그인',
@@ -9,7 +9,7 @@ const Map<String, String> koKR2 = {
   'home': '홈',
   'exchange(standard)': '거래소(스탠다드)',
   'exchange(ladder)': '거래소(래더)',
-  'my registered information': '내 등록 정보',
+  'my registered information': '내 물품 정보',
   'welcome to the diablo2 exchange': '디아블로2 거래소에 오신걸 환영합니다.',
   'item dictionary': '아이템 사전',
 
@@ -40,8 +40,8 @@ const Map<String, String> koKR2 = {
   'Swords': '소드',
   'Throwing Weapons': '스로잉',
   'Wands': '원드',
-  'Amazon Weapons': '아마존 무기',
-  'Assassin Katars': '어쌔신 카타르',
+  'Amazon Weapons': '아마존 전용',
+  'Assassin Katars': '어쌔신 클러',
   'Sorceress Orbs': '소서리스 오브',
 
   //방어구
@@ -51,10 +51,10 @@ const Map<String, String> koKR2 = {
   'Gloves': '글러브',
   'Boots': '부츠',
   'Belts': '벨트',
-  'Druid Pelts': '드루이드 펠트',
+  'Druid Pelts': '드루이드 헬름',
   'Barbarian Helms': '바바리안 헬름',
-  'Paladin Shields': '팔라딘 쉴드',
-  'Necromancer Shrunken Heads': '네크로맨서 쉬렁큰 헤드',
+  'Paladin Shields': '팔라딘 방패',
+  'Necromancer Shrunken Heads': '네크로맨서 방패',
 
   //나머지
   'Circlets': '서클릿',

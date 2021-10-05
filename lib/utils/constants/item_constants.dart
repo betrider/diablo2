@@ -2,8 +2,10 @@ import 'package:flutter_diablo2_exchange/index.dart';
 
 /// 아이템 종류
 const itemType = [
+  'All',
   ...Armor, //갑옷
   ...Weapons, //무기
+  ...Class, //클래스 전용
   ...OtherItems, //기타
 ];
 
@@ -14,10 +16,6 @@ const Armor = [
   'Gloves',
   'Boots',
   'Belts',
-  'Druid Pelts',
-  'Barbarian Helms',
-  'Paladin Shields',
-  'Necromancer Shrunken Heads',
 ];
 
 const Weapons = [
@@ -34,19 +32,26 @@ const Weapons = [
   'Swords',
   'Throwing Weapons',
   'Wands',
+];
+
+const Class = [
   'Amazon Weapons',
   'Assassin Katars',
   'Sorceress Orbs',
+  'Druid Pelts',
+  'Barbarian Helms',
+  'Paladin Shields',
+  'Necromancer Shrunken Heads',
 ];
 
 const OtherItems = [
   'Circlets',
-  'Gem Type',
-  'Rune',
-  'Charm',
-  'Jewel',
   'Amulet',
   'Ring',
+  'Charm',
+  'Jewel',
+  'Gem Type',
+  'Rune',
 ];
 
 /// 아이템 등급
@@ -113,6 +118,93 @@ const itemQualityColor = [
 
   /// 노말
   ItemColor.white
+];
+
+/// 보석 타입
+const gemType = [
+  'gcv',
+  'gfv',
+  'gsv',
+  'gzv',
+  'gpv',
+  'gcy',
+  'gfy',
+  'gsy',
+  'gly',
+  'gpy',
+  'gcb',
+  'gfb',
+  'gsb',
+  'glb',
+  'gpb',
+  'gcg',
+  'gfg',
+  'glg',
+  'gsg',
+  'gpg',
+  'gcr',
+  'gfr',
+  'gsr',
+  'glr',
+  'gpr',
+  'gcw',
+  'gfw',
+  'gsw',
+  'glw',
+  'gpw',
+  'hp1',
+  'hp2',
+  'hp3',
+  'hp4',
+  'hp5',
+  'mp1',
+  'mp2',
+  'mp3',
+  'mp4',
+  'mp5',
+  'hrb',
+  'skc',
+  'skf',
+  'sku',
+  'skl',
+  'skz',
+];
+
+///룬 타입
+const runTeype = [
+  'r01',
+  'r02',
+  'r03',
+  'r04',
+  'r05',
+  'r06',
+  'r07',
+  'r08',
+  'r09',
+  'r10',
+  'r11',
+  'r12',
+  'r13',
+  'r14',
+  'r15',
+  'r16',
+  'r17',
+  'r18',
+  'r19',
+  'r20',
+  'r21',
+  'r22',
+  'r23',
+  'r24',
+  'r25',
+  'r26',
+  'r27',
+  'r28',
+  'r29',
+  'r30',
+  'r31',
+  'r32',
+  'r33',
 ];
 
 /// 거래 재화(룬, 보석)

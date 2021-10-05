@@ -158,7 +158,7 @@ class ListItemInfo extends StatelessWidget {
         onPressed: () {
           Clipboard.setData(ClipboardData(
                   text:
-                      '\\w ${listItemModel.diabloId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.'))
+                      '\\w ${listItemModel.battleTagId} 게시판ID:${listItemModel.boardId} 거래를 원합니다.'))
               .then((value) {
             showToast(message: '복사되었습니다.');
           });
@@ -206,8 +206,17 @@ class ListItemInfo extends StatelessWidget {
           SizedBox(
             width: 8,
           ),
-          Text('배틀태그 : ${listItemModel.battleTagId}',
-              style: AppTextStyle.white_14_w400),
+          InkWell(
+            onTap: () {
+              Clipboard.setData(
+                ClipboardData(text: listItemModel.battleTagId),
+              ).then((value) {
+                showToast(message: '복사되었습니다.');
+              });
+            },
+            child: Text('배틀태그 : ${listItemModel.battleTagId}',
+                style: AppTextStyle.white_14_w400),
+          ),
         ],
       ),
     );

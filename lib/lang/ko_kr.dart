@@ -1,7 +1,7 @@
 // 완역 번역
 const Map<String, String> koKR = {
   //기타
-  'All': '모두',
+  'All': '전체',
 
   //메뉴
   'login': '로그인',
@@ -9,7 +9,7 @@ const Map<String, String> koKR = {
   'home': '홈',
   'exchange(standard)': '거래소(스탠다드)',
   'exchange(ladder)': '거래소(래더)',
-  'my registered information': '내 등록 정보',
+  'my registered information': '내 물품 정보',
   'welcome to the diablo2 exchange': '디아블로2 거래소에 오신걸 환영합니다.',
   'item dictionary': '아이템 사전',
 
@@ -39,9 +39,9 @@ const Map<String, String> koKR = {
   'Staves': '지팡이',
   'Swords': '도검',
   'Throwing Weapons': '투척 무기',
-  'Wands': '마술봉',
-  'Amazon Weapons': '아마존 무기',
-  'Assassin Katars': '어쌔신 카타르',
+  'Wands': '완드',
+  'Amazon Weapons': '아마존 전용',
+  'Assassin Katars': '어쌔신 클러',
   'Sorceress Orbs': '소서리스 오브',
 
   //방어구
@@ -51,13 +51,13 @@ const Map<String, String> koKR = {
   'Gloves': '장갑',
   'Boots': '신발',
   'Belts': '허리띠',
-  'Druid Pelts': '드루이드 펠트',
+  'Druid Pelts': '드루이드 헬름',
   'Barbarian Helms': '바바리안 헬름',
-  'Paladin Shields': '팔라딘 쉴드',
-  'Necromancer Shrunken Heads': '네크로맨서 쉬렁큰 헤드',
+  'Paladin Shields': '팔라딘 방패',
+  'Necromancer Shrunken Heads': '네크로맨서 방패',
 
   //나머지
-  'Circlets': '띠관',
+  'Circlets': '써클렛',
   'Amulet': '아뮬렛',
   'Ring': '링',
 
@@ -80,12 +80,12 @@ const Map<String, String> koKR = {
   'Jewels': '주얼',
 
   //참
-  'Charm': '차암',
-  'Charms': '차암',
+  'Charm': '부적',
+  'Charms': '부적',
 
-  'Grand Charms': '그랜드 차암',
-  'Large Charms': '라지 차암',
-  'Small Charms': '스몰 차암',
+  'Grand Charms': '거대 부적',
+  'Large Charms': '큰 부적',
+  'Small Charms': '작은 부적',
 
   'Hellfire Toach': '지옥의 횃불',
   'Annihilus': '애니힐러스',

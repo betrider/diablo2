@@ -138,7 +138,7 @@ class _StandardItemRegistrationScreenState
   Column _getItemPreview() {
     return Column(
       children: [
-        CustomTitle.size20('아이템 옵션선택'),
+        CustomTitle.size20('아이템 카테고리'),
         SizedBox(height: kDefaultPadding),
         InputField(
           label: "옵션1",

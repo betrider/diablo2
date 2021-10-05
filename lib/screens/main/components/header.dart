@@ -83,6 +83,15 @@ class Header extends StatelessWidget {
                       fontFamily: 'kodia',
                     ),
                   ),
+                  SizedBox(height: kDefaultPadding),
+                  Text(
+                    "후원계좌 : 7979-37-48993(카카오뱅크)".tr,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontFamily: 'kodia',
+                    ),
+                  ),
                   // Text(
                   //   Get.find<UserController>().loginId ?? '노데이터',
                   //   style: TextStyle(

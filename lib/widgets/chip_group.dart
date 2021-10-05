@@ -6,11 +6,13 @@ class ChipGroup extends StatefulWidget {
     required this.items,
     this.itemsColor,
     this.itemsImagePath,
+    required this.onChanged
   }) : super(key: key);
 
   final List<String> items;
   final List<Color>? itemsColor;
   final List<String>? itemsImagePath;
+  final void Function(String value) onChanged;
 
   @override
   State<StatefulWidget> createState() => _ChipGroupState();
@@ -49,6 +51,7 @@ class _ChipGroupState extends State<ChipGroup> {
                 setState(() {
                   _selectedIndex = index;
                 });
+                return widget.onChanged(widget.items[_selectedIndex]);
               }
             },
           );
