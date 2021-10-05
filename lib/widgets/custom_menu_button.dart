@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:menu_button/menu_button.dart';
 
 class CustomMenuButton extends StatefulWidget {
-  const CustomMenuButton({required this.itemList, required this.onChanged});
+  const CustomMenuButton({
+    this.selectedKey,
+    required this.itemList,
+    required this.onChanged,
+  });
 
+  final String? selectedKey;
   final List<String> itemList;
   final void Function(String value) onChanged;
 
@@ -20,7 +25,7 @@ class _CustomMenuButtonState extends State<CustomMenuButton> {
   void initState() {
     super.initState();
     keys.addAll(widget.itemList);
-    selectedKey = keys[0];
+    selectedKey = widget.selectedKey ?? keys[0];
   }
 
   @override
@@ -43,8 +48,7 @@ class _CustomMenuButtonState extends State<CustomMenuButton> {
         });
         return widget.onChanged(value);
       },
-      onMenuButtonToggle: (bool isToggle) {
-      },
+      onMenuButtonToggle: (bool isToggle) {},
     );
   }
 

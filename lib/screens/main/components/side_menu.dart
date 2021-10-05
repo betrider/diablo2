@@ -2,7 +2,7 @@ import 'package:flutter_diablo2_exchange/index.dart';
 
 class SideMenu extends StatelessWidget {
   final MenuController _controller =
-      Get.put(MenuController(getCache.get('pageIndex')));
+      Get.put(MenuController(storage.read('pageIndex')));
 
   @override
   Widget build(BuildContext context) {

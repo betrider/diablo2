@@ -9,7 +9,8 @@ import 'login_button.dart';
 import 'web_menu.dart';
 
 class Header extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController(getCache.get('pageIndex')));
+  final MenuController _controller =
+      Get.put(MenuController(storage.read('pageIndex')));
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class Header extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: CustomMenuButton(
+                selectedKey: convertLocale,
                 itemList: LocalizationService.langs,
                 onChanged: (value) {
                   if (value == 'English') {
@@ -109,6 +111,21 @@ class Header extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String get convertLocale {
+    String storageLocale = storage.read('locale');
+    String returnValue;
+
+    if (storageLocale == 'en_US') {
+      returnValue = 'English';
+    } else if (storageLocale == 'ko_KR2') {
+      returnValue = '음역';
+    } else {
+      returnValue = '완역';
+    }
+
+    return returnValue;
   }
 }
 

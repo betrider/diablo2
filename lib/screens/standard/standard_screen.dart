@@ -37,10 +37,6 @@ class StandardScreenState extends State<StandardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('itemGrade : $selectItemGrade');
-    print('itemType : $selectItemType');
-    print('itemName : $selectItemName');
-    print('searchText : $searchText');
     return ConstrainedBox(
       constraints: BoxConstraints(
           minHeight: Get.height - 200, minWidth: double.infinity),

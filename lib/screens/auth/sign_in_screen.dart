@@ -114,13 +114,15 @@ class _SignInScreenState extends State<SignInScreen> {
                               side: BorderSide(color: Colors.grey[350]!),
                             ),
                             onPressed: () {
+
+                              //로그인정보 입력
+                              storage.write('loginId', 'betrider');
+                              storage.write('phoneNumber', '01055254256');
+                              storage.write('battleTagId', 'betrider#12345');
+                              storage.write('diabloId', '베트라이더');
+
                               //로그인 정보 확인 후 정보 받아오기
-                              Get.find<UserController>().signin(
-                                loginId2: 'betrider',
-                                phoneNumber2: '01055254256',
-                                battleTagId2: 'betrider#12345',
-                                diabloId2: '베트라이더',
-                              );
+                              Get.find<UserController>().signin();
 
                               if (true) {
                                 //로그인 성공 시

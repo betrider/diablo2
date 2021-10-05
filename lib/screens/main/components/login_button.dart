@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_diablo2_exchange/index.dart';
 import 'package:flutter_diablo2_exchange/utils/constants/color_constants.dart';
 
-class LoginButton extends StatelessWidget {
+class LoginButton extends StatefulWidget {
 
+  @override
+  State<LoginButton> createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UserController>(

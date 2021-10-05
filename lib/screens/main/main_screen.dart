@@ -12,7 +12,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final MenuController _controller =
-      Get.put(MenuController(getCache.get('pageIndex')));
+      Get.put(MenuController(storage.read('pageIndex')));
   final _scrollController = ScrollController();
   final GlobalKey<StandardScreenState> _standardKey =
       new GlobalKey<StandardScreenState>();

@@ -27,8 +27,8 @@ export 'package:flutter_diablo2_exchange/api/api_service.dart';
 
 // Others Packages
 export 'package:get/get.dart';
+export 'package:get_storage/get_storage.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:hive/hive.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:flutter_diablo2_exchange/responsive.dart';

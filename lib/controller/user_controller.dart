@@ -13,25 +13,27 @@ class UserController extends GetxController {
     this.diabloId,
   });
 
-  void signin({
-    required String loginId2,
-    required String phoneNumber2,
-    required String battleTagId2,
-    required String diabloId2,
-  }) {
-    loginId = loginId2;
-    phoneNumber = phoneNumber2;
-    battleTagId = battleTagId2;
-    diabloId = diabloId2;
+  void signin() {
+    loginId = storage.read('loginId');
+    phoneNumber = storage.read('phoneNumber');
+    battleTagId = storage.read('battleTagId');
+    diabloId = storage.read('diabloId');
 
     update();
   }
 
   void signout() {
-    this.loginId = null;
-    this.phoneNumber = null;
-    this.battleTagId = null;
-    this.diabloId = null;
+
+    //캐시제거
+    storage.remove('loginId');
+    storage.remove('phoneNumber');
+    storage.remove('battleTagId');
+    storage.remove('diabloId');
+
+    loginId = storage.read('loginId');
+    phoneNumber = storage.read('phoneNumber');
+    battleTagId = storage.read('battleTagId');
+    diabloId = storage.read('diabloId');
 
     update();
   }

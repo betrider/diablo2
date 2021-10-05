@@ -28,7 +28,7 @@ class MenuController extends GetxController {
 
   void setMenuIndex(int index) {
     _selectedIndex.value = index;
-    getCache.put('pageIndex', index);
+    storage.write('pageIndex', index);
     update();
   }
 }

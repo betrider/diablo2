@@ -1,7 +1,7 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 class WebMenu extends StatelessWidget {
-  final MenuController _controller = Get.put(MenuController(getCache.get('pageIndex')));
+  final MenuController _controller = Get.put(MenuController(storage.read('pageIndex')));
 
   @override
   Widget build(BuildContext context) {
