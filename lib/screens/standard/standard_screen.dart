@@ -60,9 +60,9 @@ class StandardScreenState extends State<StandardScreen> {
                 SizedBox(height: kDefaultPadding * 2),
                 _getSecondItemType(context), // 2.2 아이템 유형
                 SizedBox(height: kDefaultPadding * 2),
-                _getThirdItemName(context), // 2.3 아이템명
+                _getThirdItemName(context), // 2.3 아이템 이름
                 SizedBox(height: kDefaultPadding * 2),
-                _getSearchText(context), // 2.4 메모
+                _getSearchText(context), // 2.4 상세내용
                 GetBuilder<ItemListController>(
                   builder: (controller) {
                     return Column(

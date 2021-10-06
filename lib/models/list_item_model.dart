@@ -1,6 +1,8 @@
 import 'package:flutter_diablo2_exchange/index.dart';
 
 enum DealStatus{
+  /// 등록중
+  REGISTERING,
   /// 등록완료
   REGISTERED,
   /// 거래완료
@@ -22,7 +24,7 @@ class ListItemModel {
   /// 아이템 정보
   String itemImagePath;
 
-  /// 거래 상태(등록완료, 거래완료)
+  /// 거래 상태(등록중, 등록완료, 거래완료)
   DealStatus dealStatus;
 
   /// 거래 유형(팝니다, 삽니다)

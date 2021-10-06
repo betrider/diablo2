@@ -1,4 +1,5 @@
 import 'package:flutter_diablo2_exchange/index.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class StandardItemRegistrationScreen extends StatefulWidget {
@@ -12,8 +13,14 @@ class StandardItemRegistrationScreen extends StatefulWidget {
 class _StandardItemRegistrationScreenState
     extends State<StandardItemRegistrationScreen> {
   UserController userController = Get.find<UserController>();
+  TextEditingController memoTextController = TextEditingController();
 
-  String selectItem = '';
+  String selectItemGrade = '';
+  String selectItemType = '';
+  String selectItemName = '';
+  String itemImagePath = '';
+  String searchText = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +49,7 @@ class _StandardItemRegistrationScreenState
                   SizedBox(height: kDefaultPadding * 2),
                   Responsive.isMobile(context)
                       ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             _getItemOption(),
                             SizedBox(
@@ -50,17 +58,14 @@ class _StandardItemRegistrationScreenState
                             _getItemPreview(),
                           ],
                         )
-                      : SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              _getItemOption(),
-                              SizedBox(
-                                width: kDefaultPadding * 2,
-                              ),
-                              _getItemPreview(),
-                            ],
-                          ),
+                      : Row(
+                          children: [
+                            _getItemOption(),
+                            SizedBox(
+                              width: kDefaultPadding * 2,
+                            ),
+                            _getItemPreview(),
+                          ],
                         ),
                   SizedBox(height: kDefaultPadding * 2),
                   ConstrainedBox(
@@ -117,18 +122,18 @@ class _StandardItemRegistrationScreenState
   Column _getItemOption() {
     return Column(
       children: [
-        CustomTitle.size20('아이템 미리보기'),
-        SizedBox(height: kDefaultPadding),
+        CustomTitle.size24('아이템 미리보기'),
+        SizedBox(height: kDefaultPadding * 2),
         ListItemInfo(
           listItemModel: ListItemModel(
             boardId: '',
-            itemImagePath: 'assets/images/runeword sample.png',
-            dealStatus: DealStatus.REGISTERED,
+            itemImagePath: itemImagePath,
+            dealStatus: DealStatus.REGISTERING,
             dealType: DealType.SELL,
             battleTagId: userController.battleTagId!,
             dateTime: DateTime.now().toFullDateTimeString5(),
             diabloId: userController.diabloId!,
-            memo: '메모입니다.1\n메모입니다.2\n메모입니다.',
+            memo: searchText,
           ),
         ),
       ],
@@ -138,100 +143,72 @@ class _StandardItemRegistrationScreenState
   Column _getItemPreview() {
     return Column(
       children: [
-        CustomTitle.size20('아이템 카테고리'),
+        CustomTitle.size24('아이템 카테고리'),
+        SizedBox(height: kDefaultPadding * 2),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: CustomTitle.size20('아이템 등급'),
+        ),
         SizedBox(height: kDefaultPadding),
-        InputField(
-          label: "옵션1",
-          labelWidth: 120,
-          content: "옵션1을 입력해주세요.",
-          onChanged: (value) {
-            print('option1');
+        ChipGroup(
+          items: itemQualityList.firstAddText(),
+          itemsColor: itemQualityColor.firstAddColor(),
+          onChanged: (itemGrade) {
+            setState(() {
+              selectItemGrade = itemGrade;
+            });
           },
-          onFieldSubmitted: (value) {},
-          validator: customDialogIdValidate,
+        ),
+        SizedBox(height: kDefaultPadding * 2),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: CustomTitle.size20('아이템 유형'),
+        ),
+        SizedBox(height: kDefaultPadding),
+        _itemTypeDropdown(),
+        SizedBox(height: kDefaultPadding * 2),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: CustomTitle.size20('아이템 이름'),
+        ),
+        SizedBox(height: kDefaultPadding),
+        _itemNameDropdown(),
+        SizedBox(height: kDefaultPadding * 2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomTitle.size20('이미지 업로드'),
+            ElevatedButton.icon(
+                onPressed: () async{
+                  itemImagePath = await getImagePath();
+                  setState(() {});
+                },
+                icon: Icon(
+                  Icons.upload,
+                  color: Colors.white,
+                ),
+                label: Text('업로드')),
+          ],
+        ),
+        SizedBox(height: kDefaultPadding * 2),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: CustomTitle.size20('상세내용'),
         ),
         SizedBox(height: kDefaultPadding),
         InputField(
-          label: "옵션1",
-          labelWidth: 120,
-          content: "옵션1을 입력해주세요.",
-          onChanged: (value) {
-            print('option1');
-          },
-          onFieldSubmitted: (value) {},
-          validator: customDialogIdValidate,
+          label: '',
+          content: '상세내용을 입력해주세요.',
+          controller: memoTextController,
+          onChanged: (value) {},
+          suffixIcon: IconButton(
+            onPressed: memoTextController.clear,
+            icon: Icon(Icons.clear, color: Colors.white),
+          ),
         ),
-        SizedBox(height: kDefaultPadding),
-        InputField(
-          label: "옵션1",
-          labelWidth: 120,
-          content: "옵션1을 입력해주세요.",
-          onChanged: (value) {
-            print('option1');
-          },
-          onFieldSubmitted: (value) {},
-          validator: customDialogIdValidate,
-        ),
-        SizedBox(height: kDefaultPadding),
-        InputField(
-          label: "옵션1",
-          labelWidth: 120,
-          content: "옵션1을 입력해주세요.",
-          onChanged: (value) {
-            print('option1');
-          },
-          onFieldSubmitted: (value) {},
-          validator: customDialogIdValidate,
-        ),
-        SizedBox(height: kDefaultPadding),
-        InputField(
-          label: "옵션1",
-          labelWidth: 120,
-          content: "옵션1을 입력해주세요.",
-          onChanged: (value) {
-            print('option1');
-          },
-          onFieldSubmitted: (value) {},
-          validator: customDialogIdValidate,
-        ),
-        SizedBox(height: kDefaultPadding),
-        InputField(
-          label: "옵션1",
-          labelWidth: 120,
-          content: "옵션1을 입력해주세요.",
-          onChanged: (value) {
-            print('option1');
-          },
-          onFieldSubmitted: (value) {},
-          validator: customDialogIdValidate,
-        ),
-        SizedBox(height: kDefaultPadding),
       ],
     );
   }
-
-  // Column(
-  //   children: [
-  //     CustomTitle.size20('아이템 옵션'),
-  //     SizedBox(height: kDefaultPadding),
-  //     Row(
-  //       mainAxisAlignment: MainAxisAlignment.start,
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: [
-  //         SizedBox(
-  //           width: 200,
-  //           child: CustomTitle.size20('아이템 유형'),
-  //         ),
-  //         SizedBox(
-  //           width: kDefaultPadding,
-  //         ),
-  //         // Expanded(
-  //         //   child: _itemTypeDropdown(),
-  //         // ),
-  //       ],
-  //     ),
-  //   ],
-  // ),
 
   SearchableDropdown<String> _itemTypeDropdown() {
     return SearchableDropdown.single(
@@ -244,13 +221,54 @@ class _StandardItemRegistrationScreenState
             ),
           )
           .toList(),
-      value: selectItem,
+      value: selectItemType,
       style: AppTextStyle.white_14_w400,
       hint: Text("아이템 유형을 선택해주세요.", style: AppTextStyle.white_14_w400),
       searchHint: Text("최대 1개만 선택가능합니다.", style: AppTextStyle.white_14_w400),
       onChanged: (value) {
-        selectItem = value;
-        Get.back();
+        setState(() {
+          selectItemType = value;
+        });
+      },
+      closeButton: Align(
+        alignment: Alignment.centerRight,
+        child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(color: Colors.white),
+          ),
+          onPressed: () {
+            Get.back();
+            setState(() {});
+          },
+          child: Text("닫기", style: AppTextStyle.white_14_w400),
+        ),
+      ),
+      isExpanded: true,
+    );
+  }
+
+  SearchableDropdown<String> _itemNameDropdown() {
+
+    List<String> itemList = ['All', 'aaa', 'bbb', 'ccc', 'ddd']; //샘플자료
+
+    return SearchableDropdown.single(
+      iconEnabledColor: Colors.white,
+      items: itemList
+          .mapWithIndex(
+            (value, index) => DropdownMenuItem(
+              child: Text(value.tr, style: AppTextStyle.white_14_w400),
+              value: value.tr,
+            ),
+          )
+          .toList(),
+      value: selectItemName,
+      style: AppTextStyle.white_14_w400,
+      hint: Text("아이템을 선택해주세요.", style: AppTextStyle.white_14_w400),
+      searchHint: Text("최대 1개만 선택가능합니다.", style: AppTextStyle.white_14_w400),
+      onChanged: (value) {
+        setState(() {
+          selectItemName = value;
+        });
       },
       closeButton: Align(
         alignment: Alignment.centerRight,

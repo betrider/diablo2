@@ -98,7 +98,7 @@ Future<bool?> showToast({
   return Fluttertoast.showToast(
     msg: message,
     toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
+    gravity: ToastGravity.CENTER,
     backgroundColor: backgroundColor,
     textColor: textColor,
     fontSize: fontSize,

@@ -8,7 +8,7 @@ class ListItemInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Opacity(
-      opacity: listItemModel.dealStatus == DealStatus.REGISTERED ? 1 : 0.5,
+      opacity: getOpacity(),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: Colors.white),
@@ -57,15 +57,7 @@ class ListItemInfo extends StatelessWidget {
                           VerticalDivider(
                             color: Colors.white,
                           ),
-                          listItemModel.dealStatus == DealStatus.REGISTERED
-                              ? Text(
-                                  '등록완료',
-                                  style: AppTextStyle.white_14_w400,
-                                )
-                              : Text(
-                                  '거래완료',
-                                  style: AppTextStyle.white_14_w400,
-                                ),
+                          getText(),
                         ],
                       ),
                     ],
@@ -132,6 +124,35 @@ class ListItemInfo extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double getOpacity() {
+    if (listItemModel.dealStatus == DealStatus.REGISTERING) {
+      return 1;
+    } else if (listItemModel.dealStatus == DealStatus.REGISTERED) {
+      return 1;
+    } else {
+      return 0.5;
+    }
+  }
+
+  Text getText() {
+    if (listItemModel.dealStatus == DealStatus.REGISTERING) {
+      return Text(
+        '등록중',
+        style: AppTextStyle.white_14_w400,
+      );
+    } else if (listItemModel.dealStatus == DealStatus.REGISTERED) {
+      return Text(
+        '등록완료',
+        style: AppTextStyle.white_14_w400,
+      );
+    } else {
+      return Text(
+        '거래완료',
+        style: AppTextStyle.white_14_w400,
+      );
+    }
   }
 
   Widget _getDateTime(Alignment align) {
