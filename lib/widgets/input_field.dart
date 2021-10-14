@@ -4,7 +4,7 @@ class InputField extends StatelessWidget {
   InputField({
     required this.label,
     required this.content,
-    required this.onChanged,
+    this.onChanged,
     this.labelWidth = 80,
     this.maxWidth = 400,
     this.maxLength = 20,
@@ -22,7 +22,7 @@ class InputField extends StatelessWidget {
 
   final String label;
   final String content;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
   final double labelWidth;
   final double maxWidth;
   final int maxLength;
@@ -69,9 +69,7 @@ class InputField extends StatelessWidget {
               inputFormatters: inputFormatters,
               style: AppTextStyle.white_16_w400_NF,
               controller: controller,
-              onChanged: (value) {
-                return onChanged(value);
-              },
+              onChanged: onChanged,
               cursorColor: Colors.grey[600]!,
               validator: validator,
               decoration: InputDecoration(
@@ -108,7 +106,7 @@ class InputField extends StatelessWidget {
                 hintText: "$content",
                 hintStyle: AppTextStyle.grey_14_w400,
                 fillColor: Colors.black,
-                suffixIcon: suffixIcon
+                suffixIcon: suffixIcon,
               ),
             ),
           ),

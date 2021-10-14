@@ -19,8 +19,22 @@ class _StandardItemRegistrationScreenState
   String selectItemType = '';
   String selectItemName = '';
   String itemImagePath = '';
-  String searchText = '';
 
+  @override
+  void initState() { 
+    super.initState();
+    memoTextController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    memoTextController.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +74,11 @@ class _StandardItemRegistrationScreenState
                         )
                       : Row(
                           children: [
-                            _getItemOption(),
+                            Expanded(child: _getItemOption()),
                             SizedBox(
                               width: kDefaultPadding * 2,
                             ),
-                            _getItemPreview(),
+                            Expanded(child: _getItemPreview()),
                           ],
                         ),
                   SizedBox(height: kDefaultPadding * 2),
@@ -133,7 +147,7 @@ class _StandardItemRegistrationScreenState
             battleTagId: userController.battleTagId!,
             dateTime: DateTime.now().toFullDateTimeString5(),
             diabloId: userController.diabloId!,
-            memo: searchText,
+            memo: memoTextController.text,
           ),
         ),
       ],
@@ -191,19 +205,25 @@ class _StandardItemRegistrationScreenState
           ],
         ),
         SizedBox(height: kDefaultPadding * 2),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: CustomTitle.size20('상세내용'),
+        Row(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: CustomTitle.size20('상세내용'),
+            ),
+          ],
         ),
         SizedBox(height: kDefaultPadding),
-        InputField(
-          label: '',
-          content: '상세내용을 입력해주세요.',
-          controller: memoTextController,
-          onChanged: (value) {},
-          suffixIcon: IconButton(
-            onPressed: memoTextController.clear,
-            icon: Icon(Icons.clear, color: Colors.white),
+        SizedBox(
+          width: double.infinity,
+          child: InputField(
+            label: '',
+            content: '상세내용을 입력해주세요.',
+            controller: memoTextController,
+            suffixIcon: IconButton(
+              onPressed: memoTextController.clear,
+              icon: Icon(Icons.clear, color: Colors.white),
+            ),
           ),
         ),
       ],

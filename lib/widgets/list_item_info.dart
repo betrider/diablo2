@@ -68,8 +68,7 @@ class ListItemInfo extends StatelessWidget {
                   height: 1,
                 ),
                 listItemModel.itemImagePath.isEmpty
-                    ? Container()
-                    // ? Image.asset('assets/images/sample_item.png')
+                    ? Image.asset('assets/images/image-not-found.jpeg')
                     : Image.network(listItemModel.itemImagePath),
                 Container(
                   width: double.infinity,

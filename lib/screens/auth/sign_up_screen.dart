@@ -347,7 +347,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       //회원가입 성공 시
                                       Get.back();
                                       Get.back();
-                                      showToast(message: '회원가입이 성공적으로 완료되었습니다.');
+                                      showToast(
+                                          message: '회원가입이 성공적으로 완료되었습니다.');
                                       // ignore: dead_code
                                     } else {
                                       showToast(message: '회원가입에 실패했습니다.');
@@ -376,8 +377,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Future<void> _verifyWebPhoneNumber() async {
+    print('phoneNumberTextController : ${phoneNumberTextController.text}');
     ConfirmationResult confirmationResult = await _auth.signInWithPhoneNumber(
-        '+82 ${phoneNumberTextController.text.replaceAll('-', '').trim()}');
+      '+82 ${phoneNumberTextController.text.replaceAll('-', '').trim()}',
+    );
     webConfirmationResult = confirmationResult;
   }
 
