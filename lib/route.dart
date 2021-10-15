@@ -129,12 +129,12 @@ class APISamplePage extends StatefulWidget {
 }
 
 class _APISamplePageState extends State<APISamplePage> {
-late Future<Post> post;
+late Future<bool> getData;
 
   @override
   void initState() {
     super.initState();
-    post = ApiService.fetchPost();
+    getData = ApiService.checkUserId('betrider');
   }
 
   @override
@@ -149,11 +149,12 @@ late Future<Post> post;
           title: Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Post>(
-            future: post,
+          child: FutureBuilder<bool>(
+            future: getData,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.title);
+                print(snapshot.hasData.toString());
+                return Text('완료');
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }

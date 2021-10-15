@@ -61,8 +61,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     // alignment: Alignment.center,
                     padding: EdgeInsets.all(kDefaultPadding),
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
                           height: kDefaultPadding * 2,
@@ -71,76 +71,129 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: kDefaultPadding * 2,
                         ),
-                        InputField(
-                          autofocus: true,
-                          label: "아이디",
-                          labelWidth: 120,
-                          content: "아이디를 입력해주세요.",
-                          onChanged: (value) {
-                            print('id:$value');
-                          },
-                          onFieldSubmitted: (value) {
-                            print(value);
-                          },
-                          validator: customIdValidate,
-                          controller: idTextController,
-                          inputFormatters: idTextInputFormatter,
-                          textInputAction: TextInputAction.next,
-                          suffixIcon: IconButton(
-                            onPressed: idTextController.clear,
-                            icon: Icon(
-                              Icons.clear,
-                              color: Colors.grey[600]!,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InputField(
+                              autofocus: true,
+                              label: "아이디",
+                              labelWidth: 120,
+                              maxWidth: 400,
+                              content: "아이디를 입력해주세요.",
+                              onChanged: (value) {
+                                print('id:$value');
+                              },
+                              onFieldSubmitted: (value) {
+                                print(value);
+                              },
+                              validator: customIdValidate,
+                              controller: idTextController,
+                              inputFormatters: idTextInputFormatter,
+                              textInputAction: TextInputAction.next,
+                              suffixIcon: IconButton(
+                                onPressed: idTextController.clear,
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.grey[600]!,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: kDefaultPadding,
+                            ),
+                            SizedBox(
+                              width: 80,
+                              height: 40,
+                              child: ElevatedButton(
+                                onPressed: inputFieldEnable
+                                    ? () async {
+                                        String? validate =
+                                            customPhoneNumberValidate(
+                                                phoneNumberTextController.text);
+                                        if (validate == null) {
+                                          await _verifyWebPhoneNumber();
+                                          showToast(message: '인증번호가 발송되었습니다.');
+                                          setState(() {
+                                            showAuthenticationField = true;
+                                          });
+                                        } else {
+                                          showToast(message: validate);
+                                        }
+                                      }
+                                    : null,
+                                child: Text(
+                                  '중복\n체크'.tr,
+                                  style: AppTextStyle.white_12_w400,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
-                        InputField(
-                          label: "패스워드",
-                          labelWidth: 120,
-                          content: "패스워드를 입력해주세요.",
-                          onChanged: (value) {
-                            print('password:$value');
-                          },
-                          onFieldSubmitted: (value) {
-                            print(value);
-                          },
-                          validator: customPasswordValidate,
-                          obscureText: true,
-                          controller: passwordTextController,
-                          textInputAction: TextInputAction.next,
-                          suffixIcon: IconButton(
-                            onPressed: passwordTextController.clear,
-                            icon: Icon(
-                              Icons.clear,
-                              color: Colors.grey[600]!,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InputField(
+                              label: "패스워드",
+                              labelWidth: 120,
+                              maxWidth: 400,
+                              content: "패스워드를 입력해주세요.",
+                              onChanged: (value) {
+                                print('password:$value');
+                              },
+                              onFieldSubmitted: (value) {
+                                print(value);
+                              },
+                              validator: customPasswordValidate,
+                              obscureText: true,
+                              controller: passwordTextController,
+                              textInputAction: TextInputAction.next,
+                              suffixIcon: IconButton(
+                                onPressed: passwordTextController.clear,
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.grey[600]!,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 100,
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
-                        InputField(
-                          label: "패스워드 확인",
-                          labelWidth: 120,
-                          content: "패스워드를 입력해주세요.",
-                          onChanged: (value) {
-                            print('password1:$value');
-                          },
-                          onFieldSubmitted: (value) {},
-                          validator: customPasswordValidate,
-                          obscureText: true,
-                          controller: passwordCheckTextController,
-                          textInputAction: TextInputAction.next,
-                          suffixIcon: IconButton(
-                            onPressed: passwordCheckTextController.clear,
-                            icon: Icon(
-                              Icons.clear,
-                              color: Colors.grey[600]!,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InputField(
+                              label: "패스워드 확인",
+                              labelWidth: 120,
+                              content: "패스워드를 입력해주세요.",
+                              onChanged: (value) {
+                                print('password1:$value');
+                              },
+                              onFieldSubmitted: (value) {},
+                              validator: customPasswordValidate,
+                              obscureText: true,
+                              controller: passwordCheckTextController,
+                              textInputAction: TextInputAction.next,
+                              suffixIcon: IconButton(
+                                onPressed: passwordCheckTextController.clear,
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.grey[600]!,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 100,
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: kDefaultPadding,
@@ -152,7 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               enabled: inputFieldEnable,
                               label: "휴대폰 번호",
                               labelWidth: 120,
-                              maxWidth: 300,
+                              maxWidth: 400,
                               content: "휴대폰 번호를 입력해주세요.",
                               onChanged: (value) {
                                 print('password2:$value');
@@ -274,54 +327,70 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: kDefaultPadding,
                         ),
-                        InputField(
-                          label: "배틀태그",
-                          labelWidth: 120,
-                          content: "배틀태그를 입력해주세요.",
-                          onChanged: (value) {
-                            print('battle tag:$value');
-                          },
-                          onFieldSubmitted: (value) {},
-                          validator: customBattleTagIdValidate,
-                          controller: battleTagTextController,
-                          inputFormatters: battleTagTextInputFormatter,
-                          textInputAction: TextInputAction.next,
-                          suffixIcon: IconButton(
-                            onPressed: authenticationTextController.clear,
-                            icon: Icon(
-                              Icons.clear,
-                              color: Colors.grey[600]!,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InputField(
+                              label: "배틀태그",
+                              labelWidth: 120,
+                              content: "배틀태그를 입력해주세요.",
+                              onChanged: (value) {
+                                print('battle tag:$value');
+                              },
+                              onFieldSubmitted: (value) {},
+                              validator: customBattleTagIdValidate,
+                              controller: battleTagTextController,
+                              inputFormatters: battleTagTextInputFormatter,
+                              textInputAction: TextInputAction.next,
+                              suffixIcon: IconButton(
+                                onPressed: authenticationTextController.clear,
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.grey[600]!,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 100,
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: kDefaultPadding,
                         ),
-                        InputField(
-                          label: "디아블로 아이디",
-                          labelWidth: 120,
-                          content: "디아블로 아이디를 입력해주세요.",
-                          onChanged: (value) {
-                            print('diablo2 id:$value');
-                          },
-                          onFieldSubmitted: (value) {},
-                          validator: customDialogIdValidate,
-                          controller: diabloIdTextController,
-                          inputFormatters: diabloIdTextInputFormatter,
-                          textInputAction: TextInputAction.done,
-                          suffixIcon: IconButton(
-                            onPressed: diabloIdTextController.clear,
-                            icon: Icon(
-                              Icons.clear,
-                              color: Colors.grey[600]!,
+                        Row(
+                          mainAxisSize:MainAxisSize.min,
+                          children: [
+                            InputField(
+                              label: "디아블로 아이디",
+                              labelWidth: 120,
+                              content: "디아블로 아이디를 입력해주세요.",
+                              onChanged: (value) {
+                                print('diablo2 id:$value');
+                              },
+                              onFieldSubmitted: (value) {},
+                              validator: customDialogIdValidate,
+                              controller: diabloIdTextController,
+                              inputFormatters: diabloIdTextInputFormatter,
+                              textInputAction: TextInputAction.done,
+                              suffixIcon: IconButton(
+                                onPressed: diabloIdTextController.clear,
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.grey[600]!,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 100,
+                            )
+                          ],
                         ),
                         SizedBox(
                           height: kDefaultPadding * 2,
                         ),
                         SizedBox(
-                          width: 400,
+                          width: 500,
                           height: 48,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
